@@ -5,3 +5,5 @@ import credentials from './wallet-auth.json';
 firebase.initializeApp({
 	credential: firebase.credential.cert(credentials),
 });
+
+const db = firebase.firestore();
