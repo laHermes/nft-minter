@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Index = () => {
-	return <div>Board</div>;
+	return <button className='p-2 border rounded'>Wallet</button>;
 };
 
 export default Index;
