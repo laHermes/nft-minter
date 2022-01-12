@@ -5,7 +5,11 @@ interface ILayout {
 }
 
 const Layout = ({ children }: ILayout) => {
-	return <div className='mx-auto max-w-screen-lg p-5'>{children}</div>;
+	return (
+		<div className='flex flex-col gap-4 mx-auto max-w-screen-lg p-5'>
+			{children}
+		</div>
+	);
 };
 
 export default Layout;

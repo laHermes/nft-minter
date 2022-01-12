@@ -1,21 +1,13 @@
 import React from 'react';
-import Board from './components/Board/Index';
-import Header from './components/Header/Index';
-import Layout from './components/Layout';
-
-import './App.css';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Routes from './routes/Routing';
+import { Web3ReactProvider } from '@web3-react/core';
+import { getLibrary } from './services/web3/wallet/utils';
 
 function App() {
 	return (
-		<Router>
-			<Layout>
-				<Header />
-				<Routes>
-					<Route path='/' element={<Board />} />
-				</Routes>
-			</Layout>
-		</Router>
+		<Web3ReactProvider getLibrary={getLibrary}>
+			<Routes />
+		</Web3ReactProvider>
 	);
 }
 

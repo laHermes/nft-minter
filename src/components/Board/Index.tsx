@@ -1,7 +1,8 @@
 import React from 'react';
+import MintButton from '../MintButton/Index';
 
 const Index = () => {
-	return <div>Board</div>;
+	return <MintButton />;
 };
 
 export default Index;
