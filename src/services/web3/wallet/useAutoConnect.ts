@@ -3,7 +3,7 @@ import { useWeb3React } from '@web3-react/core';
 import { getAutoLoginLS, setAutoLoginLS } from '../../../utils/localStorage';
 import { injected } from './connectors';
 
-export const useAutoConnect = () => {
+export const useAutoWalletConnect = () => {
 	const { activate, active } = useWeb3React();
 
 	const [triedAutoConnect, setTriedAutoConnect] = useState<boolean>(false);
