@@ -1,8 +1,8 @@
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useWeb3React } from '@web3-react/core';
 import { setAutoLoginLS } from '../../../utils/localStorage';
 
-const useWalletconnect = () => {
+const useWalletConnect = () => {
 	const { activate, deactivate, account, connector } = useWeb3React();
 
 	const [isPending, setIsPending] = useState<boolean>(false);
@@ -20,7 +20,6 @@ const useWalletconnect = () => {
 
 	const handleDisconnect = useCallback(() => {
 		deactivate();
-
 		setAutoLoginLS(false);
 	}, [deactivate]);
 
@@ -31,4 +30,4 @@ const useWalletconnect = () => {
 	return { isError, isPending, handleOpen, account, handleWalletConnectButton };
 };
 
-export default useWalletconnect;
+export default useWalletConnect;
