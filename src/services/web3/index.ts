@@ -27,7 +27,9 @@ export const setProvider = (provider: TProviders) => {
 	web3.provider = provider;
 };
 
-export const setSigner = (signer: providers.JsonRpcSigner) => {};
+export const setSigner = (signer: providers.JsonRpcSigner) => {
+	writeWeb3.signer = signer;
+};
 
 export const web3 = {
 	provider: getProvider(),

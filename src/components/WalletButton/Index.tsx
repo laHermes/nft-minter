@@ -1,5 +1,6 @@
 import React from 'react';
-import useWalletConnect from '../../services/web3/wallet/useWalletconnect';
+import useWalletConnect from '../../services/web3/wallet/useWalletConnect';
+import { SUPPORTED_WALLETS } from '../../services/web3/wallet/utils';
 
 const Index = () => {
 	const { account, handleWalletConnectButton } = useWalletConnect();
