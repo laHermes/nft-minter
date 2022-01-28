@@ -20,7 +20,8 @@ const useWalletConnect = () => {
 
 	const handleConnect = useCallback(
 		async (wallet: any) => {
-			console.log(connector);
+			const { connector } = wallet;
+			console.log(wallet);
 			connector && (await activate(connector, undefined, true));
 			setAutoLoginLS(true);
 			setSelectedWallet(wallet);

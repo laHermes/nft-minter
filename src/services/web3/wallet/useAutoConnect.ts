@@ -9,18 +9,16 @@ export const useAutoWalletConnect = () => {
 	const [triedAutoConnect, setTriedAutoConnect] = useState<boolean>(false);
 
 	useEffect(() => {
-		if (getAutoLoginLS()) {
-			injected.isAuthorized().then((isAuthorized: boolean) => {
-				if (isAuthorized) {
-					activate(injected, undefined, true)
-						.then(async () => {
-							setAutoLoginLS(true);
-							setTriedAutoConnect(true);
-						})
-						.catch(() => console.log('Failed to auto connect'));
-				}
-			});
-		}
+		if (!getAutoLoginLS()) return;
+		injected.isAuthorized().then((isAuthorized: boolean) => {
+			if (!isAuthorized) return;
+			activate(injected, undefined, true)
+				.then(async () => {
+					setAutoLoginLS(true);
+					setTriedAutoConnect(true);
+				})
+				.catch(() => console.log('Failed to auto connect'));
+		});
 	}, [activate]);
 
 	useEffect(() => {

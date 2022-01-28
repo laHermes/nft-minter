@@ -8,10 +8,8 @@ export type TProviders = providers.BaseProvider | providers.WebSocketProvider;
 export const getProvider = (
 	network: EthNetworks = EthNetworks.Mumbai
 ): TProviders => {
-	// if (process.env.REACT_APP_MUMBAI) {
-	// 	return new providers.WebSocketProvider(createUrl(network, true));
-	// }
-	return new providers.BaseProvider(createUrl(network));
+	const key = process.env.REACT_APP_MUMBAI as string;
+	return new providers.AlchemyProvider(EthNetworks.Mumbai, key);
 };
 
 export const writeWeb3 = {
