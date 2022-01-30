@@ -7,8 +7,8 @@ import Layout from '../components/Layout';
 const Routing = () => {
 	return (
 		<Router>
+			<Header />
 			<Layout>
-				<Header />
 				<Routes>
 					<Route path='/' element={<Board />} />
 				</Routes>

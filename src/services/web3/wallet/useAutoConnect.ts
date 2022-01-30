@@ -12,7 +12,7 @@ export const useAutoWalletConnect = () => {
 		if (!getAutoLoginLS()) return;
 		injected.isAuthorized().then((isAuthorized: boolean) => {
 			if (!isAuthorized) return;
-			activate(injected, undefined, true)
+			activate(injected)
 				.then(async () => {
 					setAutoLoginLS(true);
 					setTriedAutoConnect(true);
@@ -29,3 +29,5 @@ export const useAutoWalletConnect = () => {
 
 	return triedAutoConnect;
 };
+
+export default useAutoWalletConnect;

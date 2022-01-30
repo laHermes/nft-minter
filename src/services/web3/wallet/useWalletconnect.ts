@@ -21,17 +21,30 @@ const useWalletConnect = () => {
 	const handleConnect = useCallback(
 		async (wallet: any) => {
 			const { connector } = wallet;
-			console.log(wallet);
-			connector && (await activate(connector, undefined, true));
-			setAutoLoginLS(true);
-			setSelectedWallet(wallet);
+			if (connector) {
+				try {
+					await activate(connector);
+					setAutoLoginLS(true);
+					setSelectedWallet(wallet);
+					const signer = new Web3Provider(
+						await connector.getProvider()
+					).getSigner();
+
+					setSigner(signer);
+				} catch (e: any) {
+					console.log('Failed Wallet Connection!');
+					setIsError(true);
+				}
+			}
 		},
-		[activate, connector]
+		[activate]
 	);
 
 	const handleDisconnect = useCallback(() => {
 		deactivate();
 		setAutoLoginLS(false);
+		setIsError(false);
+		setIsPending(false);
 	}, [deactivate]);
 
 	const handleWalletConnectButton = useCallback(() => {
@@ -56,10 +69,10 @@ const useWalletConnect = () => {
 	return {
 		isError,
 		isPending,
-		handleOpen,
 		account,
-		handleWalletConnectButton,
+		handleOpen,
 		handleConnect,
+		handleWalletConnectButton,
 	};
 };
 
