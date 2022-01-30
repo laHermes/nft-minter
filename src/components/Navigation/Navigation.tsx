@@ -10,7 +10,7 @@ interface ILayout {
 const Navigation = ({ children }: ILayout) => {
 	return (
 		<div className='flex flex-row min-h-screen bg-gray-100 text-gray-800'>
-			<aside className='sidebar w-64 md:shadow transform -translate-x-full md:translate-x-0 transition-transform duration-150 ease-in bg-slate-900'>
+			<aside className='sidebar w-56 md:shadow transform -translate-x-full md:translate-x-0 transition-transform duration-150 ease-in bg-slate-900'>
 				<div className='sidebar-header flex items-center justify-center py-4'>
 					<div className='inline-flex'>
 						<span className='leading-10 text-gray-100 text-2xl font-bold ml-1 '>
