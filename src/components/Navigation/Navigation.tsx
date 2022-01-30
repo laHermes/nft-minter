@@ -1,10 +1,13 @@
 import React from 'react';
 import WalletButton from '../WalletButton/Index';
+import { RiHammerLine } from 'react-icons/ri';
+import { HiOutlineCollection } from 'react-icons/hi';
+import { AiOutlineShop } from 'react-icons/ai';
 
 interface ILayout {
 	children: JSX.Element | JSX.Element[] | React.ReactNode;
 }
-const NavBar = ({ children }: ILayout) => {
+const Navigation = ({ children }: ILayout) => {
 	return (
 		<div className='flex flex-row min-h-screen bg-gray-100 text-gray-800'>
 			<aside className='sidebar w-64 md:shadow transform -translate-x-full md:translate-x-0 transition-transform duration-150 ease-in bg-slate-900'>
@@ -19,21 +22,24 @@ const NavBar = ({ children }: ILayout) => {
 					<ul className='text-lg text-indigo-200 font-extrabold'>
 						<li>
 							<button>
-								<div className='w-full border-l-slate-900 border-l-8 hover:border-l-8 hover:border-l-indigo-200 pl-4 py-3 '>
-									Minter
+								<div className='w-full border-l-slate-900 border-l-8 hover:border-l-8 hover:border-l-indigo-200 pl-4 py-3 inline-flex'>
+									<RiHammerLine className='text-2xl mr-2' />
+									<p>Minter</p>
 								</div>
 							</button>
 						</li>
 						<li>
 							<button>
-								<div className='w-full border-l-slate-900 border-l-8 hover:border-l-8 hover:border-l-indigo-200 p-3 '>
-									Collections
+								<div className='w-full border-l-slate-900 border-l-8 hover:border-l-8 hover:border-l-indigo-200 pl-4 py-3 inline-flex'>
+									<HiOutlineCollection className='text-2xl mr-2' />
+									<p>Collections</p>
 								</div>
 							</button>
 						</li>
 						<li>
 							<button>
-								<div className='w-full border-l-slate-900 border-l-8 hover:border-l-8 hover:border-l-indigo-200 p-3 '>
+								<div className='w-full border-l-slate-900 border-l-8 hover:border-l-8 hover:border-l-indigo-200 pl-4 py-3 inline-flex'>
+									<AiOutlineShop className='text-2xl mr-2' />
 									Marketplace
 								</div>
 							</button>
@@ -55,4 +61,4 @@ const NavBar = ({ children }: ILayout) => {
 	);
 };
 
-export default NavBar;
+export default Navigation;

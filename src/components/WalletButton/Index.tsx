@@ -12,9 +12,11 @@ const Index = () => {
 				return (
 					<div key={index}>
 						<button
-							className='text-indigo-900 border border-indigo-900 rounded-lg px-2 '
+							className='text-indigo-900 text-md border border-indigo-900 rounded-xl px-4 '
 							onClick={() => handleConnect(wallet)}>
-							{account ? account : wallet.name}
+							{account
+								? `${account.slice(0, 4)}...${account.slice(-4)}`
+								: wallet.name}
 						</button>
 					</div>
 				);
