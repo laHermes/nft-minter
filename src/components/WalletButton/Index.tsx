@@ -12,7 +12,7 @@ const Index = () => {
 				return (
 					<div key={index}>
 						<button
-							className='text-indigo-300'
+							className='text-indigo-900 border border-indigo-900 rounded-lg px-2 '
 							onClick={() => handleConnect(wallet)}>
 							{account ? account : wallet.name}
 						</button>
