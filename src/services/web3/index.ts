@@ -5,9 +5,7 @@ import { createUrl } from './wallet/connectors';
 
 export type TProviders = providers.BaseProvider | providers.WebSocketProvider;
 
-export const getProvider = (
-	network: EthNetworks = EthNetworks.Mumbai
-): TProviders => {
+export const getProvider = (): TProviders => {
 	const key = process.env.REACT_APP_MUMBAI as string;
 	return new providers.AlchemyProvider(EthNetworks.Mumbai, key);
 };
