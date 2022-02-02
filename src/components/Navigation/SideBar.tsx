@@ -2,6 +2,7 @@ import React from 'react';
 import { RiHammerLine } from 'react-icons/ri';
 import { HiOutlineCollection } from 'react-icons/hi';
 import { AiOutlineShop } from 'react-icons/ai';
+import { Link } from 'react-router-dom';
 
 interface IComponent {
 	componentName: React.FC;
@@ -18,19 +19,19 @@ const sideComponents: IComponent[] = [
 	{
 		componentName: RiHammerLine,
 		label: 'Minter',
-		href: '',
+		href: '/',
 		key: 1,
 	},
 	{
 		componentName: HiOutlineCollection,
 		label: 'Collections',
-		href: '',
+		href: '/collections',
 		key: 2,
 	},
 	{
 		componentName: AiOutlineShop,
 		label: 'Marketplace',
-		href: '',
+		href: '/market',
 		key: 3,
 	},
 ];
@@ -54,14 +55,16 @@ const SideBar = () => {
 						const DynamicComponent: React.FC = component.componentName;
 						return (
 							<li key={component.key}>
-								<button className={SideNavStyle}>
-									<div className='inline-flex'>
-										<div className='text-xl mr-2 self-center'>
-											<DynamicComponent />
+								<Link to={component.href}>
+									<button className={SideNavStyle}>
+										<div className='inline-flex'>
+											<div className='text-xl mr-2 self-center'>
+												<DynamicComponent />
+											</div>
+											<p className='text-md'>{component.label}</p>
 										</div>
-										<p className='text-md'>{component.label}</p>
-									</div>
-								</button>
+									</button>
+								</Link>
 							</li>
 						);
 					})}

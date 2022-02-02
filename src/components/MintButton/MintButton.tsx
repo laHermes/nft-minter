@@ -1,9 +1,9 @@
 import React from 'react';
 
-const Index = () => {
+const MintButton = () => {
 	return (
 		<button className='p-1 w-full text-xl border rounded-full'>MINT</button>
 	);
 };
 
-export default Index;
+export default MintButton;
