@@ -11,11 +11,7 @@ const Routing = () => {
 			<Navigation>
 				<Routes>
 					<Route path='/' element={<Board />} />
-				</Routes>
-				<Routes>
 					<Route path='/collections' element={<Collections />} />
-				</Routes>
-				<Routes>
 					<Route path='/market' element={<Market />} />
 				</Routes>
 			</Navigation>

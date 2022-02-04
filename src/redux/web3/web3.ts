@@ -44,4 +44,4 @@ const web3Slice = createSlice({
 });
 
 export const { writeWeb3 } = web3Slice.actions;
-export const user = web3Slice.reducer;
+export const web3 = web3Slice.reducer;
