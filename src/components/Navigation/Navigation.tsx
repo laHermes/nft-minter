@@ -8,17 +8,13 @@ interface ILayout {
 	children: JSX.Element | JSX.Element[] | React.ReactNode;
 }
 
-// class names for components
-const wrapperStyle = 'flex flex-row min-h-screen bg-gray-100 text-gray-800';
-const mainStyle =
-	'main flex flex-col flex-grow -ml-64 md:ml-0 transition-all duration-150 ease-in';
 // NAVIGATION COMPONENT WRAPS ALL ROUTES
 const Navigation = ({ children }: ILayout) => {
 	call();
 	return (
-		<div className={wrapperStyle}>
+		<div className='wrapperStyle'>
 			<SideBar />
-			<main className={mainStyle}>
+			<main className='mainStyle'>
 				<Header />
 				{children}
 			</main>

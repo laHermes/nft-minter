@@ -11,9 +11,6 @@ interface IComponent {
 	key: number;
 }
 
-const SideNavStyle =
-	'w-full inline-flex border-l-slate-900 border-l-8 hover:border-l-8 hover:border-l-indigo-200 hover:bg-slate-800 pl-4 py-3';
-
 // SIDEBAR COMPONENTS
 const sideComponents: IComponent[] = [
 	{
@@ -56,7 +53,7 @@ const SideBar = () => {
 						return (
 							<li key={component.key}>
 								<Link to={component.href}>
-									<button className={SideNavStyle}>
+									<button className='sidebarNav'>
 										<div className='inline-flex'>
 											<div className='text-xl mr-2 self-center'>
 												<DynamicComponent />

@@ -2,14 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { getNfts, nftState } from '../../../redux/nfts/nfts';
-import { create, CID } from 'ipfs-http-client';
-
-const getIpfsImageUrl = (id: number, extension: string = '.png') => {
-	const hash = 'Qma8NKXGJCtXmkK9jZGVKb9xN1NgsvUfYWdCdRwemsWfTk';
-	const url = `https://ipfs.infura.io/ipfs/`;
-
-	return `${url + hash + '/' + id + extension}`;
-};
+import { getIpfsImageUrl } from '../../../utils/ipfs';
 
 const Board = () => {
 	const dispatch = useDispatch();

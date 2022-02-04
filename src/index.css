@@ -27,3 +27,15 @@ code {
 .text-box {
 	@apply bg-gray-800 text-gray-200;
 }
+
+.sidebarNav {
+	@apply w-full inline-flex border-l-transparent border-l-8 hover:border-l-8 hover:border-l-indigo-200 hover:bg-slate-800 pl-4 py-3;
+}
+
+.wrapperStyle {
+	@apply flex flex-row min-h-screen bg-gray-100 text-gray-800;
+}
+
+.mainStyle {
+	@apply flex flex-col flex-grow -ml-64 md:ml-0 transition-all duration-150 ease-in;
+}
