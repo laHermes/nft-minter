@@ -1,11 +1,23 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
+import { RootState } from '../index';
+
+interface INft {
+	name: string;
+	description: string;
+	image: string;
+	dna: string;
+	edition: string;
+	date: number;
+	attributes: [{ trait_type: string; value: string }];
+	compiler?: string;
+}
 
 interface INfts {
-	nfts: [];
+	nfts: [INft] | [];
 	status: any;
 }
 
-const initialState: INfts = {
+export const initialState: INfts = {
 	nfts: [],
 	status: null,
 };
@@ -40,3 +52,4 @@ const nftsSlice = createSlice({
 });
 
 export const nfts = nftsSlice.reducer;
+export const nftState = (state: RootState) => state.nfts;

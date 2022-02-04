@@ -43,5 +43,6 @@ const web3Slice = createSlice({
 	},
 });
 
-export const { writeWeb3 } = web3Slice.actions;
+export const { writeWeb3, setSigner, setProvider, defineProvider } =
+	web3Slice.actions;
 export const web3 = web3Slice.reducer;
