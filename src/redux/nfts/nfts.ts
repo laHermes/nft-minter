@@ -6,7 +6,7 @@ interface INft {
 	description: string;
 	image: string;
 	dna: string;
-	edition: string;
+	edition: number;
 	date: number;
 	attributes: [{ trait_type: string; value: string }];
 	compiler?: string;
