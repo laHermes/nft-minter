@@ -50,8 +50,6 @@ export const mulitCall = async () => {
 	// second multicall
 	//returns either owner's address or null
 	const dataSec: OwnersType[] = await ethcallProvider.tryAll(tokenOwners);
-
-	console.log(dataSec);
 };
 
 const dataFormat = (

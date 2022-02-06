@@ -1,15 +1,22 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import { getNfts, nftState } from '../../../redux/nfts/nfts';
+
+import {
+	getNftMetadata,
+	nftState,
+	getOnChainNftData,
+} from '../../../redux/nfts/nfts';
+
 import { getIpfsImageUrl } from '../../../utils/ipfs';
 
 const Board = () => {
 	const dispatch = useDispatch();
-	const { nfts, status } = useSelector(nftState);
+	const { nfts, status, nftStats } = useSelector(nftState);
 
 	useEffect(() => {
-		dispatch(getNfts());
+		dispatch(getNftMetadata());
+		dispatch(getOnChainNftData());
 	}, [dispatch]);
 
 	const cardStyle = 'bg-gray-900 w-64 h-64 text-white';
@@ -17,6 +24,7 @@ const Board = () => {
 	return (
 		<div className='p-5'>
 			<div>
+				{nftStats && <p>EVO ME </p>}
 				{status === 'loading' && <p>Loading</p>}
 				{status === 'failed' && <p>Failed fetching NFT data from IPFS</p>}
 				<div className='flex flex-row py-2'>
