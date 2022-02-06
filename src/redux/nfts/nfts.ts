@@ -2,57 +2,20 @@ import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../index';
 import { Contract, Provider } from 'ethcall';
 import Collection from '../../contracts/Collection.json';
-import { store } from '../../redux/index';
 import { getProvider } from '../../services/web3';
-import { BigNumberish, utils } from 'ethers';
-
-type OwnersType = null | string;
-
-interface IDataFormat {
-	tokenPrice: string;
-	maxMintableTokens: number;
-	totalSupply: string;
-	saleStatus: boolean;
-	nftName: string;
-}
-
-interface INft {
-	name: string;
-	description: string;
-	image: string;
-	dna: string;
-	edition: number;
-	date: number;
-	attributes: [{ trait_type: string; value: string }];
-	compiler?: string;
-}
-
-interface IGetOnChainNftData {
-	info: IDataFormat;
-	owners: OwnersType[];
-}
-
-interface INfts {
-	nfts: [INft] | [];
-	nftStats: IGetOnChainNftData | null;
-	owners: OwnersType[];
-	status: any;
-}
-
-const NFT_ADDRESS = '0xd1B1193A591139CB46f3B55a341a92F4C6791B31';
+import { BigNumberish } from 'ethers';
+import { OwnersType, IGetOnChainNftData, INfts } from '../types';
+import { dataFormat } from '../utils';
 
 // provider def
 const ethcallProvider = new Provider();
 ethcallProvider.init(getProvider());
 
+//nft contract address
+const NFT_ADDRESS = '0xd1B1193A591139CB46f3B55a341a92F4C6791B31';
+
 //contract
 const contract = new Contract(NFT_ADDRESS, Collection.abi);
-
-const maxTokensReq = contract.MAX_TOKENS_AMOUNT();
-const tokenPriceReq = contract.TOKEN_PRICE();
-const totalSupplyReq = contract.totalSupply();
-const saleStatusReq = contract.openSale();
-const nameReq = contract.name();
 
 export const initialState: INfts = {
 	nfts: [],
@@ -61,6 +24,7 @@ export const initialState: INfts = {
 	status: null,
 };
 
+// pull data from IPFS
 export const getNftMetadata = createAsyncThunk(
 	'nfts/getNftMetadata',
 	async () => {
@@ -70,47 +34,34 @@ export const getNftMetadata = createAsyncThunk(
 	}
 );
 
+// pull data from Blockchain
 export const getOnChainNftData = createAsyncThunk(
 	'nfts/getOnChainNftData',
 	async () => {
-		//eth call
+		//eth call: get basic token info
 		const data: BigNumberish[] = await ethcallProvider.all([
-			maxTokensReq,
-			tokenPriceReq,
-			totalSupplyReq,
-			saleStatusReq,
-			nameReq,
+			contract.MAX_TOKENS_AMOUNT(),
+			contract.TOKEN_PRICE(),
+			contract.totalSupply(),
+			contract.openSale(),
+			contract.name(),
 		]);
 
 		const tokenOwners = [];
-		const formated = dataFormat(data);
+		const onChainInfo = dataFormat(data);
 
 		// iterate max mintable tokens to fetch owner
-		for (let i = 0; i < formated.maxMintableTokens; i++) {
+		for (let i = 0; i < onChainInfo.maxMintableTokens; i++) {
 			tokenOwners.push(contract.ownerOf(i));
 		}
 
 		// second multicall
 		//returns either owner's address or null
-		const dataSec: OwnersType[] = await ethcallProvider.tryAll(tokenOwners);
+		const tokenIdToOwner: OwnersType[] = await ethcallProvider.tryAll(
+			tokenOwners
+		);
 
-		return { info: formated, owners: dataSec };
-	}
-);
-export const getNftOwners = createAsyncThunk(
-	'nfts/getNftOwners',
-	async (data: IDataFormat) => {
-		const tokenOwners = [];
-
-		// iterate max mintable tokens to fetch owner
-		for (let i = 0; i < data.maxMintableTokens; i++) {
-			tokenOwners.push(contract.ownerOf(i));
-		}
-
-		// second multicall
-		//returns either owner's address or null
-		const dataSec: OwnersType[] = await ethcallProvider.tryAll(tokenOwners);
-		return dataSec;
+		return { info: onChainInfo, owners: tokenIdToOwner };
 	}
 );
 
@@ -156,16 +107,3 @@ const nftsSlice = createSlice({
 
 export const nfts = nftsSlice.reducer;
 export const nftState = (state: RootState) => state.nfts;
-
-const dataFormat = (
-	data: BigNumberish[],
-	granularity: number = 0
-): IDataFormat => {
-	return {
-		tokenPrice: utils.formatEther(data[1]),
-		maxMintableTokens: parseInt(utils.formatUnits(data[0], granularity)),
-		totalSupply: utils.formatUnits(data[2], granularity),
-		saleStatus: !!data[3],
-		nftName: data[4].toString(),
-	};
-};
