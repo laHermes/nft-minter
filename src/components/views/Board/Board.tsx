@@ -22,7 +22,7 @@ const Board = () => {
 		if (nfts) {
 			dispatch(getNftOwners(nfts));
 		}
-		// avoid circular dependency issues
+		// avoid circular dependency rerender
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [dispatch]);
 
