@@ -1,5 +1,3 @@
-export type OwnersType = null | string;
-
 export interface IDataFormat {
 	tokenPrice: string;
 	maxMintableTokens: number;
@@ -19,14 +17,15 @@ export interface INft {
 	compiler?: string;
 }
 
+export type OwnersType = null | string;
+
 export interface IGetOnChainNftData {
 	info: IDataFormat;
-	owners: OwnersType[];
 }
 
 export interface INfts {
-	nfts: [INft] | [];
-	nftStats: IGetOnChainNftData | null;
+	nfts: INft[] | [];
+	nftStats: IDataFormat | null;
 	owners: OwnersType[];
-	status: any;
+	status: string | null;
 }
