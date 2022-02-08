@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useAutoWalletConnect } from '../../../services/web3/wallet/useAutoConnect';
 
 import {
 	getNftMetadata,
@@ -11,6 +12,7 @@ import { getIpfsImageUrl } from '../../../utils/ipfs';
 
 const Board = () => {
 	const dispatch = useDispatch();
+	useAutoWalletConnect();
 	const { nfts, status, nftStats } = useSelector(nftState);
 
 	useEffect(() => {

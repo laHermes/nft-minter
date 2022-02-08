@@ -11,7 +11,7 @@ interface ILayout {
 const Navigation = ({ children }: ILayout) => {
 	return (
 		<div className='wrapperStyle'>
-			<SideBar />
+			{/* <SideBar /> */}
 			<main className='mainStyle'>
 				<Header />
 				{children}
