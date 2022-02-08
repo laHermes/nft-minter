@@ -1,18 +1,11 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
-import { RootState, store } from '../index';
+import { RootState } from '../index';
 import { Contract, Provider } from 'ethcall';
 import Collection from '../../contracts/Collection.json';
 import { getProvider } from '../../services/web3';
 import { BigNumberish } from 'ethers';
-import {
-	OwnersType,
-	IGetOnChainNftData,
-	INfts,
-	INft,
-	IDataFormat,
-} from '../types';
 import { dataFormat } from '../utils';
-import { isFulfilled } from '@reduxjs/toolkit';
+import { OwnersType, INfts, INft, IDataFormat } from '../types';
 
 // provider def
 const ethcallProvider = new Provider();
@@ -27,7 +20,6 @@ const contract = new Contract(NFT_ADDRESS, Collection.abi);
 export const initialState: INfts = {
 	nfts: [],
 	nftStats: null,
-	owners: [],
 	status: null,
 };
 
@@ -40,39 +32,6 @@ export const getNftMetadata = createAsyncThunk(
 		).then((res) => res.json());
 	}
 );
-
-// // pull data from Blockchain
-// export const getOnChainNftData = createAsyncThunk(
-// 	'nfts/getOnChainNftData',
-// 	async () => {
-// 		//eth call: get basic token info
-// 		const data: BigNumberish[] = await ethcallProvider.all([
-// 			contract.MAX_TOKENS_AMOUNT(),
-// 			contract.TOKEN_PRICE(),
-// 			contract.totalSupply(),
-// 			contract.openSale(),
-// 			contract.name(),
-// 		]);
-
-// 		const tokenOwners = [];
-// 		const onChainInfo = dataFormat(data);
-
-// 		// nftMetadata.map()
-
-// 		// iterate max mintable tokens to fetch owner
-// 		for (let i = 0; i < onChainInfo.maxMintableTokens; i++) {
-// 			tokenOwners.push(contract.ownerOf(i));
-// 		}
-
-// 		// second multicall
-// 		//returns either owner's address or null
-// 		const tokenIdToOwner: OwnersType[] = await ethcallProvider.tryAll(
-// 			tokenOwners
-// 		);
-
-// 		return { info: onChainInfo, owners: tokenIdToOwner };
-// 	}
-// );
 
 // pull data from Blockchain
 export const getNftInfo = createAsyncThunk('nfts/getNftInfo', async () => {
@@ -99,7 +58,6 @@ export const getNftOwners = createAsyncThunk(
 		const tokenIdToOwner: OwnersType[] = await ethcallProvider.tryAll(
 			tokenOwners
 		);
-
 		return tokenIdToOwner;
 	}
 );
@@ -156,7 +114,14 @@ const nftsSlice = createSlice({
 		builder.addCase(
 			getNftOwners.fulfilled,
 			(state: INfts, action: PayloadAction<any>) => {
-				console.log(action.payload);
+				const NftsAndOwnersMerged = state.nfts.map((instance) => {
+					return {
+						...instance,
+						ownersAddress: action.payload[instance.edition - 1],
+					};
+				});
+
+				state.nfts = NftsAndOwnersMerged;
 			}
 		);
 	},

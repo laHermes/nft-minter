@@ -39,3 +39,7 @@ code {
 .mainStyle {
 	@apply flex flex-col flex-grow -ml-64 md:ml-0 transition-all duration-150 ease-in;
 }
+
+.cardStyle {
+	@apply w-fit bg-gray-900 text-white;
+}

@@ -15,17 +15,13 @@ export interface INft {
 	date: number;
 	attributes: [{ trait_type: string; value: string }];
 	compiler?: string;
+	ownersAddress?: string;
 }
 
 export type OwnersType = null | string;
 
-export interface IGetOnChainNftData {
-	info: IDataFormat;
-}
-
 export interface INfts {
 	nfts: INft[] | [];
 	nftStats: IDataFormat | null;
-	owners: OwnersType[];
 	status: string | null;
 }
