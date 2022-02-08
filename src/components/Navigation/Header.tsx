@@ -1,5 +1,5 @@
 import React from 'react';
-import WalletButton from '../WalletButton/Index';
+import WalletButton from '../WalletButton/WalletButton';
 
 //HEADER COMPONENT FOR NAVIGATION
 

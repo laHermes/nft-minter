@@ -6,17 +6,28 @@ import { setSigner } from '../index';
 import { Web3Provider } from '@ethersproject/providers';
 import { SUPPORTED_WALLETS } from './utils';
 
-const useWalletConnect = () => {
+export interface IUseWalletConnect {
+	handleConnect: (wallet: any) => void;
+	handleDisconnect: () => void;
+	handleWalletDisconnectButton: () => void;
+	account?: string | null;
+	isPending: boolean;
+	isError: boolean;
+	selectedWallet?: any;
+}
+
+const useWalletConnect = (): IUseWalletConnect => {
 	const { activate, deactivate, account, connector } = useWeb3React();
 
 	const [isPending, setIsPending] = useState<boolean>(false);
 	const [isError, setIsError] = useState<boolean>(false);
 	const [selectedWallet, setSelectedWallet] = useState<any>();
 
-	const handleOpen = useCallback(() => {
-		setIsError(false);
-		setIsPending(true);
-	}, []);
+	//open Modal
+	// const handleOpen = useCallback(() => {
+	// 	setIsError(false);
+	// 	setIsPending(true);
+	// }, []);
 
 	const handleConnect = useCallback(
 		async (wallet: any) => {
@@ -47,7 +58,7 @@ const useWalletConnect = () => {
 		setIsPending(false);
 	}, [deactivate]);
 
-	const handleWalletConnectButton = useCallback(() => {
+	const handleWalletDisconnectButton = useCallback(() => {
 		account && handleDisconnect();
 	}, [account, handleDisconnect]);
 
@@ -70,9 +81,9 @@ const useWalletConnect = () => {
 		isError,
 		isPending,
 		account,
-		handleOpen,
 		handleConnect,
-		handleWalletConnectButton,
+		handleDisconnect,
+		handleWalletDisconnectButton,
 	};
 };
 

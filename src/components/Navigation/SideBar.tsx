@@ -36,8 +36,8 @@ const sideComponents: IComponent[] = [
 //SIDEBAR COMPONENT USED IN NAVIGATION COMPONENT
 const SideBar = () => {
 	return (
-		<aside className='sidebar w-64 md:shadow transform -translate-x-full md:translate-x-0 transition-transform duration-150 ease-in bg-slate-900'>
-			<div className='sidebar-header flex items-center justify-center py-4'>
+		<aside className='h-screen md:shadow transform -translate-x-full md:translate-x-0 transition-transform duration-150 ease-in bg-slate-900'>
+			<div className='flex items-center justify-center py-4'>
 				<div className='inline-flex'>
 					<span className='leading-10 text-gray-100 text-2xl font-bold ml-1 inter'>
 						nft.
