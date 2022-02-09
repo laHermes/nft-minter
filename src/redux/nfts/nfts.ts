@@ -18,20 +18,29 @@ const NFT_ADDRESS = '0xd1B1193A591139CB46f3B55a341a92F4C6791B31';
 const contract = new Contract(NFT_ADDRESS, Collection.abi);
 
 export const initialState: INfts = {
-	nfts: [],
+	nftData: [],
 	nftStats: null,
-	status: null,
+	statusMetadata: null,
+	statusBlockchain: null,
 };
 
 // pull data from IPFS
 export const getNftMetadata = createAsyncThunk(
 	'nfts/getNftMetadata',
-	async () => {
+	async (_, { dispatch }) => {
 		return fetch(
 			'https://gateway.pinata.cloud/ipfs/QmcFjr88DxvT73xBGEUpjQopfircdjjfw8tneas4HdKPpB/_metadata.json'
-		).then((res) => res.json());
+		).then(async (res) => {
+			const results = await res.json();
+			dispatch(getNftInfo());
+			dispatch(getNftOwners(results));
+
+			return results;
+		});
 	}
 );
+
+//TODO: Combine NFT info with blockchain calls
 
 // pull data from Blockchain
 export const getNftInfo = createAsyncThunk('nfts/getNftInfo', async () => {
@@ -71,57 +80,59 @@ const nftsSlice = createSlice({
 	extraReducers: (builder) => {
 		//// METADATA
 		builder.addCase(getNftMetadata.pending, (state: INfts) => {
-			state.status = 'loading';
+			state.statusMetadata = 'loading';
 		});
 
 		builder.addCase(getNftMetadata.rejected, (state: INfts) => {
-			state.status = 'failed';
+			state.statusMetadata = 'failed';
 		});
 
 		builder.addCase(
 			getNftMetadata.fulfilled,
 			(state: INfts, action: PayloadAction<[]>) => {
-				state.nfts = action.payload;
-				state.status = 'success';
+				state.nftData = action.payload;
+				state.statusMetadata = 'success';
 			}
 		);
 
 		////INFO
 		builder.addCase(getNftInfo.pending, (state: INfts) => {
-			state.status = 'loading';
+			state.statusBlockchain = 'loading';
 		});
 
 		builder.addCase(getNftInfo.rejected, (state: INfts) => {
-			state.status = 'failed';
+			state.statusBlockchain = 'failed';
 		});
 
 		builder.addCase(
 			getNftInfo.fulfilled,
 			(state: INfts, action: PayloadAction<IDataFormat>) => {
 				state.nftStats = action.payload;
+				state.statusBlockchain = 'success';
 			}
 		);
 
 		//// OWNERS
 		builder.addCase(getNftOwners.pending, (state: INfts) => {
-			state.status = 'loading';
+			state.statusBlockchain = 'loading';
 		});
 
 		builder.addCase(getNftOwners.rejected, (state: INfts) => {
-			state.status = 'failed';
+			state.statusBlockchain = 'failed';
 		});
 
 		builder.addCase(
 			getNftOwners.fulfilled,
 			(state: INfts, action: PayloadAction<any>) => {
-				const NftsAndOwnersMerged = state.nfts.map((instance) => {
+				const NftsAndOwnersMerged = state.nftData.map((instance) => {
 					return {
 						...instance,
 						ownersAddress: action.payload[instance.edition - 1],
 					};
 				});
 
-				state.nfts = NftsAndOwnersMerged;
+				state.nftData = NftsAndOwnersMerged;
+				state.statusBlockchain = 'success';
 			}
 		);
 	},
@@ -129,3 +140,5 @@ const nftsSlice = createSlice({
 
 export const nfts = nftsSlice.reducer;
 export const nftState = (state: RootState) => state.nfts;
+export const onlyOwned = (state: RootState) =>
+	state.nfts.nftData.filter((instance) => instance.ownersAddress && instance);

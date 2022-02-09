@@ -21,7 +21,8 @@ export interface INft {
 export type OwnersType = null | string;
 
 export interface INfts {
-	nfts: INft[] | [];
+	nftData: INft[] | [];
 	nftStats: IDataFormat | null;
-	status: string | null;
+	statusMetadata: string | null;
+	statusBlockchain: string | null;
 }
