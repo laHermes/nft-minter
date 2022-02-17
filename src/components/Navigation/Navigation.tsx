@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import useAsyncEffect from 'use-async-effect';
-import { getNftMetadata } from '../../redux/nfts/nfts';
+import { getNftMetadata, getAllNfts } from '../../redux/nfts/nfts';
 import useAutoWalletConnect from '../../services/web3/wallet/useAutoConnect';
 import Header from './Header';
 
@@ -17,6 +17,7 @@ const Navigation = ({ children }: ILayout) => {
 
 	useAsyncEffect(() => {
 		dispatch(getNftMetadata());
+		dispatch(getAllNfts());
 	}, [dispatch]);
 
 	return (

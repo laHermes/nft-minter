@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 const Board = () => {
 	const { nftData, statusBlockchain } = useSelector(nftState);
 	const owned = useSelector(onlyOwned);
-	console.log(owned);
+
 	return (
 		<div className='max-w-screen-xl mx-auto'>
 			<div>

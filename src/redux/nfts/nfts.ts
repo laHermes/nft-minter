@@ -1,21 +1,28 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../index';
+
+// blockchain
 import { Contract, Provider } from 'ethcall';
-import Collection from '../../contracts/Collection.json';
+import { Contracts } from '../../contracts/ContractExports';
+
 import { getProvider } from '../../services/web3';
 import { BigNumberish } from 'ethers';
-import { dataFormat } from '../utils';
+
+//types and utils
 import { OwnersType, INfts, INft, IDataFormat } from '../types';
+import { dataFormat } from '../utils';
+
+//fetch
+import axios from 'axios';
 
 // provider def
 const ethcallProvider = new Provider();
 ethcallProvider.init(getProvider());
 
 //nft contract address
-const NFT_ADDRESS = '0xd1B1193A591139CB46f3B55a341a92F4C6791B31';
 
 //contract
-const contract = new Contract(NFT_ADDRESS, Collection.abi);
+const contract = new Contract(Contracts.nft.address, Contracts.nft.abi);
 
 export const initialState: INfts = {
 	nftData: [],
@@ -23,6 +30,25 @@ export const initialState: INfts = {
 	statusMetadata: null,
 	statusBlockchain: null,
 };
+
+export const getAllNfts = createAsyncThunk('nfts/getAllNfts', async () => {
+	const ethcallProvider = new Provider();
+	ethcallProvider.init(getProvider());
+
+	const nftContract = new Contract(Contracts.nft.address, Contracts.nft.abi);
+	const marketContract = new Contract(
+		Contracts.market.address,
+		Contracts.market.abi
+	);
+
+	const data = await marketContract.getAllNfts();
+	console.log('ovde sam');
+	console.log(data);
+
+	const items = data.map((token: any) => {
+		console.log(token);
+	});
+});
 
 // pull data from IPFS
 export const getNftMetadata = createAsyncThunk(

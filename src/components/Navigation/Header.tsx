@@ -30,10 +30,12 @@ const sideComponents: IComponent[] = [
 //HEADER COMPONENT FOR NAVIGATION
 const Header = () => {
 	return (
-		<header className='bg-white shadow py-2 px-4'>
+		<header className='bg-gray-800 shadow py-2 px-4'>
 			<div className='flex items-center flex-row justify-between'>
 				<div className='inline-flex'>
-					<span className='text-gray-900 text-2xl font-bold inter'>nft.</span>
+					<span className='text-indigo-100 text-2xl font-black inter'>
+						nft.
+					</span>
 				</div>
 				<div>
 					{sideComponents.map((component: any) => {
@@ -54,7 +56,10 @@ const Header = () => {
 						);
 					})}
 				</div>
-				<div className=''>
+				<div className='flex flex-row gap-2'>
+					<div className='bg-indigo-900 font-semibold text-indigo-50 px-4 pv-1 border border-indigo-700 rounded-md'>
+						Mumbai
+					</div>
 					<WalletButton />
 				</div>
 			</div>

@@ -9,7 +9,7 @@ interface IWalletButton {
 const WButton = ({ clickHandler, title }: IWalletButton) => {
 	return (
 		<button
-			className='text-indigo-900 text-md border border-indigo-900 rounded-xl px-4 '
+			className='text-indigo-100 text-md font-semibold border-2 border-indigo-900 rounded-md px-4 bg-gray-900'
 			onClick={clickHandler}>
 			{title}
 		</button>
