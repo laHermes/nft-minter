@@ -3,6 +3,7 @@ import WalletButton from '../WalletButton/WalletButton';
 import { HiOutlineCollection } from 'react-icons/hi';
 import { AiOutlineShop } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
+import { Tab } from '@headlessui/react';
 
 interface IComponent {
 	componentName: React.FC;
@@ -37,6 +38,15 @@ const Header = () => {
 						nft.
 					</span>
 				</div>
+				<Link to='/mint'>
+					<button className='px-2'>
+						<div className='inline-flex'>
+							<p className='text-md'>MINTER</p>
+						</div>
+					</button>
+				</Link>
+				<p>Collection</p>
+				<p>Yield Farming</p>
 				<div>
 					{sideComponents.map((component: any) => {
 						//maps component from array of component
@@ -56,9 +66,16 @@ const Header = () => {
 						);
 					})}
 				</div>
-				<div className='flex flex-row gap-2'>
-					<div className='bg-indigo-900 font-semibold text-indigo-50 px-4 pv-1 border border-indigo-700 rounded-md'>
-						Mumbai
+
+				<div className='flex flex-row gap-2 text-xl'>
+					<div className='bg-slate-900 font-semibold text-indigo-50 px-2 pv-1 rounded-md'>
+						Dark
+					</div>
+					<div className='bg-slate-900 font-semibold text-indigo-50 px-4 pv-1 rounded-md '>
+						Polygon Mumbai
+					</div>
+					<div className='bg-slate-900 font-semibold text-indigo-50 px-2 pv-1 rounded-md'>
+						0 mMATIC
 					</div>
 					<WalletButton />
 				</div>
