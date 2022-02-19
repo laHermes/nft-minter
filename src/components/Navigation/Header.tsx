@@ -75,7 +75,7 @@ const Header = () => {
 						Polygon Mumbai
 					</div>
 					<div className='bg-slate-900 font-semibold text-indigo-50 px-2 pv-1 rounded-md'>
-						0 mMATIC
+						~ 0 mMATIC
 					</div>
 					<WalletButton />
 				</div>

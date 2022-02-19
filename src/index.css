@@ -37,9 +37,20 @@ code {
 }
 
 .mainStyle {
-	@apply flex flex-col flex-grow -ml-64 md:ml-0 transition-all duration-150 ease-in;
+	@apply flex flex-col flex-grow -ml-64 md:ml-0 transition-all duration-150 ease-in bg-orange-300;
 }
 
 .cardStyle {
 	@apply w-fit bg-gray-900 text-white;
+}
+
+.background {
+	background-image: #321674;
+	background-image: radial-gradient(
+			at 80% 0%,
+			hsla(220, 96%, 17%, 1) 0,
+			transparent 50%
+		),
+		radial-gradient(at 49% 98%, hsla(279, 94%, 13%, 1) 0, transparent 50%),
+		radial-gradient(at 80% 100%, hsla(253, 50%, 28%, 1) 0, transparent 50%);
 }

@@ -42,8 +42,6 @@ export const getAllNfts = createAsyncThunk('nfts/getAllNfts', async () => {
 	);
 
 	const data = await marketContract.getAllNfts();
-	console.log('ovde sam');
-	console.log(data);
 
 	const items = data.map((token: any) => {
 		console.log(token);
