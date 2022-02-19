@@ -37,7 +37,7 @@ code {
 }
 
 .mainStyle {
-	@apply flex flex-col flex-grow -ml-64 md:ml-0 transition-all duration-150 ease-in bg-orange-300;
+	@apply h-screen flex flex-col flex-grow -ml-64 md:ml-0 transition-all duration-150 ease-in bg-gradient-to-b from-indigo-900 via-purple-700 to-pink-600;
 }
 
 .cardStyle {
