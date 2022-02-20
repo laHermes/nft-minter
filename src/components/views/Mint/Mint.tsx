@@ -1,6 +1,9 @@
 import React from 'react';
+import useMinter from '../../../hooks/useMinter';
 
 const Mint = () => {
+	const { count, increment, decrement, setCount } = useMinter();
+
 	return (
 		<div className='flex flex-col justify-between  max-w-screen-sm mx-auto'>
 			<div className='bg-zinc-900/95 text-indigo-100 rounded-3xl mt-12 shadow-sm'>
@@ -16,7 +19,8 @@ const Mint = () => {
 						<input
 							type='text'
 							className='bg-inherit text-indigo-50 text-2xl font-bold rounded-xl flex-0'
-							value={0}
+							value={count}
+							onInput={(e: any) => setCount(e.target.value)}
 						/>
 						<p className='bg-zinc-700/75 px-3 py-2 rounded-xl font-bold'>
 							NFT(s)
@@ -24,17 +28,21 @@ const Mint = () => {
 					</div>
 					<div className='bg-zinc-800 p-2 flex flex-row gap-2 rounded-xl'>
 						<p className='bg-inherit text-indigo-50 text-2xl font-bold rounded-xl flex-1'>
-							0
+							{count * 1000}
 						</p>
 						<p className='bg-zinc-700/75 px-3 py-2 rounded-xl font-bold'>
 							LTK tokens
 						</p>
 					</div>
 					<div className='flex flex-row justify-between gap-2 '>
-						<button className='bg-zinc-800 text-indigo-50 leading-none text-4xl font-black px-3 py-1 rounded-xl flex-1'>
+						<button
+							onClick={increment}
+							className='bg-zinc-800 text-indigo-50 leading-none text-4xl font-black px-3 py-1 rounded-xl flex-1'>
 							+
 						</button>
-						<button className='bg-zinc-800 text-indigo-50 leading-none text-4xl font-black px-3 py-1 rounded-xl flex-1'>
+						<button
+							onClick={decrement}
+							className='bg-zinc-800 text-indigo-50 leading-none text-4xl font-black px-3 py-1 rounded-xl flex-1'>
 							-
 						</button>
 					</div>
