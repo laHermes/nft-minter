@@ -1,9 +1,10 @@
 import React from 'react';
 import useMinter from '../../../hooks/useMinter';
+import useWalletConnect from '../../../services/web3/wallet/useWalletConnect';
 
 const Mint = () => {
 	const { count, increment, decrement, setCount } = useMinter();
-
+	const { account, handleDisconnect, handleConnect } = useWalletConnect();
 	return (
 		<div className='flex flex-col justify-between  max-w-screen-sm mx-auto'>
 			<div className='bg-zinc-900/95 text-indigo-100 rounded-3xl mt-12 shadow-sm'>
@@ -20,7 +21,11 @@ const Mint = () => {
 							type='text'
 							className='bg-inherit text-indigo-50 text-2xl font-bold rounded-xl flex-0'
 							value={count}
-							onInput={(e: any) => setCount(e.target.value)}
+							onInput={(e: any) => {
+								if (!isNaN(e.target.value)) {
+									setCount(e.target.value);
+								}
+							}}
 						/>
 						<p className='bg-zinc-700/75 px-3 py-2 rounded-xl font-bold'>
 							NFT(s)
@@ -47,7 +52,7 @@ const Mint = () => {
 						</button>
 					</div>
 					<button className='bg-sky-900/40 text-sky-600/70 py-4 font-black w-full rounded-3xl text-lg'>
-						Mint
+						{account ? 'Mint' : 'Connect Wallet'}
 					</button>
 				</div>
 			</div>

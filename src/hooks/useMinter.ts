@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import { useState, useCallback } from 'react';
 
 const UPPER_BOUND = 10;
 const LOWER_BOUND = 0;
@@ -11,6 +11,12 @@ const useMinter = () => {
 	}, []);
 
 	const decrement = useCallback(() => {
+		setCount((state: number) => (state - 1 >= LOWER_BOUND ? state - 1 : state));
+	}, []);
+
+	// TODO
+	const setInput = useCallback((event: React.FormEvent<HTMLInputElement>) => {
+		// const value = event.target.value;
 		setCount((state: number) => (state - 1 >= LOWER_BOUND ? state - 1 : state));
 	}, []);
 
