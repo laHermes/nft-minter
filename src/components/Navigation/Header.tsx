@@ -31,7 +31,7 @@ const sideComponents: IComponent[] = [
 //HEADER COMPONENT FOR NAVIGATION
 const Header = () => {
 	return (
-		<header className='backdrop-blur-sm bg-gray-800/50 shadow py-2 px-4'>
+		<header className='backdrop-blur-sm bg-gray-800/50  shadow-lg py-2 px-4'>
 			<div className='flex items-center flex-row justify-between'>
 				<div className='inline-flex'>
 					<span className='text-indigo-100 text-2xl font-black inter'>
