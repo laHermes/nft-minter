@@ -18,6 +18,7 @@
     "axios": "^0.26.0",
     "ethcall": "^4.3.2",
     "ethers": "^5.5.3",
+    "rc-slider": "^9.7.5",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-icons": "^4.3.1",
