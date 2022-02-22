@@ -9,7 +9,7 @@ const Mint = () => {
 	const { account, handleDisconnect, handleConnect } = useWalletConnect();
 	return (
 		<div className='flex flex-col justify-between max-w-screen-sm mx-auto'>
-			<div className='bg-indigo-50 text-indigo-100 rounded-3xl mt-12 shadow-xl '>
+			<div className='bg-white text-indigo-100 rounded-3xl mt-12 shadow-xl '>
 				<div className='flex flex-row gap-3 border-b pt-4 pb-2 px-6 font-semibold text-indigo-900 text-xl leading-10'>
 					<span className=''>Minter</span>
 					<span>|</span>
@@ -26,7 +26,7 @@ const Mint = () => {
 					<div className='px-3 py-5 flex flex-row justify-between gap-2 rounded-xl'>
 						<input
 							type='text'
-							className='bg-inherit focus:outline-none text-indigo-900 text-4xl font-bold rounded-xl text-center'
+							className='bg-inherit focus:outline-none text-indigo-900 text-4xl font-bold rounded-xl text-center border'
 							value={count}
 							onChange={(e: any) => {
 								if (!isNaN(e.target.value)) {

@@ -31,7 +31,7 @@ const sideComponents: IComponent[] = [
 //HEADER COMPONENT FOR NAVIGATION
 const Header = () => {
 	return (
-		<header className='backdrop-blur-sm bg-gray-800/50  shadow-lg py-2 px-4'>
+		<header className='backdrop-blur-sm bg-indigo-800/50  shadow-lg py-2 px-4'>
 			<div className='flex items-center flex-row justify-between'>
 				<div className='inline-flex'>
 					<span className='text-indigo-100 text-2xl font-black inter'>
@@ -77,10 +77,10 @@ const Header = () => {
 				</div> */}
 
 				<div className='flex flex-row gap-2 text-xl'>
-					<div className='bg-slate-900 font-semibold text-indigo-50 px-4 pv-1 rounded-md '>
+					<div className='bg-violet-900 font-normal text-indigo-50 px-4 rounded-md shadow-lg border border-yellow-300/70'>
 						Polygon Mumbai
 					</div>
-					<div className='bg-slate-900 font-semibold text-indigo-50 px-2 pv-1 rounded-md'>
+					<div className='bg-slate-900 font-normal text-indigo-50 px-2 rounded-md shadow-lg'>
 						~ 0 mMATIC
 					</div>
 					<WalletButton />
