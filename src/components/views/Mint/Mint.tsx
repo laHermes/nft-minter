@@ -8,14 +8,14 @@ const Mint = () => {
 	const { count, increment, decrement, setCount } = useMinter();
 	const { account, handleDisconnect, handleConnect } = useWalletConnect();
 	return (
-		<div className='flex flex-col justify-between max-w-screen-sm mx-auto'>
+		<div className='flex flex-col justify-between max-w-md mx-auto'>
 			<div className='bg-white text-indigo-100 rounded-3xl mt-12 shadow-xl '>
 				<div className='flex flex-row gap-3 border-b pt-4 pb-2 px-6 font-semibold text-indigo-900 text-xl leading-10'>
 					<span className=''>Minter</span>
 					<span>|</span>
 					<span className='font-light'>Price 0.05 mMatic</span>
 				</div>
-				<div className='flex flex-col gap-3 p-3'>
+				<div className='flex flex-col gap-3 p-3 '>
 					{/* <div className='w-full p-3 rounded-xl bg-teal-900/40 text-teal-300/70 font-black'>
 						<p> Mint 1 NFT + get 1000 LTK tokens</p>
 					</div>
@@ -26,7 +26,7 @@ const Mint = () => {
 					<div className='px-3 py-5 flex flex-row justify-between gap-2 rounded-xl'>
 						<input
 							type='text'
-							className='bg-inherit focus:outline-none text-indigo-900 text-4xl font-bold rounded-xl text-center border'
+							className='bg-inherit focus:outline-none text-indigo-900 text-4xl font-bold rounded-xl text-center border max-w-sm'
 							value={count}
 							onChange={(e: any) => {
 								if (!isNaN(e.target.value)) {
@@ -44,7 +44,7 @@ const Mint = () => {
 							LTK tokens
 						</p>
 					</div> */}
-					<div className='flex flex-row justify-between gap-2'>
+					<div className='flex flex-row justify-between gap-2 '>
 						<button
 							onClick={increment}
 							className='bg-violet-900/80 text-indigo-50 leading-none text-4xl font-black px-3 py-1 rounded-xl flex-1'>
