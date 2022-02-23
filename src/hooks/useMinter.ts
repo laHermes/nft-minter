@@ -14,12 +14,6 @@ const useMinter = () => {
 		setCount((state: number) => (state - 1 >= LOWER_BOUND ? state - 1 : state));
 	}, []);
 
-	// TODO
-	const setInput = useCallback((event: React.FormEvent<HTMLInputElement>) => {
-		// const value = event.target.value;
-		setCount((state: number) => (state - 1 >= LOWER_BOUND ? state - 1 : state));
-	}, []);
-
 	return { count, increment, decrement, setCount };
 };
 
