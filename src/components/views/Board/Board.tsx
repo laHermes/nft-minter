@@ -25,8 +25,11 @@ const Board = () => {
 						/>
 					</Switch>
 				</div>
-				<div>
-					<BiWalletAlt />
+				<div className='h-96 w-full flex flex-col gap-3 justify-start p-20'>
+					<BiWalletAlt className='self-center text-5xl text-white/80' />
+					<p className='self-center text-xl text-white/80'>
+						Please connect you wallet!
+					</p>
 				</div>
 			</div>
 		</div>

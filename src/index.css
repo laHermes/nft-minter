@@ -10,6 +10,7 @@ body {
 		sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
+	@apply bck4;
 }
 
 code {
@@ -37,7 +38,7 @@ code {
 }
 
 .mainStyle {
-	@apply h-screen flex flex-col flex-grow md:ml-0 transition-all duration-150 ease-in bck2 pb-12;
+	@apply h-screen transition-all duration-150 ease-in  pb-12;
 }
 /* bg-gradient-to-b from-indigo-900 via-purple-700 to-pink-600 */
 
@@ -64,4 +65,28 @@ code {
 		#c850c0 46%,
 		#ffcc70 100%
 	);
+}
+
+.bck3 {
+	background: linear-gradient(320.54deg, #00069f 0%, #120010 72.37%),
+		linear-gradient(58.72deg, #69d200 0%, #970091 100%),
+		linear-gradient(121.28deg, #8cff18 0%, #6c0075 100%),
+		linear-gradient(121.28deg, #8000ff 0%, #000000 100%),
+		linear-gradient(180deg, #00ff19 0%, #24ff00 0.01%, #2400ff 100%),
+		linear-gradient(52.23deg, #0500ff 0%, #ff0000 100%),
+		linear-gradient(121.28deg, #32003a 0%, #ff4040 100%),
+		radial-gradient(50% 72.12% at 50% 50%, #eb00ff 0%, #110055 100%);
+	background-blend-mode: screen, color-dodge, color-burn, screen, overlay,
+		difference, color-dodge, normal;
+}
+
+.bck4 {
+	background: linear-gradient(120deg, #ff00c7 0%, #51003f 100%),
+		linear-gradient(120deg, #0030ad 0%, #00071a 100%),
+		linear-gradient(180deg, #000346 0%, #ff0000 100%),
+		linear-gradient(60deg, #0029ff 0%, #aa0014 100%),
+		radial-gradient(100% 165% at 100% 100%, #ff00a8 0%, #00ff47 100%),
+		radial-gradient(100% 150% at 0% 0%, #fff500 0%, #51d500 100%);
+	background-blend-mode: overlay, color-dodge, overlay, overlay, difference,
+		normal;
 }
