@@ -26,3 +26,7 @@ export interface INfts {
 	statusMetadata: string | null;
 	statusBlockchain: string | null;
 }
+
+interface IMinterCountState {
+	count: number;
+}
