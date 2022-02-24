@@ -95,13 +95,13 @@ const Header = () => {
 					<Tab.Group>
 						<Tab.List className='flex p-1 space-x-1 bg-white/20 rounded-xl text-lg'>
 							<Tab className='w-full py-2.5  leading-5 font-medium text-blue-700 rounded-lg hover:bg-white/60'>
-								Minter
+								<Link to='/mint'>Mint</Link>
 							</Tab>
 							<Tab className='w-full py-2.5  leading-5 font-medium text-blue-700 rounded-lg hover:bg-white/60'>
-								Collection
+								<Link to='/'>Collection</Link>
 							</Tab>
 							<Tab className='w-full py-2.5  leading-5 font-medium text-blue-700 rounded-lg hover:bg-white/60'>
-								Yield Farming
+								<Link to='/mint'>Yield Farming</Link>
 							</Tab>
 						</Tab.List>
 					</Tab.Group>
