@@ -8,8 +8,8 @@ const Mint = () => {
 	const { count, increment, decrement } = useMinter();
 	const { account } = useWalletConnect();
 	return (
-		<div className='flex flex-col justify-between max-w-md mx-auto px-10'>
-			<div className='backdrop-blur-xl bg-white/5 text-indigo-100 rounded-xl mt-12 '>
+		<div className='flex flex-col max-w-md mx-auto px-10'>
+			<div className='backdrop-blur-xl bg-white/5 text-indigo-100 rounded-xl'>
 				<div className='flex flex-col gap-5 '>
 					<div className='relative'>
 						<img src={NFTImage} alt='nft' className='rounded-lg shadow-xl' />
@@ -25,10 +25,10 @@ const Mint = () => {
 						MeshNFT#
 					</p>
 
-					<div className='inline-flex flex-row justify-between gap-5 text-indigo-900 px-8'>
+					<div className='inline-flex flex-row justify-between gap-5 text-indigo-50 px-8'>
 						<button
 							onClick={decrement}
-							className='w-16 h-16 leading-none text-4xl font-black rounded-full bg-indigo-100/50 shadow-md'>
+							className='w-16 h-16 inline-flex  justify-center items-center text-4xl font-black rounded-full bg-zinc-100/10 shadow-md'>
 							-
 						</button>
 						<input
@@ -39,7 +39,7 @@ const Mint = () => {
 
 						<button
 							onClick={increment}
-							className='w-16 h-16 leading-none text-4xl font-black rounded-full bg-indigo-100/50 shadow-md'>
+							className='w-16 h-16 text-4xl font-black rounded-full bg-zinc-100/10 shadow-md'>
 							+
 						</button>
 					</div>

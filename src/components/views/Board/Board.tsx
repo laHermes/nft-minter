@@ -9,7 +9,7 @@ const Board = () => {
 	return (
 		<div className='w-screen max-w-screen-md mx-auto '>
 			<div className='w-full bg-white/50 rounded-xl'>
-				<div className='flex flex-row border-b px-3 py-2'>
+				<div className='flex flex-row border-b border-white/40 px-3 py-2'>
 					<Switch
 						checked={enabled}
 						onChange={setEnabled}
@@ -25,8 +25,8 @@ const Board = () => {
 					</Switch>
 				</div>
 				<div className='h-96 w-full flex flex-col gap-3 justify-start p-20'>
-					<BiWalletAlt className='self-center text-5xl text-white/80' />
-					<p className='self-center text-xl text-white/80'>
+					<BiWalletAlt className='self-center text-5xl text-white/70' />
+					<p className='self-center text-xl text-white/70'>
 						Please connect you wallet!
 					</p>
 				</div>
