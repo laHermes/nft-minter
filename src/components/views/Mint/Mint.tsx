@@ -13,12 +13,12 @@ const Mint = () => {
 				<div className='flex flex-col gap-5 '>
 					<div className='relative'>
 						<img src={NFTImage} alt='nft' className='rounded-lg shadow-xl' />
-						<p className='absolute w-1/2 -bottom-3 left-0 right-0 mx-auto text-center backdrop-blur-md bg-white/80 py-1 px-2 text-indigo-900 self-center rounded-xl shadow-lg'>
+						<div className='absolute w-1/2 -bottom-3 left-0 right-0 mx-auto text-center backdrop-blur-md bg-white/80 py-1 px-2 text-indigo-900 self-center rounded-xl shadow-lg'>
 							<div className='inline-flex gap-1 '>
 								<p className='text-indigo-900 font-bold text-md'>0.05</p>
 								<img src={polygonLogo} alt='polygonLogo' className='w-5' />
 							</div>
-						</p>
+						</div>
 					</div>
 
 					<p className='text-2xl text-indigo-50 font-medium tracking-wider self-center'>
@@ -32,6 +32,7 @@ const Mint = () => {
 							-
 						</button>
 						<input
+							readOnly
 							type='numbers'
 							className='w-28 h-16 backdrop-blur-sm bg-inherit focus:outline-none shadow-md text-indigo-50 text-4xl font-bold rounded-xl text-center'
 							value={count}

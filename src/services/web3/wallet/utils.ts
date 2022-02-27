@@ -28,3 +28,10 @@ export const SUPPORTED_WALLETS: IWalletInfo[] = [
 		mobile: true,
 	},
 ];
+
+export const roundBalance = (
+	balance: string | number,
+	roundingPrecision: number = 2
+): string => {
+	return (+balance).toFixed(roundingPrecision);
+};

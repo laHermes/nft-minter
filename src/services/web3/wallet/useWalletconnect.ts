@@ -4,13 +4,14 @@ import { setAutoLoginLS } from '../../../utils/localStorage';
 import useAsyncEffect from 'use-async-effect';
 import { setSigner } from '../index';
 import { Web3Provider } from '@ethersproject/providers';
-import { SUPPORTED_WALLETS } from './utils';
-
+import { SUPPORTED_WALLETS, roundBalance } from './utils';
+import { utils } from 'ethers';
 export interface IUseWalletConnect {
 	handleConnect: (wallet: any) => void;
 	handleDisconnect: () => void;
 	handleWalletDisconnectButton: () => void;
 	account?: string | null;
+	balance?: string | null;
 	isPending: boolean;
 	isError: boolean;
 	selectedWallet?: any;
@@ -22,12 +23,7 @@ const useWalletConnect = (): IUseWalletConnect => {
 	const [isPending, setIsPending] = useState<boolean>(false);
 	const [isError, setIsError] = useState<boolean>(false);
 	const [selectedWallet, setSelectedWallet] = useState<any>();
-
-	//open Modal
-	// const handleOpen = useCallback(() => {
-	// 	setIsError(false);
-	// 	setIsPending(true);
-	// }, []);
+	const [balance, setBalance] = useState<string>();
 
 	const handleConnect = useCallback(
 		async (wallet: any) => {
@@ -35,13 +31,18 @@ const useWalletConnect = (): IUseWalletConnect => {
 			if (connector) {
 				try {
 					await activate(connector);
-					setAutoLoginLS(true);
-					setSelectedWallet(wallet);
+
 					const signer = new Web3Provider(
 						await connector.getProvider()
 					).getSigner();
 
+					const balance = utils.formatEther(await signer.getBalance());
+
+					setBalance(roundBalance(balance));
 					setSigner(signer);
+
+					setAutoLoginLS(true);
+					setSelectedWallet(wallet);
 				} catch (e: any) {
 					console.log('Failed Wallet Connection!');
 					setIsError(true);
@@ -67,7 +68,14 @@ const useWalletConnect = (): IUseWalletConnect => {
 			if (selectedWallet) return;
 
 			if (connector) {
-				setSigner(new Web3Provider(await connector.getProvider()).getSigner());
+				const signer = new Web3Provider(
+					await connector.getProvider()
+				).getSigner();
+				setSigner(signer);
+
+				const balance = utils.formatEther(await signer.getBalance());
+				setBalance(roundBalance(balance));
+
 				const wallet = SUPPORTED_WALLETS.find(
 					(wallet) => typeof wallet.connector === typeof connector
 				);
@@ -81,6 +89,7 @@ const useWalletConnect = (): IUseWalletConnect => {
 		isError,
 		isPending,
 		account,
+		balance,
 		handleConnect,
 		handleDisconnect,
 		handleWalletDisconnectButton,

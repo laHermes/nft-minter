@@ -10,7 +10,8 @@ body {
 		sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	@apply bck4;
+
+	@apply background;
 }
 
 code {
@@ -45,7 +46,7 @@ code {
 	@apply w-fit bg-gray-900 text-white;
 }
 
-.bck4 {
+.background {
 	background: linear-gradient(120deg, #fd61db 0%, #51003f 100%),
 		linear-gradient(120deg, #0030ad 0%, #00071a 100%),
 		linear-gradient(180deg, #000346 0%, #ff0000 100%),
@@ -54,4 +55,6 @@ code {
 		radial-gradient(100% 150% at 0% 0%, #fff500 0%, #51d500 100%);
 	background-blend-mode: overlay, color-dodge, overlay, overlay, difference,
 		normal;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
 }
