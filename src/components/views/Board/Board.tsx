@@ -2,10 +2,11 @@ import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Switch } from '@headlessui/react';
 import { BiWalletAlt } from 'react-icons/bi';
+import useWalletConnect from '../../../services/web3/wallet/useWalletConnect';
 
 const Board = () => {
 	const [enabled, setEnabled] = useState(false);
-
+	const { account } = useWalletConnect();
 	return (
 		<div className='w-screen max-w-screen-md mx-auto '>
 			<div className='w-full bg-white/50 rounded-xl'>
@@ -24,12 +25,20 @@ const Board = () => {
 						/>
 					</Switch>
 				</div>
-				<div className='h-96 w-full flex flex-col gap-3 justify-start p-20'>
-					<BiWalletAlt className='self-center text-5xl text-white/70' />
-					<p className='self-center text-xl text-white/70'>
-						Please connect you wallet!
-					</p>
-				</div>
+				{!account && (
+					<div className='h-96 w-full flex flex-col gap-3 justify-start p-20'>
+						<BiWalletAlt className='self-center text-5xl text-white/70' />
+						<p className='self-center text-xl text-white/70'>
+							Please connect you wallet!
+						</p>
+					</div>
+				)}
+				{account && (
+					<div className='h-96 w-full flex flex-col gap-3 justify-start p-20'>
+						<BiWalletAlt className='self-center text-5xl text-white/70' />
+						<p className='self-center text-xl text-white/70'>{account}</p>
+					</div>
+				)}
 			</div>
 		</div>
 	);

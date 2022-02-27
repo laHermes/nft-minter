@@ -40,44 +40,9 @@ code {
 .mainStyle {
 	@apply h-screen transition-all duration-150 ease-in  pb-12;
 }
-/* bg-gradient-to-b from-indigo-900 via-purple-700 to-pink-600 */
 
 .cardStyle {
 	@apply w-fit bg-gray-900 text-white;
-}
-
-.background {
-	background-image: #321674;
-	background-image: radial-gradient(
-			at 80% 0%,
-			hsla(220, 96%, 17%, 1) 0,
-			transparent 50%
-		),
-		radial-gradient(at 49% 98%, hsla(279, 94%, 13%, 1) 0, transparent 50%),
-		radial-gradient(at 80% 100%, hsla(253, 50%, 28%, 1) 0, transparent 50%);
-}
-
-.bck2 {
-	background-color: #4158d0;
-	background-image: linear-gradient(
-		43deg,
-		#4158d0 0%,
-		#c850c0 46%,
-		#ffcc70 100%
-	);
-}
-
-.bck3 {
-	background: linear-gradient(320.54deg, #00069f 0%, #120010 72.37%),
-		linear-gradient(58.72deg, #69d200 0%, #970091 100%),
-		linear-gradient(121.28deg, #8cff18 0%, #6c0075 100%),
-		linear-gradient(121.28deg, #8000ff 0%, #000000 100%),
-		linear-gradient(180deg, #00ff19 0%, #24ff00 0.01%, #2400ff 100%),
-		linear-gradient(52.23deg, #0500ff 0%, #ff0000 100%),
-		linear-gradient(121.28deg, #32003a 0%, #ff4040 100%),
-		radial-gradient(50% 72.12% at 50% 50%, #eb00ff 0%, #110055 100%);
-	background-blend-mode: screen, color-dodge, color-burn, screen, overlay,
-		difference, color-dodge, normal;
 }
 
 .bck4 {
