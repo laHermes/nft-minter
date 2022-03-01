@@ -3,9 +3,8 @@ import useMinter from '../../../hooks/useMinter';
 import useWalletConnect from '../../../services/web3/wallet/useWalletConnect';
 import NFTImage from '../../../assets/nft.png';
 import polygonLogo from '../../../assets/polygon-matic-logo.svg';
-
 const Mint = () => {
-	const { count, increment, decrement } = useMinter();
+	const { count, increment, decrement, mint } = useMinter();
 	const { account } = useWalletConnect();
 	return (
 		<div className='flex flex-col max-w-md mx-auto px-10'>
@@ -45,7 +44,9 @@ const Mint = () => {
 						</button>
 					</div>
 
-					<button className='bg-violet-900/50 text-sky-500 py-4 font-black w-full rounded-lg text-lg'>
+					<button
+						onClick={mint}
+						className='bg-violet-900/50 text-sky-500 py-4 font-black w-full rounded-lg text-lg'>
 						{account ? 'Mint' : 'Connect Wallet'}
 					</button>
 				</div>

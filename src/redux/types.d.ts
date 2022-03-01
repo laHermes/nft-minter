@@ -6,7 +6,7 @@ export interface IDataFormat {
 	nftName: string;
 }
 
-export interface INft {
+export interface IMarketNft {
 	name: string;
 	description: string;
 	image: string;
@@ -18,13 +18,18 @@ export interface INft {
 	ownersAddress?: string;
 }
 
+export interface INft {
+	id: number;
+	owner: string;
+	uri: string;
+	metadata?: any;
+}
+
 export type OwnersType = null | string;
 
 export interface INfts {
-	nftData: INft[] | [];
-	nftStats: IDataFormat | null;
-	statusMetadata: string | null;
-	statusBlockchain: string | null;
+	nfts: INft[];
+	status: string | null;
 }
 
 interface IMinterCountState {

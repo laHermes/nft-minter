@@ -1,13 +1,23 @@
 import { ethers, utils } from 'ethers';
 import { writeWeb3, getProvider } from './index';
 import { Contract, Provider } from 'ethcall';
+import { nftAddress, nftAbi } from '../../contracts/ContractExports';
+import { INft } from '../../redux/types';
+import axios from 'axios';
+import { Resolver } from '@ethersproject/providers';
 
-export const mintToken = async (address: string, amount: number) => {
-	const value = utils.parseEther('0.05').mul(amount);
+// Mint token
+export const mintToken = async (amount: number) => {
+	const value = utils.parseEther('0.03').mul(amount);
 
-	const contract = new ethers.Contract('', '', writeWeb3.signer);
+	const contract = new ethers.Contract(nftAddress, nftAbi, writeWeb3.signer);
+
+	console.log(nftAddress, value, writeWeb3.signer.getAddress());
+
 	try {
-		await contract.mintToken(address, amount, { value: value });
+		await contract.mintToken(writeWeb3.signer.getAddress(), amount, {
+			value: value,
+		});
 		return {};
 	} catch (err) {
 		console.log(err);
@@ -17,20 +27,24 @@ export const mintToken = async (address: string, amount: number) => {
 		// 		title: 'Transaction Rejected',
 		// 		msg: 'You rejected the transaction. If this was by mistake, please try again.',
 		// 	};
-		// dispatch notification
+		// return notification notification
 	}
 
 	// wait transaction
-	// await
 };
 
 export const fetchAllNfts = async () => {
-	const ethcallProvider = new Provider();
-	ethcallProvider.init(getProvider());
+	const contract = new ethers.Contract(nftAddress, nftAbi, getProvider());
 
-	const nftContract = new Contract('address', '');
+	const data = await contract.getAllNfts();
 
-	const data = await nftContract.getAllNfts();
+	data.map((nft: INft) => {
+		return {
+			id: utils.formatUnits(nft.id, 0),
+			owner: nft.owner,
+			uri: nft.uri,
+		};
+	});
 
 	return data;
 };
