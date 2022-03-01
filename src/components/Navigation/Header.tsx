@@ -36,13 +36,13 @@ const Header = () => {
 				<div className='max-w-md mx-auto'>
 					<Tab.Group>
 						<Tab.List className='flex p-1 space-x-1 bg-white/50 rounded-xl text-lg'>
-							<Tab className='w-full py-2.5  leading-5 font-medium text-blue-700 rounded-lg hover:bg-white/90'>
+							<Tab className='w-full py-2.5 leading-5 font-medium text-blue-700 rounded-lg hover:bg-white/90'>
 								<Link to='/mint'>Mint</Link>
 							</Tab>
-							<Tab className='w-full py-2.5  leading-5 font-medium text-blue-700 rounded-lg hover:bg-white/90'>
+							<Tab className='w-full py-2.5 leading-5 font-medium text-blue-700 rounded-lg hover:bg-white/90'>
 								<Link to='/'>Collection</Link>
 							</Tab>
-							<Tab className='w-full py-2.5  leading-5 font-medium text-blue-700 rounded-lg hover:bg-white/90'>
+							<Tab className='w-full py-2.5 leading-5 font-medium text-blue-700 rounded-lg hover:bg-white/90'>
 								<Link to='/mint'>Yield Farming</Link>
 							</Tab>
 						</Tab.List>
