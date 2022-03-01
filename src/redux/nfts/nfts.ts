@@ -1,4 +1,9 @@
-import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
+import {
+	createSlice,
+	createAsyncThunk,
+	PayloadAction,
+	createSelector,
+} from '@reduxjs/toolkit';
 import { RootState } from '../index';
 
 import { fetchAllNfts } from '../../services/web3/utils';
@@ -50,6 +55,7 @@ const nftsSlice = createSlice({
 			getNfts.fulfilled,
 			(state: INfts, action: PayloadAction<INft[]>) => {
 				console.log(action.payload);
+
 				state.nfts = action.payload;
 				state.status = 'success';
 			}
