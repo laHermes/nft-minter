@@ -4,8 +4,7 @@ import { Switch } from '@headlessui/react';
 import { BiWalletAlt } from 'react-icons/bi';
 import useWalletConnect from '../../../services/web3/wallet/useWalletConnect';
 import { nftState } from '../../../redux/nfts/nfts';
-import NFTImage from '../../../assets/nft.png';
-import polygonLogo from '../../../assets/polygon-matic-logo.svg';
+
 import { shortenString } from '../../../utils/pureFunctions';
 
 const Board = () => {
