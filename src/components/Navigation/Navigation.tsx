@@ -2,7 +2,6 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import useAsyncEffect from 'use-async-effect';
 import { getNfts } from '../../redux/nfts/nfts';
-import { fetchAllNfts } from '../../services/web3/utils';
 import useAutoWalletConnect from '../../services/web3/wallet/useAutoConnect';
 import Header from './Header';
 
@@ -18,7 +17,11 @@ const Navigation = ({ children }: ILayout) => {
 
 	useAsyncEffect(() => {
 		dispatch(getNfts());
-		fetchAllNfts();
+		const interval = setInterval(() => {
+			dispatch(getNfts());
+		}, 8000);
+
+		return () => clearInterval(interval);
 	}, [dispatch]);
 
 	return (

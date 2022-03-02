@@ -42,9 +42,6 @@ const Header = () => {
 							<Tab className='w-full py-2.5 leading-5 font-medium text-blue-700 rounded-lg hover:bg-white/90'>
 								<Link to='/'>Collection</Link>
 							</Tab>
-							<Tab className='w-full py-2.5 leading-5 font-medium text-blue-700 rounded-lg hover:bg-white/90'>
-								<Link to='/mint'>Yield Farming</Link>
-							</Tab>
 						</Tab.List>
 					</Tab.Group>
 				</div>

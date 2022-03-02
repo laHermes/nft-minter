@@ -7,7 +7,7 @@ import WalletButton from '../../WalletButton/WalletButton';
 
 const Mint = () => {
 	const { count, increment, decrement, mint } = useMinter();
-	const { account, handleConnect } = useWalletConnect();
+	const { account } = useWalletConnect();
 
 	return (
 		<div className='flex flex-col max-w-md mx-auto px-10'>
@@ -17,12 +17,11 @@ const Mint = () => {
 						<img src={NFTImage} alt='nft' className='rounded-lg shadow-xl' />
 						<div className='absolute w-1/2 -bottom-3 left-0 right-0 mx-auto text-center backdrop-blur-md bg-white/80 py-1 px-2 text-indigo-900 self-center rounded-xl shadow-lg'>
 							<div className='inline-flex gap-1 '>
-								<p className='text-indigo-900 font-bold text-md'>0.05</p>
+								<p className='text-indigo-900 font-bold text-md'>0.03</p>
 								<img src={polygonLogo} alt='polygonLogo' className='w-5' />
 							</div>
 						</div>
 					</div>
-
 					<p className='text-2xl text-indigo-50 font-medium tracking-wider self-center'>
 						MeshNFT#
 					</p>

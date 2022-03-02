@@ -32,8 +32,6 @@ const nftsSlice = createSlice({
 		builder.addCase(
 			getNfts.fulfilled,
 			(state: INfts, action: PayloadAction<INft[]>) => {
-				console.log(action.payload);
-
 				state.nfts = action.payload;
 				state.status = 'success';
 			}

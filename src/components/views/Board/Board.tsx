@@ -10,11 +10,13 @@ import usePagination from '../../../hooks/usePagination';
 
 const Board = () => {
 	const [enabled, setEnabled] = useState(false);
+
 	const { account } = useWalletConnect();
+
 	const { nfts, status } = useSelector(nftState);
 
-	const { paginatedData, nextPage, previousPage } = usePagination(
-		nfts ? nfts : [],
+	const { paginatedData, nextPage, previousPage, totalPages } = usePagination(
+		nfts,
 		3
 	);
 
@@ -44,63 +46,62 @@ const Board = () => {
 						</p>
 					</div>
 				)}
-				{status === 'loading' && <p>Loading</p>}
-				{account && (
+				{status === 'loading' && !paginatedData && <p>Loading</p>}
+
+				{account && paginatedData && (
 					<div className='flex flex-col gap-3 justify-start p-10'>
-						<div className='grid grid-cols-3 gap-4'>
-							{nfts.map((nft, index) => {
+						<div className='grid grid-cols-3 gap-4 w-full'>
+							{paginatedData.map((nft: any) => {
 								return (
 									<div
-										className='backdrop-blur-xl bg-white/5 text-indigo-100 rounded-xl shadow-xl'
-										key={index}>
-										<div className='flex flex-col gap-5 '>
-											<div className='relative'>
-												<img
-													src={nft.metadata.image}
-													alt='nft'
-													className='rounded-lg shadow-xl'
-												/>
-											</div>
+										className='backdrop-blur-xl bg-white/50 text-indigo-100 rounded-xl shadow-xl'
+										key={nft.id}>
+										<div className='flex flex-col gap-1'>
+											<img
+												src={nft.metadata.image}
+												alt='nft'
+												className='rounded-lg shadow-xl'
+											/>
 
-											<p className='text-2xl text-indigo-50 font-medium tracking-wider self-center'>
+											<p className='text-xl text-indigo-50 font-medium tracking-wider self-center'>
 												{shortenString(nft.owner)}
 											</p>
-											<p className='text-2xl text-indigo-50 font-medium tracking-wider self-center'>
+											<p className='text-xl text-indigo-50 font-medium tracking-wider self-center'>
 												{nft.id}
 											</p>
-
-											<button className='bg-violet-900/50 text-sky-500 py-4 font-black w-full rounded-lg text-lg'>
-												{account ? 'Mint' : 'Connect Wallet'}
-											</button>
+											<p className='text-xl text-indigo-50 font-medium tracking-wider self-center'>
+												{nft.metadata.description}
+											</p>
+											{nft.metadata.attributes.map(
+												(attribute: any, index: number) => (
+													<p
+														key={index}
+														className='text-xl text-indigo-50 font-medium tracking-wider self-center'>
+														{attribute.trait_type}: {attribute.value}
+													</p>
+												)
+											)}
 										</div>
 									</div>
 								);
 							})}
 						</div>
-					</div>
-				)}
-				{paginatedData && (
-					<div className='flex flex-col gap-3 justify-start p-10'>
-						<div className='grid grid-cols-3 gap-4'>
-							{paginatedData.map((data: any, index: number) => {
-								console.log(data);
-								return (
-									<div
-										className='backdrop-blur-xl bg-white/5 text-indigo-100 rounded-xl shadow-xl'
-										key={index}>
-										{data.metadata.description}
-										{data.id}
-									</div>
-								);
-							})}
-						</div>
-						<div>
-							<button onClick={previousPage}>PrevPage</button>
-							<button onClick={nextPage}>NEXT</button>
+						<div className='inline-flex gap-3'>
+							<button
+								onClick={previousPage}
+								className='p-2 backdrop-blur-sm bg-slate-500/30 text-indigo-900 border rounded-lg'>
+								Previous
+							</button>
+							<p>{totalPages}</p>
+
+							<button
+								onClick={nextPage}
+								className='p-2 backdrop-blur-sm bg-slate-500/30 text-indigo-900 border rounded-lg'>
+								Next
+							</button>
 						</div>
 					</div>
 				)}
-				<p>PAGINATION</p>
 			</div>
 		</div>
 	);
