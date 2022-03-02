@@ -1,9 +1,4 @@
-import {
-	createSlice,
-	createAsyncThunk,
-	PayloadAction,
-	createSelector,
-} from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../index';
 
 import { fetchAllNfts } from '../../services/web3/utils';
@@ -15,23 +10,6 @@ export const initialState: INfts = {
 	nfts: [],
 	status: null,
 };
-
-// // pull data from NFT
-// export const getNfts = createAsyncThunk(
-// 	'nfts/getNfts',
-// 	async (_, { dispatch }) => {
-
-// 		return fetch(
-// 			'https://gateway.pinata.cloud/ipfs/QmcFjr88DxvT73xBGEUpjQopfircdjjfw8tneas4HdKPpB/_metadata.json'
-// 		).then(async (res) => {
-// 			const results = await res.json();
-// 			dispatch(getNftInfo());
-// 			dispatch(getNftOwners(results));
-
-// 			return results;
-// 		});
-// 	}
-// );
 
 // pull data from Blockchain
 export const getNfts = createAsyncThunk('nfts/getNfts', async () => {

@@ -15,7 +15,7 @@ const WalletButton = () => {
 	// shorten address to a more compact length
 	const accountAddress = account ? shortenString(account) : wallet.name;
 
-	//pass the right function which depends on the wallet state
+	//passes the right function which depends on the wallet state
 	const clickHandler = account ? handleDisconnect : () => handleConnect(wallet);
 
 	//return component

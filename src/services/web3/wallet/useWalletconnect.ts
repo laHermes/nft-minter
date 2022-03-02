@@ -1,11 +1,12 @@
 import { useCallback, useState } from 'react';
+import useAsyncEffect from 'use-async-effect';
 import { useWeb3React } from '@web3-react/core';
 import { setAutoLoginLS } from '../../../utils/localStorage';
-import useAsyncEffect from 'use-async-effect';
-import { setSigner } from '../index';
+import { setSigner, writeWeb3 } from '../index';
 import { Web3Provider } from '@ethersproject/providers';
-import { SUPPORTED_WALLETS, roundBalance } from './utils';
+import { SUPPORTED_WALLETS, roundBalance, IWalletInfo } from './utils';
 import { utils } from 'ethers';
+
 export interface IUseWalletConnect {
 	handleConnect: (wallet: any) => void;
 	handleDisconnect: () => void;
@@ -26,7 +27,7 @@ const useWalletConnect = (): IUseWalletConnect => {
 	const [balance, setBalance] = useState<string>();
 
 	const handleConnect = useCallback(
-		async (wallet: any) => {
+		async (wallet: IWalletInfo) => {
 			const { connector } = wallet;
 			if (connector) {
 				try {
@@ -36,9 +37,6 @@ const useWalletConnect = (): IUseWalletConnect => {
 						await connector.getProvider()
 					).getSigner();
 
-					const balance = utils.formatEther(await signer.getBalance());
-
-					setBalance(roundBalance(balance));
 					setSigner(signer);
 
 					setAutoLoginLS(true);
@@ -73,9 +71,6 @@ const useWalletConnect = (): IUseWalletConnect => {
 				).getSigner();
 				setSigner(signer);
 
-				const balance = utils.formatEther(await signer.getBalance());
-				setBalance(roundBalance(balance));
-
 				const wallet = SUPPORTED_WALLETS.find(
 					(wallet) => typeof wallet.connector === typeof connector
 				);
@@ -85,11 +80,22 @@ const useWalletConnect = (): IUseWalletConnect => {
 		[connector]
 	);
 
+	useAsyncEffect(async () => {
+		if (!writeWeb3.signer) return;
+		try {
+			const balance = utils.formatEther(await writeWeb3.signer.getBalance());
+			setBalance(roundBalance(balance));
+		} catch (err) {
+			console.log('Failed fetching balance!');
+		}
+	}, [account, writeWeb3]);
+
 	return {
 		isError,
 		isPending,
 		account,
 		balance,
+
 		handleConnect,
 		handleDisconnect,
 		handleWalletDisconnectButton,

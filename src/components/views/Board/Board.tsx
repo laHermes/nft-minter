@@ -6,11 +6,17 @@ import useWalletConnect from '../../../services/web3/wallet/useWalletConnect';
 import { nftState } from '../../../redux/nfts/nfts';
 
 import { shortenString } from '../../../utils/pureFunctions';
+import usePagination from '../../../hooks/usePagination';
 
 const Board = () => {
 	const [enabled, setEnabled] = useState(false);
 	const { account } = useWalletConnect();
 	const { nfts, status } = useSelector(nftState);
+
+	const { paginatedData, nextPage, previousPage } = usePagination(
+		nfts ? nfts : [],
+		3
+	);
 
 	return (
 		<div className='w-screen max-w-screen-lg mx-auto '>
@@ -70,6 +76,27 @@ const Board = () => {
 									</div>
 								);
 							})}
+						</div>
+					</div>
+				)}
+				{paginatedData && (
+					<div className='flex flex-col gap-3 justify-start p-10'>
+						<div className='grid grid-cols-3 gap-4'>
+							{paginatedData.map((data: any, index: number) => {
+								console.log(data);
+								return (
+									<div
+										className='backdrop-blur-xl bg-white/5 text-indigo-100 rounded-xl shadow-xl'
+										key={index}>
+										{data.metadata.description}
+										{data.id}
+									</div>
+								);
+							})}
+						</div>
+						<div>
+							<button onClick={previousPage}>PrevPage</button>
+							<button onClick={nextPage}>NEXT</button>
 						</div>
 					</div>
 				)}

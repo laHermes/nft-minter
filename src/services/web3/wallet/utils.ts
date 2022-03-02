@@ -15,7 +15,7 @@ export const getLibrary = (provider: any): Web3Provider => {
 	return library;
 };
 
-interface IWalletInfo {
+export interface IWalletInfo {
 	connector: AbstractConnector;
 	name: string;
 	icon?: string;
