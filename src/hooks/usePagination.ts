@@ -1,18 +1,24 @@
 import { useCallback, useEffect, useState } from 'react';
 
 const usePagination = (data: any[], itemsPerPage: number) => {
-	const [paginatedData, setPaginatedData] = useState<any>(data);
-	const [totalPages, setTotalPages] = useState<any>(0);
+	const [paginatedData, setPaginatedData] = useState<any>();
+
+	const [totalPages, setTotalPages] = useState<any>(
+		Math.ceil(data.length / itemsPerPage)
+	);
+
 	const [currentPage, setCurrentPage] = useState<any>(1);
 
 	useEffect(() => {
 		setTotalPages(Math.ceil(data.length / itemsPerPage));
-		setPaginatedData(data);
-	}, [data, itemsPerPage]);
+	}, [itemsPerPage, data]);
 
 	useEffect(() => {
 		const beginningIndex = (currentPage - 1) * itemsPerPage;
 		const endingIndex = beginningIndex + itemsPerPage;
+		console.log('custom', data.slice(beginningIndex, endingIndex));
+
+		setTotalPages(Math.ceil(data.length / itemsPerPage));
 		setPaginatedData(data.slice(beginningIndex, endingIndex));
 	}, [currentPage, itemsPerPage, data]);
 

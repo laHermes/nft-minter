@@ -2,10 +2,10 @@ import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Switch } from '@headlessui/react';
 import { BiWalletAlt } from 'react-icons/bi';
-import useWalletConnect from '../../../services/web3/wallet/useWalletConnect';
 import { nftState } from '../../../redux/nfts/nfts';
-
 import { shortenString } from '../../../utils/pureFunctions';
+
+import useWalletConnect from '../../../services/web3/wallet/useWalletConnect';
 import usePagination from '../../../hooks/usePagination';
 
 const Board = () => {
@@ -20,8 +20,10 @@ const Board = () => {
 		3
 	);
 
+	console.log(paginatedData);
+
 	return (
-		<div className='w-screen max-w-screen-lg mx-auto '>
+		<div className=' max-w-screen-lg mx-auto '>
 			<div className='w-full bg-white/50 rounded-xl'>
 				<div className='flex flex-row border-b border-white/40 px-3 py-2'>
 					<Switch
@@ -50,7 +52,7 @@ const Board = () => {
 
 				{account && paginatedData && (
 					<div className='flex flex-col gap-3 justify-start p-10'>
-						<div className='grid grid-cols-3 gap-4 w-full'>
+						<div className='grid grid-cols-3 gap-4 w-fit'>
 							{paginatedData.map((nft: any) => {
 								return (
 									<div
