@@ -64,7 +64,6 @@ const useWalletConnect = (): IUseWalletConnect => {
 	useAsyncEffect(
 		async (isActive) => {
 			if (selectedWallet) return;
-
 			if (connector) {
 				const signer = new Web3Provider(
 					await connector.getProvider()

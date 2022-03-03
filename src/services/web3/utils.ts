@@ -1,34 +1,43 @@
-import { ethers, utils } from 'ethers';
-import { writeWeb3, getProvider } from './index';
-import { nftAddress, nftAbi } from '../../contracts/ContractExports';
+import { ethers, utils, Contract } from 'ethers';
+import { writeWeb3, getProvider, web3 } from './index';
+import { nftAddress, nftAbi, nftPrice } from '../../contracts/ContractExports';
 import { INft } from '../../redux/types';
 import axios from 'axios';
 
 // Mint token
 export const mintToken = async (amount: number) => {
-	const value = utils.parseEther('0.03').mul(amount);
-
-	const contract = new ethers.Contract(nftAddress, nftAbi, writeWeb3.signer);
-
-	try {
-		await contract.mintToken(writeWeb3.signer.getAddress(), amount, {
-			value: value,
-		});
-		return {};
-	} catch (err) {
-		console.log(err);
-		// if (e.code === ErrorCode.DeniedTx)
-		// 	return {
-		// 		type: NotificationType.error,
-		// 		title: 'Transaction Rejected',
-		// 		msg: 'You rejected the transaction. If this was by mistake, please try again.',
-		// 	};
-		// return notification notification
+	// make sure the wallet is connected if not dispatch message
+	if (!writeWeb3.signer) {
+		//dispatch message
+		return;
 	}
 
-	// wait transaction
+	const value = utils.parseEther(nftPrice).mul(amount);
+
+	if (!(await web3.balance).gte(value)) {
+		//dispatch message
+		return;
+	}
+
+	// define the contract
+	const contract = new Contract(nftAddress, nftAbi, writeWeb3.signer);
+
+	try {
+		const tx = await contract.mintToken(await web3.address, amount, {
+			value,
+		});
+
+		const receipt = await tx.wait();
+		//dispatch message with receipt
+
+		//on resolver message display success
+	} catch (err) {
+		console.log(err);
+		// dispatch message on error
+	}
 };
 
+// fetch minted NFTS from blockchain
 export const fetchAllNfts = async (): Promise<INft[]> => {
 	const contract = new ethers.Contract(nftAddress, nftAbi, getProvider());
 

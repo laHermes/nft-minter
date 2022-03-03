@@ -18,6 +18,7 @@ const useMinter = () => {
 	}, []);
 
 	const mint = () => {
+		// dispatch notification
 		if (!account) return;
 
 		mintToken(count);

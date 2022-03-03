@@ -4,6 +4,7 @@ export enum NotificationType {
 	success,
 	error,
 	pending,
+	info,
 }
 
 export interface Notification {
@@ -25,7 +26,21 @@ const notificationSlice = createSlice({
 	name: 'notification',
 	initialState,
 	reducers: {
-		addNotification: (state, action: PayloadAction<any>) => {
+		addNotification: (state, action: PayloadAction<NotificationType>) => {
+			switch (action.payload) {
+				case NotificationType.success:
+					break;
+				case NotificationType.error:
+					break;
+				case NotificationType.pending:
+					break;
+				case NotificationType.info:
+					break;
+
+				default:
+					break;
+			}
+
 			const length = state.notifications.unshift({
 				id: nanoid(),
 				type: NotificationType.pending,

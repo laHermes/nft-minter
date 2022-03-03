@@ -28,4 +28,7 @@ export const setSigner = (signer: providers.JsonRpcSigner) => {
 
 export const web3 = {
 	provider: getProvider(),
+	signer: writeWeb3.signer,
+	address: writeWeb3.signer.getAddress(),
+	balance: writeWeb3.signer.getBalance(),
 };

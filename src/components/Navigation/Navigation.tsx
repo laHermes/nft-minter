@@ -5,6 +5,10 @@ import { getNfts } from '../../redux/nfts/nfts';
 import useAutoWalletConnect from '../../services/web3/wallet/useAutoConnect';
 import Header from './Header';
 
+//notifications import
+import { ReactNotifications, Store } from 'react-notifications-component';
+import 'react-notifications-component/dist/theme.css';
+
 // app layout interface
 interface ILayout {
 	children: JSX.Element | JSX.Element[] | React.ReactNode;
@@ -26,6 +30,8 @@ const Navigation = ({ children }: ILayout) => {
 
 	return (
 		<main className='mainStyle'>
+			<ReactNotifications />
+
 			<Header />
 			{children}
 		</main>
