@@ -11,7 +11,7 @@ body {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 
-	@apply background;
+	@apply back;
 }
 
 code {
@@ -44,6 +44,10 @@ code {
 
 .cardStyle {
 	@apply w-fit bg-gray-900 text-white;
+}
+
+.back {
+	@apply bg-gradient-to-tl from-indigo-500 via-purple-700 to-pink-800 bg-no-repeat bg-fixed;
 }
 
 .background {

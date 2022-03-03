@@ -19,6 +19,7 @@ const useMinter = () => {
 
 	const mint = () => {
 		if (!account) return;
+
 		mintToken(count);
 	};
 

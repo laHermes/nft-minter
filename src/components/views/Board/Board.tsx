@@ -17,7 +17,7 @@ const Board = () => {
 
 	const { paginatedData, nextPage, previousPage, totalPages } = usePagination(
 		nfts,
-		3
+		6
 	);
 
 	console.log(paginatedData);
