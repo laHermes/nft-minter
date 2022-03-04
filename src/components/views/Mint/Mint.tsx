@@ -1,13 +1,10 @@
 import React from 'react';
 import useMinter from '../../../hooks/useMinter';
-import useWalletConnect from '../../../services/web3/wallet/useWalletConnect';
 import NFTImage from '../../../assets/nft.png';
 import polygonLogo from '../../../assets/polygon-matic-logo.svg';
-import WalletButton from '../../WalletButton/WalletButton';
 
 const Mint = () => {
 	const { count, increment, decrement, mint } = useMinter();
-	const { account } = useWalletConnect();
 
 	return (
 		<div className='flex flex-col max-w-md mx-auto px-10'>
@@ -25,7 +22,6 @@ const Mint = () => {
 					<p className='text-2xl text-indigo-50 font-medium tracking-wider self-center'>
 						MeshNFT#
 					</p>
-
 					<div className='inline-flex flex-row justify-between gap-5 text-indigo-50 px-8'>
 						<button
 							onClick={decrement}
@@ -45,15 +41,11 @@ const Mint = () => {
 							+
 						</button>
 					</div>
-					{account ? (
-						<button
-							onClick={mint}
-							className='bg-violet-900/50 text-sky-500 py-4 font-black w-full rounded-lg text-lg'>
-							Mint
-						</button>
-					) : (
-						<WalletButton />
-					)}
+					<button
+						onClick={mint}
+						className='bg-violet-900/50 text-sky-500 py-4 font-black w-full rounded-lg text-lg'>
+						Mint
+					</button>
 				</div>
 			</div>
 		</div>

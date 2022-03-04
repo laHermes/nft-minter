@@ -16,7 +16,6 @@ const usePagination = (data: any[], itemsPerPage: number) => {
 	useEffect(() => {
 		const beginningIndex = (currentPage - 1) * itemsPerPage;
 		const endingIndex = beginningIndex + itemsPerPage;
-		console.log('custom', data.slice(beginningIndex, endingIndex));
 
 		setTotalPages(Math.ceil(data.length / itemsPerPage));
 		setPaginatedData(data.slice(beginningIndex, endingIndex));

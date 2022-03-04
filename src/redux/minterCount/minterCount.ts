@@ -22,4 +22,4 @@ const mintCountSlice = createSlice({
 });
 
 export const mintCount = mintCountSlice.reducer;
-export const getMintCount = (state: RootState) => state.mintCount.count;
+// export const getMintCount = (state: RootState) => state.mintCount.count;

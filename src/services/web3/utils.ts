@@ -6,35 +6,28 @@ import axios from 'axios';
 
 // Mint token
 export const mintToken = async (amount: number) => {
-	// make sure the wallet is connected if not dispatch message
-	if (!writeWeb3.signer) {
-		//dispatch message
-		return;
-	}
-
 	const value = utils.parseEther(nftPrice).mul(amount);
 
-	if (!(await web3.balance).gte(value)) {
-		//dispatch message
-		return;
-	}
-
-	// define the contract
-	const contract = new Contract(nftAddress, nftAbi, writeWeb3.signer);
-
 	try {
-		const tx = await contract.mintToken(await web3.address, amount, {
+		// define the contract
+		const contract = new Contract(nftAddress, nftAbi, writeWeb3.signer);
+
+		await contract.mintToken(await web3.address, amount, {
 			value,
 		});
-
-		const receipt = await tx.wait();
-		//dispatch message with receipt
-
-		//on resolver message display success
 	} catch (err) {
-		console.log(err);
-		// dispatch message on error
+		throw new Error();
 	}
+};
+
+// function to check user's balance
+export const hasEnoughEth = async (price: string, amount: number) => {
+	const value = utils.parseEther(price).mul(amount);
+
+	if (!(await web3.balance).gte(value)) {
+		return false;
+	}
+	return true;
 };
 
 // fetch minted NFTS from blockchain

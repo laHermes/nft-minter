@@ -5,9 +5,9 @@ import { getNfts } from '../../redux/nfts/nfts';
 import useAutoWalletConnect from '../../services/web3/wallet/useAutoConnect';
 import Header from './Header';
 
-//notifications import
-import { ReactNotifications, Store } from 'react-notifications-component';
-import 'react-notifications-component/dist/theme.css';
+//import notifications
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 // app layout interface
 interface ILayout {
@@ -30,9 +30,9 @@ const Navigation = ({ children }: ILayout) => {
 
 	return (
 		<main className='mainStyle'>
-			<ReactNotifications />
-
 			<Header />
+			<ToastContainer limit={3} />
+
 			{children}
 		</main>
 	);

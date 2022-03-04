@@ -1,4 +1,5 @@
 import { createSlice, nanoid, PayloadAction } from '@reduxjs/toolkit';
+import { toast } from 'react-toastify';
 
 export enum NotificationType {
 	success,
@@ -15,53 +16,24 @@ export interface Notification {
 }
 
 export interface INotifications {
-	notifications: Notification[];
+	notifications: any[];
 }
 
-export const initialState: INotifications = {
-	notifications: [],
+export const initialState = {
+	notifications: [] as any,
 };
 
 const notificationSlice = createSlice({
 	name: 'notification',
 	initialState,
 	reducers: {
-		addNotification: (state, action: PayloadAction<NotificationType>) => {
-			switch (action.payload) {
-				case NotificationType.success:
-					break;
-				case NotificationType.error:
-					break;
-				case NotificationType.pending:
-					break;
-				case NotificationType.info:
-					break;
-
-				default:
-					break;
-			}
-
-			const length = state.notifications.unshift({
-				id: nanoid(),
-				type: NotificationType.pending,
-				title: 'Notification added',
-				msg: 'helloo',
-			});
-			if (length > 50) {
-				state.notifications.pop();
-			}
-		},
-		removeNotification: (state, action: PayloadAction<any>) => {
-			const index = state.notifications.findIndex(
-				(notification) => (notification.id = action.payload.id)
-			);
-
-			if (index > -1) state.notifications.splice(index, 1);
+		addNotification: (state, action: PayloadAction<string>) => {
+			const toastId = toast(action.payload, { type: 'error' });
+			state.notifications = [...state.notifications, toastId];
 		},
 	},
 });
 
-export const { addNotification, removeNotification } =
-	notificationSlice.actions;
+export const { addNotification } = notificationSlice.actions;
 
 export const notification = notificationSlice.reducer;

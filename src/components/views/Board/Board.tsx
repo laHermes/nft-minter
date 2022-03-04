@@ -20,8 +20,6 @@ const Board = () => {
 		6
 	);
 
-	console.log(paginatedData);
-
 	return (
 		<div className=' max-w-screen-lg mx-auto '>
 			<div className='w-full bg-white/50 rounded-xl'>
