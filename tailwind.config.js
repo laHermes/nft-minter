@@ -26,7 +26,12 @@ module.exports = {
 			'6xl': '4rem',
 			'7xl': '5rem',
 		},
-		extend: {},
+		extend: {
+			colors: {
+				'blue-theme': '#010e1b',
+				'blue-nft-theme': '#03091f',
+			},
+		},
 	},
 	plugins: [],
 };

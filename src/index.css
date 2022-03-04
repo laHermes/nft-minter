@@ -11,7 +11,7 @@ body {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 
-	@apply back;
+	@apply back1;
 }
 
 code {
@@ -46,6 +46,9 @@ code {
 	@apply w-fit bg-gray-900 text-white;
 }
 
+.back1 {
+	@apply bg-blue-nft-theme;
+}
 .back {
 	@apply bg-gradient-to-tl from-indigo-500 via-purple-700 to-pink-800 bg-no-repeat bg-fixed;
 }

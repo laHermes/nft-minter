@@ -6,7 +6,8 @@ import WButton from './WButton';
 
 const WalletButton = () => {
 	// extract data from custom wallet connect hook
-	const { account, handleDisconnect, handleConnect } = useWalletConnect();
+	const { account, handleDisconnect, handleConnect, isPending } =
+		useWalletConnect();
 
 	// in this case I use only metamask
 	// SUPPORTED_WALLETS can be mapped for more wallets if needed
@@ -19,7 +20,11 @@ const WalletButton = () => {
 	const clickHandler = account ? handleDisconnect : () => handleConnect(wallet);
 
 	//return component
-	return <WButton clickHandler={clickHandler} title={accountAddress} />;
+	return isPending ? (
+		<WButton clickHandler={() => console.log('asd')} title='Pending' />
+	) : (
+		<WButton clickHandler={clickHandler} title={accountAddress} />
+	);
 };
 
 export default WalletButton;

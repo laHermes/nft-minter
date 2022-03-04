@@ -30,6 +30,7 @@ const useWalletConnect = (): IUseWalletConnect => {
 		async (wallet: IWalletInfo) => {
 			const { connector } = wallet;
 			if (connector) {
+				setIsPending(true);
 				try {
 					await activate(connector);
 
@@ -41,9 +42,11 @@ const useWalletConnect = (): IUseWalletConnect => {
 
 					setAutoLoginLS(true);
 					setSelectedWallet(wallet);
+					setIsPending(false);
 				} catch (e: any) {
 					console.log('Failed Wallet Connection!');
 					setIsError(true);
+					setIsPending(false);
 				}
 			}
 		},
@@ -94,7 +97,6 @@ const useWalletConnect = (): IUseWalletConnect => {
 		isPending,
 		account,
 		balance,
-
 		handleConnect,
 		handleDisconnect,
 		handleWalletDisconnectButton,

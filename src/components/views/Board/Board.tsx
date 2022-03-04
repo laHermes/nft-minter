@@ -7,6 +7,7 @@ import { shortenString } from '../../../utils/pureFunctions';
 
 import useWalletConnect from '../../../services/web3/wallet/useWalletConnect';
 import usePagination from '../../../hooks/usePagination';
+import WalletButton from '../../WalletButton/WalletButton';
 
 const Board = () => {
 	const [enabled, setEnabled] = useState(false);
@@ -44,6 +45,7 @@ const Board = () => {
 						<p className='self-center text-xl text-white/70'>
 							Please connect you wallet!
 						</p>
+						<WalletButton />
 					</div>
 				)}
 				{status === 'loading' && !paginatedData && <p>Loading</p>}

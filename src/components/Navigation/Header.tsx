@@ -20,11 +20,15 @@ const Header = () => {
 					<div className='flex flex-row gap-2 text-xl'>
 						{account && (
 							<>
-								<div className='backdrop-blur-sm text-indigo-800 text-md font-semibold rounded-md px-4 py-1 bg-white/70'>
-									Polygon Mumbai
+								<div className='backdrop-blur-sm  rounded-md px-2 py-1 bg-white/5'>
+									<p className='font-extrabold text-transparent text-8xl bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600 text-md'>
+										MUMBAI
+									</p>
 								</div>
-								<div className='backdrop-blur-sm text-indigo-800 text-md font-semibold rounded-md px-4 py-1 bg-white/70'>
-									~{balance} mMATIC
+								<div className='backdrop-blur-sm  rounded-md px-4 py-1 bg-white/5'>
+									<p className='font-extrabold text-transparent text-8xl bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600 text-md'>
+										~{balance} mMATIC
+									</p>
 								</div>
 							</>
 						)}
@@ -33,13 +37,13 @@ const Header = () => {
 				</div>
 			</div>
 			<div className='w-full py-4'>
-				<div className='max-w-md mx-auto'>
+				<div className='max-w-md mx-auto px-4'>
 					<Tab.Group>
 						<Tab.List className='flex p-1 space-x-1 bg-white/50 rounded-xl text-lg'>
 							<Tab className='w-full py-2.5 leading-5 font-medium text-blue-700 rounded-lg hover:bg-white/90'>
 								<Link to='/mint'>Mint</Link>
 							</Tab>
-							<Tab className='w-full py-2.5 leading-5 font-medium text-blue-700 rounded-lg hover:bg-white/90'>
+							<Tab className='w-full py-2.5 leading-5 font-small text-blue-700 rounded-lg hover:bg-white/90'>
 								<Link to='/'>Collection</Link>
 							</Tab>
 						</Tab.List>
