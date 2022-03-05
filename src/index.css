@@ -47,10 +47,10 @@ code {
 }
 
 .back1 {
-	@apply bg-blue-nft-theme;
+	@apply bg-gradient-to-r from-blue-nft-theme to-blue-theme bg-no-repeat bg-fixed;
 }
 .back {
-	@apply bg-gradient-to-tl from-indigo-500 via-purple-700 to-pink-800 bg-no-repeat bg-fixed;
+	@apply bg-gradient-to-r from-indigo-500 via-purple-700 to-pink-800 bg-no-repeat bg-fixed;
 }
 
 .background {

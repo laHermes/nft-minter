@@ -11,26 +11,26 @@ const ImageLoader = ({ url }: IImageLoader) => {
 	useEffect(() => {
 		const timeout = setTimeout(() => {
 			setToLoad(true);
-		}, 1000);
+		}, 200);
 
 		return () => clearTimeout(timeout);
 	}, []);
 
 	return (
-		<div>
+		<>
 			{toLoad && (
 				<img
 					src={url}
 					alt='nft'
-					className={`${loaded ? 'block' : 'hidden'} rounded-md w-full h-80`}
+					className={`${loaded ? 'block' : 'hidden'} rounded-md w-full h-full`}
 					onLoad={() => setLoaded(true)}
 				/>
 			)}
 			<div
 				className={`${
 					loaded ? 'hidden' : 'block'
-				} w-full h-80 animate-pulse bg-slate-900 p-3 rounded-md`}></div>
-		</div>
+				} w-full h-full flex-1 animate-pulse bg-slate-900  rounded-md`}></div>
+		</>
 	);
 };
 

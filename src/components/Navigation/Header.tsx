@@ -3,10 +3,13 @@ import WalletButton from '../WalletButton/WalletButton';
 import { Link } from 'react-router-dom';
 import { Tab } from '@headlessui/react';
 import useWalletConnect from '../../services/web3/wallet/useWalletConnect';
+import { useLocation } from 'react-router-dom';
 
 //HEADER COMPONENT FOR NAVIGATION
 const Header = () => {
 	const { account, balance } = useWalletConnect();
+	const location = useLocation();
+
 	return (
 		<header>
 			<div className='py-2 px-4'>
@@ -37,17 +40,29 @@ const Header = () => {
 				</div>
 			</div>
 			<div className='w-full py-4'>
-				<div className='max-w-md mx-auto px-4'>
-					<Tab.Group>
-						<Tab.List className='flex p-1 space-x-1 bg-white/50 rounded-xl text-lg'>
-							<Tab className='w-full py-2.5 leading-5 font-medium text-blue-700 rounded-lg hover:bg-white/90'>
-								<Link to='/mint'>Mint</Link>
-							</Tab>
-							<Tab className='w-full py-2.5 leading-5 font-small text-blue-700 rounded-lg hover:bg-white/90'>
-								<Link to='/'>Collection</Link>
-							</Tab>
-						</Tab.List>
-					</Tab.Group>
+				<div className='max-w-md mx-auto px-4 '>
+					<div className='bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-xl'>
+						<Tab.Group>
+							<Tab.List className='flex p-1 space-x-1 bg-white/50 rounded-xl text-lg'>
+								<Tab
+									className={`${
+										location.pathname === '/mint'
+											? 'bg-blue-nft-theme text-white/90'
+											: 'hover:bg-white/90'
+									} w-full py-2.5 leading-5 font-bold text-xl text-blue-700 rounded-lg `}>
+									<Link to='/mint'>Mint</Link>
+								</Tab>
+								<Tab
+									className={`${
+										location.pathname === '/'
+											? 'bg-blue-nft-theme text-white/90'
+											: 'hover:bg-white/90'
+									} w-full py-2.5 leading-5 font-bold text-xl text-blue-700 rounded-lg `}>
+									<Link to='/'>Collection</Link>
+								</Tab>
+							</Tab.List>
+						</Tab.Group>
+					</div>
 				</div>
 			</div>
 		</header>

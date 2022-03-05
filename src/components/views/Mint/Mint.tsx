@@ -2,8 +2,8 @@ import React from 'react';
 import useMinter from '../../../hooks/useMinter';
 import NFTImage from '../../../assets/nft.png';
 import polygonLogo from '../../../assets/polygon-matic-logo.svg';
-import ImageLoader from './ImageLoader';
-import MintCard from './MintCard';
+import ImageLoader from '../../ImageLoader/ImageLoader';
+import MintCard from '../../MintCard/MintCard';
 
 const Mint = () => {
 	const { count, increment, decrement, mint } = useMinter();

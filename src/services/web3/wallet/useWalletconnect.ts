@@ -1,11 +1,15 @@
 import { useCallback, useState } from 'react';
 import useAsyncEffect from 'use-async-effect';
-import { useWeb3React } from '@web3-react/core';
+// blockchain
+import { getWeb3ReactContext, useWeb3React } from '@web3-react/core';
 import { setAutoLoginLS } from '../../../utils/localStorage';
 import { setSigner, writeWeb3 } from '../index';
 import { Web3Provider } from '@ethersproject/providers';
 import { SUPPORTED_WALLETS, roundBalance, IWalletInfo } from './utils';
 import { utils } from 'ethers';
+
+//notifications
+import { toast } from 'react-toastify';
 
 export interface IUseWalletConnect {
 	handleConnect: (wallet: any) => void;
@@ -38,8 +42,13 @@ const useWalletConnect = (): IUseWalletConnect => {
 						await connector.getProvider()
 					).getSigner();
 
-					setSigner(signer);
+					//check chain id to throw error
+					const chainId = await signer.getChainId();
+					if (chainId !== 80001) {
+						toast.error('Please select Mumbai network');
+					}
 
+					setSigner(signer);
 					setAutoLoginLS(true);
 					setSelectedWallet(wallet);
 					setIsPending(false);
@@ -47,6 +56,7 @@ const useWalletConnect = (): IUseWalletConnect => {
 					console.log('Failed Wallet Connection!');
 					setIsError(true);
 					setIsPending(false);
+					toast.error('Error connecting to the wallet!');
 				}
 			}
 		},

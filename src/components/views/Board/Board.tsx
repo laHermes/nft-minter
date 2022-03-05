@@ -1,21 +1,21 @@
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
 import { Switch } from '@headlessui/react';
+
+//icon
 import { BiWalletAlt } from 'react-icons/bi';
+
+//redux state
+import { useSelector } from 'react-redux';
 import { nftState } from '../../../redux/nfts/nfts';
-import { shortenString } from '../../../utils/pureFunctions';
 
 import useWalletConnect from '../../../services/web3/wallet/useWalletConnect';
 import usePagination from '../../../hooks/usePagination';
-import WalletButton from '../../WalletButton/WalletButton';
+import ImageLoader from '../../ImageLoader/ImageLoader';
 
 const Board = () => {
 	const [enabled, setEnabled] = useState(false);
-
 	const { account } = useWalletConnect();
-
 	const { nfts, status } = useSelector(nftState);
-
 	const { paginatedData, nextPage, previousPage, totalPages } = usePagination(
 		nfts,
 		6
@@ -23,8 +23,9 @@ const Board = () => {
 
 	return (
 		<div className='max-w-screen-lg mx-auto px-4'>
-			<div className='w-full bg-white/50 rounded-xl'>
-				<div className='flex flex-row border-b border-white/40 px-3 py-2'>
+			<div className='w-full rounded-xl border border-white/20'>
+				<div className='flex flex-row gap-2 border-b border-white/20 px-3 py-2'>
+					<p className='text-white/70'>Only Owned</p>
 					<Switch
 						checked={enabled}
 						onChange={setEnabled}
@@ -45,46 +46,62 @@ const Board = () => {
 						<p className='self-center text-xl text-white/70'>
 							Please connect you wallet!
 						</p>
-						<WalletButton />
 					</div>
 				)}
 				{status === 'loading' && !paginatedData && <p>Loading</p>}
 
 				{account && paginatedData && (
 					<div className='flex flex-col gap-3 justify-start p-10'>
-						<div className='grid grid-cols-3 gap-4 w-fit'>
+						<div className='grid grid-cols-3 gap-4 w-full'>
 							{paginatedData.map((nft: any) => {
 								return (
 									<div
-										className='backdrop-blur-xl bg-white/50 text-indigo-100 rounded-xl shadow-xl'
-										key={nft.id}>
-										<div className='flex flex-col gap-1'>
-											<img
-												src={nft.metadata.image}
-												alt='nft'
-												className='rounded-lg shadow-xl'
-											/>
-
-											<p className='text-xl text-indigo-50 font-medium tracking-wider self-center'>
-												{shortenString(nft.owner)}
+										key={nft.id}
+										className='p-2 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-md'>
+										<div className='flex flex-col gap-4 p-3 bg-blue-nft-theme rounded-md'>
+											<div className='h-64'>
+												<ImageLoader url={nft.metadata.image} />
+											</div>
+											<div className='flex flex-row justify-between'>
+												<p className='font-extrabold text-transparent text-lg bg-clip-text bg-gradient-to-r from-purple-100 to-pink-200 text-md'>
+													Lorem Ipsum #{nft.id}
+												</p>
+											</div>
+											<p className='font-medium text-transparent text-md bg-clip-text bg-gradient-to-r from-purple-100 to-pink-200 text-md'>
+												Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+												sed do eiusmod tempor incididunt ut labore et dolore
+												magna aliqua.
 											</p>
-											<p className='text-xl text-indigo-50 font-medium tracking-wider self-center'>
-												{nft.id}
-											</p>
-											<p className='text-xl text-indigo-50 font-medium tracking-wider self-center'>
-												{nft.metadata.description}
-											</p>
-											{nft.metadata.attributes.map(
-												(attribute: any, index: number) => (
-													<p
-														key={index}
-														className='text-xl text-indigo-50 font-medium tracking-wider self-center'>
-														{attribute.trait_type}: {attribute.value}
-													</p>
-												)
-											)}
 										</div>
 									</div>
+									// <div
+									// 	className='backdrop-blur-xl bg-white/50 text-indigo-100 rounded-md shadow-xl'
+									// 	key={nft.id}>
+									// 	<div className='flex flex-col gap-1'>
+									// 		<div className='h-80 w-full'>
+									// 			<ImageLoader url={nft.metadata.image} />
+									// 		</div>
+
+									// 		<p className='text-xl text-indigo-50 font-medium tracking-wider self-center'>
+									// 			{shortenString(nft.owner)}
+									// 		</p>
+									// 		<p className='text-xl text-indigo-50 font-medium tracking-wider self-center'>
+									// 			{nft.id}
+									// 		</p>
+									// 		<p className='text-xl text-indigo-50 font-medium tracking-wider self-center'>
+									// 			{nft.metadata.description}
+									// 		</p>
+									// 		{nft.metadata.attributes.map(
+									// 			(attribute: any, index: number) => (
+									// 				<p
+									// 					key={index}
+									// 					className='text-xl text-indigo-50 font-medium tracking-wider self-center'>
+									// 					{attribute.trait_type}: {attribute.value}
+									// 				</p>
+									// 			)
+									// 		)}
+									// 	</div>
+									// </div>
 								);
 							})}
 						</div>

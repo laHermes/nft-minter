@@ -1,13 +1,17 @@
 import React from 'react';
-import ImageLoader from './ImageLoader';
-import NFTImage from '../../../assets/nft.png';
-import polygonLogo from '../../../assets/polygon-matic-logo.svg';
+import ImageLoader from '../ImageLoader/ImageLoader';
+
+//logo imports
+import NFTImage from '../../assets/nft.png';
+import polygonLogo from '../../assets/polygon-matic-logo.svg';
 
 const MintCard = () => {
 	return (
 		<div className='p-2 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-md'>
 			<div className='flex flex-col gap-4 p-3 bg-blue-nft-theme rounded-md'>
-				<ImageLoader url={NFTImage} />
+				<div className='h-80'>
+					<ImageLoader url={NFTImage} />
+				</div>
 				<div className='flex flex-row justify-between'>
 					<p className='font-extrabold text-transparent text-2xl bg-clip-text bg-gradient-to-r from-purple-100 to-pink-200 text-md'>
 						Lorem Ipsum
