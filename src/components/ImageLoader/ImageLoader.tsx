@@ -11,7 +11,7 @@ const ImageLoader = ({ url }: IImageLoader) => {
 	useEffect(() => {
 		const timeout = setTimeout(() => {
 			setToLoad(true);
-		}, 200);
+		}, 100);
 
 		return () => clearTimeout(timeout);
 	}, []);

@@ -57,7 +57,7 @@ const Board = () => {
 								return (
 									<div
 										key={nft.id}
-										className='p-2 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-md'>
+										className='p-2 bg-gradient-to-b from-purple-400 via-pink-500 to-purple-400 rounded-md'>
 										<div className='flex flex-col gap-4 p-3 bg-blue-nft-theme rounded-md'>
 											<div className='h-64'>
 												<ImageLoader url={nft.metadata.image} />
