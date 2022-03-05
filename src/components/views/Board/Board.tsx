@@ -22,7 +22,7 @@ const Board = () => {
 	);
 
 	return (
-		<div className=' max-w-screen-lg mx-auto '>
+		<div className='max-w-screen-lg mx-auto px-4'>
 			<div className='w-full bg-white/50 rounded-xl'>
 				<div className='flex flex-row border-b border-white/40 px-3 py-2'>
 					<Switch

@@ -30,8 +30,8 @@ const useWalletConnect = (): IUseWalletConnect => {
 		async (wallet: IWalletInfo) => {
 			const { connector } = wallet;
 			if (connector) {
-				setIsPending(true);
 				try {
+					setIsPending(true);
 					await activate(connector);
 
 					const signer = new Web3Provider(
