@@ -1,21 +1,19 @@
 import React from 'react';
 import useMinter from '../../../hooks/useMinter';
-import NFTImage from '../../../assets/nft.png';
-import polygonLogo from '../../../assets/polygon-matic-logo.svg';
-import ImageLoader from '../../ImageLoader/ImageLoader';
+
 import MintCard from '../../MintCard/MintCard';
 
 const Mint = () => {
 	const { count, increment, decrement, mint } = useMinter();
 
 	return (
-		<div className='flex flex-col gap-4 max-w-md mx-auto px-4'>
+		<div className='flex flex-col gap-4 max-w-md mx-auto px-4 pb-5'>
 			<MintCard />
 
 			<div className='flex flex-row gap-2 content-center justify-between text-indigo-50'>
 				<button
 					onClick={decrement}
-					className='w-16 h-16 inline-flex flex-1 justify-center text-4xl font-black bg-gradient-to-r from-indigo-500 to-purple-500 shadow-md rounded-md hover:ring hover:ring-white'>
+					className='w-16 h-16 inline-flex flex-1 justify-center text-4xl font-black bg-gradient-to-r from-indigo-500 to-purple-500 shadow-md rounded-full hover:ring hover:ring-white'>
 					-
 				</button>
 				<input
@@ -26,7 +24,7 @@ const Mint = () => {
 				/>
 				<button
 					onClick={increment}
-					className='w-16 h-16 inline-flex flex-1 justify-center text-4xl font-black bg-gradient-to-r from-purple-500 to-pink-500 shadow-md rounded-md hover:ring hover:ring-white'>
+					className='w-16 h-16 inline-flex flex-1 justify-center text-4xl font-black bg-gradient-to-r from-purple-500 to-pink-500 shadow-md rounded-full hover:ring hover:ring-white'>
 					+
 				</button>
 			</div>

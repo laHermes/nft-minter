@@ -47,7 +47,7 @@ code {
 }
 
 .back1 {
-	@apply bg-gradient-to-r from-blue-nft-theme to-blue-theme bg-no-repeat bg-fixed;
+	@apply bg-blue-nft-theme;
 }
 .back {
 	@apply bg-gradient-to-r from-indigo-500 via-purple-700 to-pink-800 bg-no-repeat bg-fixed;

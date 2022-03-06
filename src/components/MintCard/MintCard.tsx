@@ -8,7 +8,7 @@ import polygonLogo from '../../assets/polygon-matic-logo.svg';
 const MintCard = () => {
 	return (
 		<div className='p-2 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-md'>
-			<div className='flex flex-col gap-4 p-3 bg-blue-nft-theme rounded-md'>
+			<div className='flex flex-col gap-4 p-3 bg-blue-nft-theme/90 rounded-md'>
 				<div className='h-80'>
 					<ImageLoader url={NFTImage} />
 				</div>

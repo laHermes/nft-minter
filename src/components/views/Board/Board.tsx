@@ -11,6 +11,7 @@ import { nftState } from '../../../redux/nfts/nfts';
 import useWalletConnect from '../../../services/web3/wallet/useWalletConnect';
 import usePagination from '../../../hooks/usePagination';
 import ImageLoader from '../../ImageLoader/ImageLoader';
+import { shortenString } from '../../../utils/pureFunctions';
 
 const Board = () => {
 	const [enabled, setEnabled] = useState(false);
@@ -58,7 +59,7 @@ const Board = () => {
 									<div
 										key={nft.id}
 										className='p-2 bg-gradient-to-b from-purple-400 via-pink-500 to-purple-400 rounded-md'>
-										<div className='flex flex-col gap-4 p-3 bg-blue-nft-theme rounded-md'>
+										<div className='flex flex-col gap-2 p-3 h-full bg-blue-nft-theme/80 rounded-md'>
 											<div className='h-64'>
 												<ImageLoader url={nft.metadata.image} />
 											</div>
@@ -67,55 +68,34 @@ const Board = () => {
 													Lorem Ipsum #{nft.id}
 												</p>
 											</div>
-											<p className='font-medium text-transparent text-md bg-clip-text bg-gradient-to-r from-purple-100 to-pink-200 text-md'>
-												Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-												sed do eiusmod tempor incididunt ut labore et dolore
-												magna aliqua.
+											<p className='text-sm text-indigo-50 font-medium tracking-wider '>
+												Owner: {shortenString(nft.owner)}
 											</p>
+											{nft.metadata.attributes.map(
+												(attribute: any, index: number) => (
+													<p
+														key={index}
+														className='text-md text-indigo-50 font-medium'>
+														{attribute.trait_type}: {attribute.value}
+													</p>
+												)
+											)}
 										</div>
 									</div>
-									// <div
-									// 	className='backdrop-blur-xl bg-white/50 text-indigo-100 rounded-md shadow-xl'
-									// 	key={nft.id}>
-									// 	<div className='flex flex-col gap-1'>
-									// 		<div className='h-80 w-full'>
-									// 			<ImageLoader url={nft.metadata.image} />
-									// 		</div>
-
-									// 		<p className='text-xl text-indigo-50 font-medium tracking-wider self-center'>
-									// 			{shortenString(nft.owner)}
-									// 		</p>
-									// 		<p className='text-xl text-indigo-50 font-medium tracking-wider self-center'>
-									// 			{nft.id}
-									// 		</p>
-									// 		<p className='text-xl text-indigo-50 font-medium tracking-wider self-center'>
-									// 			{nft.metadata.description}
-									// 		</p>
-									// 		{nft.metadata.attributes.map(
-									// 			(attribute: any, index: number) => (
-									// 				<p
-									// 					key={index}
-									// 					className='text-xl text-indigo-50 font-medium tracking-wider self-center'>
-									// 					{attribute.trait_type}: {attribute.value}
-									// 				</p>
-									// 			)
-									// 		)}
-									// 	</div>
-									// </div>
 								);
 							})}
 						</div>
-						<div className='inline-flex gap-3'>
+						<div className='inline-flex gap-3 text-white'>
 							<button
 								onClick={previousPage}
-								className='p-2 backdrop-blur-sm bg-slate-500/30 text-indigo-900 border rounded-lg'>
+								className='w-18 p-2 backdrop-blur-sm bg-inherit ring ring-purple-900 rounded-lg'>
 								Previous
 							</button>
 							<p>{totalPages}</p>
 
 							<button
 								onClick={nextPage}
-								className='p-2 backdrop-blur-sm bg-slate-500/30 text-indigo-900 border rounded-lg'>
+								className='w-18 p-2 backdrop-blur-sm bg-inherit ring ring-purple-900 rounded-lg'>
 								Next
 							</button>
 						</div>
