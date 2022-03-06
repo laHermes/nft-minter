@@ -24,8 +24,8 @@ const Board = () => {
 
 	return (
 		<div className='max-w-screen-lg mx-auto px-4'>
-			<div className='w-full rounded-xl border border-white/20'>
-				<div className='flex flex-row gap-2 border-b border-white/20 px-3 py-2'>
+			<div className='w-full rounded-xl border border-purple-500/20'>
+				<div className='flex flex-row gap-2 border-b border-purple-500/20 px-3 py-2'>
 					<p className='text-white/70'>Only Owned</p>
 					<Switch
 						checked={enabled}
@@ -85,14 +85,13 @@ const Board = () => {
 								);
 							})}
 						</div>
-						<div className='inline-flex gap-3 text-white'>
+						<div className='inline-flex items-center gap-3 text-white'>
 							<button
 								onClick={previousPage}
 								className='w-18 p-2 backdrop-blur-sm bg-inherit ring ring-purple-900 rounded-lg'>
 								Previous
 							</button>
 							<p>{totalPages}</p>
-
 							<button
 								onClick={nextPage}
 								className='w-18 p-2 backdrop-blur-sm bg-inherit ring ring-purple-900 rounded-lg'>
