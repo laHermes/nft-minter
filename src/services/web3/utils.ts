@@ -21,7 +21,7 @@ export const mintToken = async (amount: number) => {
 	}
 };
 
-// function to check user's balance
+// function to check user's balancek
 export const hasEnoughEth = async (price: string, amount: number) => {
 	const value = utils.parseEther(price).mul(amount);
 

@@ -8,24 +8,22 @@ const ImageLoader = ({ url }: IImageLoader) => {
 	const [loaded, setLoaded] = useState<boolean>(false);
 	const [toLoad, setToLoad] = useState<boolean>(false);
 
-	useEffect(() => {
-		const timeout = setTimeout(() => {
-			setToLoad(true);
-		}, 100);
+	// useEffect(() => {
+	// 	const timeout = setTimeout(() => {
+	// 		setToLoad(true);
+	// 	}, 100);
 
-		return () => clearTimeout(timeout);
-	}, []);
+	// 	return () => clearTimeout(timeout);
+	// }, []);
 
 	return (
 		<>
-			{toLoad && (
-				<img
-					src={url}
-					alt='nft'
-					className={`${loaded ? 'block' : 'hidden'} rounded-md w-full h-full`}
-					onLoad={() => setLoaded(true)}
-				/>
-			)}
+			<img
+				src={url}
+				alt='nft'
+				className={`${loaded ? 'block' : 'hidden'} rounded-md w-full h-full`}
+				onLoad={() => setLoaded(true)}
+			/>
 			<div
 				className={`${
 					loaded ? 'hidden' : 'block'

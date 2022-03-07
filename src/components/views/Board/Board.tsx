@@ -9,18 +9,16 @@ import { useSelector } from 'react-redux';
 import { nftState } from '../../../redux/nfts/nfts';
 
 import useWalletConnect from '../../../services/web3/wallet/useWalletConnect';
-import usePagination from '../../../hooks/usePagination';
 import ImageLoader from '../../ImageLoader/ImageLoader';
 import { shortenString } from '../../../utils/pureFunctions';
+import Pagination from '../../Pagination/Pagination';
+
+import NftCard from '../../NftCard/NftCard';
 
 const Board = () => {
 	const [enabled, setEnabled] = useState(false);
 	const { account } = useWalletConnect();
 	const { nfts, status } = useSelector(nftState);
-	const { paginatedData, nextPage, previousPage, totalPages } = usePagination(
-		nfts,
-		6
-	);
 
 	return (
 		<div className='max-w-screen-lg mx-auto px-4'>
@@ -49,9 +47,16 @@ const Board = () => {
 						</p>
 					</div>
 				)}
-				{status === 'loading' && !paginatedData && <p>Loading</p>}
 
-				{account && paginatedData && (
+				<Pagination
+					data={nfts}
+					Component={NftCard}
+					title='nftCollection'
+					itemsLimit={6}
+					pageLimit={3}
+				/>
+
+				{/* {account && paginatedData && (
 					<div className='flex flex-col gap-3 justify-start p-10'>
 						<div className='grid grid-cols-3 gap-4 w-full'>
 							{paginatedData.map((nft: any) => {
@@ -99,7 +104,7 @@ const Board = () => {
 							</button>
 						</div>
 					</div>
-				)}
+				)} */}
 			</div>
 		</div>
 	);
