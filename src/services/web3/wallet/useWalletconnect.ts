@@ -89,7 +89,7 @@ const useWalletConnect = (): IUseWalletConnect => {
 				if (isActive()) setSelectedWallet(wallet);
 			}
 		},
-		[connector]
+		[connector, account]
 	);
 
 	useAsyncEffect(async () => {

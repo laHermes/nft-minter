@@ -1,36 +1,36 @@
 import React from 'react';
 import usePagination from '../../hooks/usePagination';
 import { INft } from '../../redux/types';
+import PaginationNavigation from '../PaginationNavigation/PaginationNavigation';
 
 interface IPagination {
 	data: any;
 	Component: React.FC<INft>;
 	title: string;
-	itemsLimit: number;
+	itemsPerPage: number;
 	pageLimit: number;
 }
 
 const Pagination = ({
 	data,
 	Component,
-	itemsLimit,
+	itemsPerPage,
 	pageLimit,
 }: IPagination) => {
-	const {
-		paginatedData,
-		nextPage,
-		previousPage,
-		totalPages,
-		currentPage,
-		paginationGroup,
-	} = usePagination(data, itemsLimit, pageLimit);
+	const pagination = usePagination({ data, itemsPerPage, pageLimit });
+	const { paginatedData } = pagination;
 
 	return paginatedData ? (
-		paginatedData.map((nft: any) => {
-			return <Component {...nft} key={nft.id} />;
-		})
+		<>
+			<div className='grid md:grid-cols-3 gap-5 w-full'>
+				{paginatedData.map((nft: INft) => (
+					<Component {...nft} key={nft.id} />
+				))}
+			</div>
+			<PaginationNavigation {...pagination} />
+		</>
 	) : (
-		<p>Data Not Found</p>
+		<p>No Data Found!</p>
 	);
 };
 

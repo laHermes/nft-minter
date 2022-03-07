@@ -1,4 +1,9 @@
-import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
+import {
+	createSlice,
+	createSelector,
+	createAsyncThunk,
+	PayloadAction,
+} from '@reduxjs/toolkit';
 import { RootState } from '../index';
 
 import { fetchAllNfts } from '../../services/web3/utils';
@@ -40,4 +45,4 @@ const nftsSlice = createSlice({
 });
 
 export const nfts = nftsSlice.reducer;
-export const nftState = (state: RootState) => state.nfts;
+export const selectNfts = (state: RootState) => state.nfts;

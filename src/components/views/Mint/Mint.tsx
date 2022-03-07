@@ -7,7 +7,7 @@ const Mint = () => {
 	const { count, increment, decrement, mint } = useMinter();
 
 	return (
-		<div className='flex flex-col gap-4 max-w-md mx-auto px-4 pb-5'>
+		<div className='flex flex-col gap-4 max-w-md mx-auto p-5'>
 			<MintCard />
 
 			<div className='flex flex-row gap-2 content-center justify-between text-indigo-50'>
