@@ -47,7 +47,7 @@ const Header = () => {
 								<Tab
 									className={`${
 										location.pathname === '/mint'
-											? 'bg-blue-nft-theme/90 text-blue-200/90'
+											? 'bg-blue-nft-theme/40 text-blue-200'
 											: 'hover:bg-white/90'
 									} w-full py-2.5 leading-5 font-bold text-xl text-blue-700 rounded-lg `}>
 									<Link to='/mint'>Mint</Link>
@@ -55,7 +55,7 @@ const Header = () => {
 								<Tab
 									className={`${
 										location.pathname === '/'
-											? 'bg-blue-nft-theme/90 text-blue-200/90'
+											? 'bg-blue-nft-theme/40 text-blue-200'
 											: 'hover:bg-white/90'
 									} w-full py-2.5 leading-5 font-bold text-xl text-blue-700 rounded-lg `}>
 									<Link to='/'>Collection</Link>

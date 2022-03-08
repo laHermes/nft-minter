@@ -2,6 +2,7 @@ import React from 'react';
 import useMinter from '../../../hooks/useMinter';
 
 import MintCard from '../../MintCard/MintCard';
+import { AiOutlinePlus, AiOutlineMinus } from 'react-icons/ai';
 
 const Mint = () => {
 	const { count, increment, decrement, mint } = useMinter();
@@ -14,18 +15,18 @@ const Mint = () => {
 				<button
 					onClick={decrement}
 					className='w-16 h-16 inline-flex flex-1 justify-center text-4xl font-black bg-gradient-to-r from-indigo-500 to-purple-500 shadow-md rounded-full hover:ring hover:ring-white'>
-					-
+					<AiOutlineMinus className='self-center text-5xl font-black' />
 				</button>
 				<input
 					readOnly
 					type='numbers'
-					className='w-24 backdrop-blur-sm bg-inherit focus:outline-none text-indigo-50 shadow-md rounded-sm text-4xl font-bold text-center'
+					className='w-2/4 backdrop-blur-sm bg-inherit focus:outline-none text-indigo-50 shadow-md rounded-sm text-4xl font-bold text-center'
 					value={count}
 				/>
 				<button
 					onClick={increment}
 					className='w-16 h-16 inline-flex flex-1 justify-center text-4xl font-black bg-gradient-to-r from-purple-500 to-pink-500 shadow-md rounded-full hover:ring hover:ring-white'>
-					+
+					<AiOutlinePlus className='self-center text-5xl font-black' />
 				</button>
 			</div>
 			<div className='flex flex-col justify-between'>

@@ -95,9 +95,13 @@ const useWalletConnect = (): IUseWalletConnect => {
 
 	useAsyncEffect(async () => {
 		if (!account) return;
+		setBalance(
+			roundBalance(utils.formatEther(await writeWeb3.signer.getBalance()))
+		);
 		library.on('block', async () => {
-			const balance = utils.formatEther(await writeWeb3.signer.getBalance());
-			setBalance(roundBalance(balance));
+			setBalance(
+				roundBalance(utils.formatEther(await writeWeb3.signer.getBalance()))
+			);
 		});
 
 		return () => library.removeListeners('block');

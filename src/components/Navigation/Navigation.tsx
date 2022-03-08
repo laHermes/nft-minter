@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import useAsyncEffect from 'use-async-effect';
+import { useWeb3React } from '@web3-react/core';
 import { getNfts } from '../../redux/nfts/nfts';
 import useAutoWalletConnect from '../../services/web3/wallet/useAutoConnect';
 import Header from './Header';
@@ -17,16 +18,18 @@ interface ILayout {
 // NAVIGATION COMPONENT WRAPS ALL ROUTES
 const Navigation = ({ children }: ILayout) => {
 	const dispatch = useDispatch();
+	const { library } = useWeb3React();
+
 	useAutoWalletConnect();
 
-	useAsyncEffect(() => {
+	useAsyncEffect(async () => {
 		dispatch(getNfts());
-		const interval = setInterval(() => {
+		if (!library) return;
+		library.on('block', async () => {
 			dispatch(getNfts());
-		}, 8000);
-
-		return () => clearInterval(interval);
-	}, [dispatch]);
+		});
+		return () => library.removeListeners('block');
+	}, [dispatch, library]);
 
 	return (
 		<main className='mainStyle'>

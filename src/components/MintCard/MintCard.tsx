@@ -13,7 +13,7 @@ const MintCard = () => {
 					<ImageLoader url={NFTImage} />
 				</div>
 				<div className='flex flex-row justify-between'>
-					<p className='font-extrabold text-transparent text-2xl bg-clip-text bg-gradient-to-r from-purple-100 to-pink-200 text-md'>
+					<p className='font-extrabold text-transparent text-xl bg-clip-text bg-gradient-to-r from-purple-100 to-pink-200 text-md'>
 						Lorem Ipsum
 					</p>
 					<div className='inline-flex gap-1 bg-white/90 rounded-lg p-1'>
