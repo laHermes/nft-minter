@@ -1,7 +1,7 @@
 import { useCallback, useState } from 'react';
 import useAsyncEffect from 'use-async-effect';
 // blockchain
-import { getWeb3ReactContext, useWeb3React } from '@web3-react/core';
+import { useWeb3React } from '@web3-react/core';
 import { setAutoLoginLS } from '../../../utils/localStorage';
 import { setSigner, writeWeb3 } from '../index';
 import { Web3Provider } from '@ethersproject/providers';
@@ -23,7 +23,7 @@ export interface IUseWalletConnect {
 }
 
 const useWalletConnect = (): IUseWalletConnect => {
-	const { activate, deactivate, account, connector } = useWeb3React();
+	const { activate, deactivate, account, connector, library } = useWeb3React();
 
 	const [isPending, setIsPending] = useState<boolean>(false);
 	const [isError, setIsError] = useState<boolean>(false);
@@ -34,9 +34,10 @@ const useWalletConnect = (): IUseWalletConnect => {
 		async (wallet: IWalletInfo) => {
 			const { connector } = wallet;
 			if (connector) {
+				setIsPending(true);
+
 				try {
-					setIsPending(true);
-					await activate(connector);
+					await activate(connector, undefined, true);
 
 					const signer = new Web3Provider(
 						await connector.getProvider()
@@ -89,17 +90,17 @@ const useWalletConnect = (): IUseWalletConnect => {
 				if (isActive()) setSelectedWallet(wallet);
 			}
 		},
-		[connector, account]
+		[connector]
 	);
 
 	useAsyncEffect(async () => {
-		if (!writeWeb3.signer) return;
-		try {
+		if (!account) return;
+		library.on('block', async () => {
 			const balance = utils.formatEther(await writeWeb3.signer.getBalance());
 			setBalance(roundBalance(balance));
-		} catch (err) {
-			console.log('Failed fetching balance!');
-		}
+		});
+
+		return () => library.removeListeners('block');
 	}, [account, writeWeb3]);
 
 	return {
