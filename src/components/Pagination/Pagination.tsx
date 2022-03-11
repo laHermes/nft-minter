@@ -5,7 +5,8 @@ import PaginationNavigation from '../PaginationNavigation/PaginationNavigation';
 
 interface IPagination {
 	data: any;
-	Component: React.FC<INft>;
+	CardComponent: React.FC<INft>;
+	WarningComponent: React.FC;
 	title: string;
 	itemsPerPage: number;
 	pageLimit: number;
@@ -13,24 +14,25 @@ interface IPagination {
 
 const Pagination = ({
 	data,
-	Component,
+	CardComponent,
+	WarningComponent,
 	itemsPerPage,
 	pageLimit,
 }: IPagination) => {
 	const pagination = usePagination({ data, itemsPerPage, pageLimit });
 	const { paginatedData } = pagination;
 
-	return paginatedData ? (
+	return (
 		<>
 			<div className='grid md:grid-cols-3 gap-5 w-full'>
-				{paginatedData.map((nft: INft) => (
-					<Component {...nft} key={nft.id} />
-				))}
+				{paginatedData &&
+					paginatedData.map((nft: INft) => (
+						<CardComponent {...nft} key={nft.id} />
+					))}
 			</div>
-			<PaginationNavigation {...pagination} />
+			{!paginatedData?.length && <WarningComponent />}
+			{!!paginatedData?.length && <PaginationNavigation {...pagination} />}
 		</>
-	) : (
-		<p>No Data Found!</p>
 	);
 };
 

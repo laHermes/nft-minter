@@ -1,24 +1,27 @@
 import { useCallback, useEffect, useState } from 'react';
 
 interface IUsePagination {
-	data: any;
+	data: any[];
 	itemsPerPage: number;
 	pageLimit: number;
 }
 
 const usePagination = ({ data, itemsPerPage, pageLimit }: IUsePagination) => {
-	const [paginatedData, setPaginatedData] = useState<any>();
-	const [currentPage, setCurrentPage] = useState<any>(1);
-	const [paginationGroup, setPaginationGroup] = useState<Array<any>>([]);
+	const [paginatedData, setPaginatedData] = useState<any[]>();
+	const [currentPage, setCurrentPage] = useState<number>(1);
+	const [paginationGroup, setPaginationGroup] = useState<Array<number>>([]);
 
 	// calculate total pages
 	const [totalPages, setTotalPages] = useState<any>(
 		Math.ceil(data.length / itemsPerPage)
 	);
 
-	// useEffect(() => {
-	// 	setTotalPages(Math.ceil(data.length / itemsPerPage));
-	// }, [itemsPerPage, data]);
+	console.log(totalPages);
+
+	useEffect(() => {
+		setTotalPages(Math.ceil(data.length / itemsPerPage));
+		setCurrentPage(1);
+	}, [itemsPerPage, data]);
 
 	useEffect(() => {
 		// calculate first index of data array to determine position
@@ -36,11 +39,12 @@ const usePagination = ({ data, itemsPerPage, pageLimit }: IUsePagination) => {
 	useEffect(() => {
 		// generates list of numbers for navigation
 		const start = Math.floor((currentPage - 1) / pageLimit) * pageLimit;
+		//if the user is on the last page, do not recreate list of pages for navigation
 		const PaginationArray = new Array(totalPages)
 			.fill(null)
-			.map((_, id) => start + id + 1);
+			.map((_, id) => Math.min(start + id + 1, totalPages));
 		setPaginationGroup(PaginationArray);
-	}, [pageLimit, data, totalPages]);
+	}, [data, itemsPerPage, pageLimit, totalPages, currentPage]);
 
 	useEffect(() => {
 		// every time the user changes page it goes to the top of the screen

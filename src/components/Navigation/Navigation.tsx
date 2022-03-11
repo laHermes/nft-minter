@@ -35,7 +35,6 @@ const Navigation = ({ children }: ILayout) => {
 		<main className='mainStyle'>
 			<Header />
 			<ToastContainer limit={3} />
-
 			{children}
 		</main>
 	);

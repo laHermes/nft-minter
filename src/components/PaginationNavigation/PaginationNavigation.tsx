@@ -8,6 +8,7 @@ const PaginationNavigation = ({
 	nextPage,
 	paginationGroup,
 }: any) => {
+	console.log(paginationGroup);
 	return (
 		<div className='inline-flex items-center gap-5 p-2 border text-lg  border-white w-fit rounded-md text-white'>
 			<button
