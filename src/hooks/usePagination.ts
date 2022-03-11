@@ -16,8 +16,6 @@ const usePagination = ({ data, itemsPerPage, pageLimit }: IUsePagination) => {
 		Math.ceil(data.length / itemsPerPage)
 	);
 
-	console.log(totalPages);
-
 	useEffect(() => {
 		setTotalPages(Math.ceil(data.length / itemsPerPage));
 		setCurrentPage(1);

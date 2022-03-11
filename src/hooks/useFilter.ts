@@ -17,6 +17,7 @@ const useFilter = (data: INft[]) => {
 	const [filtered, setFiltered] = useState<any[]>(data);
 
 	useEffect(() => {
+		console.log(filters);
 		const filteredData = data.filter((instance) => {
 			// filters.some((filter) => filter.fnc(instance));
 
@@ -85,7 +86,7 @@ const useFilter = (data: INft[]) => {
 		setFiltered(filteredData);
 	};
 
-	return { applyFilters, toggleFilter, filterExists, filtered };
+	return { applyFilters, filters, toggleFilter, filterExists, filtered };
 };
 
 export default useFilter;

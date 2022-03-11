@@ -24,7 +24,8 @@ const Board = () => {
 	const { account } = useWalletConnect();
 
 	const { nfts } = useSelector(selectNfts);
-	const { filtered, toggleFilter, filterExists } = useFilter(nfts);
+
+	const { filtered, filters, toggleFilter, filterExists } = useFilter(nfts);
 
 	useEffect(() => {
 		const colorsArray = Array.from(
@@ -32,10 +33,10 @@ const Board = () => {
 		);
 		setColors(colorsArray);
 		setSelectedColor(colorsArray[0]);
-	}, []);
+	}, [nfts]);
 
 	useEffect(() => {
-		if (!filtered.length) {
+		if (!filtered.length && !filters.length) {
 			setData(nfts);
 			return;
 		}
