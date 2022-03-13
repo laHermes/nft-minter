@@ -23,8 +23,10 @@ const Navigation = ({ children }: ILayout) => {
 	useAutoWalletConnect();
 
 	useAsyncEffect(async () => {
+		//dispatch event to fetch nfts from blockchain
 		dispatch(getNfts());
 		if (!library) return;
+		// on every block minted fetch nfts
 		library.on('block', async () => {
 			dispatch(getNfts());
 		});

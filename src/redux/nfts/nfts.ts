@@ -46,3 +46,20 @@ const nftsSlice = createSlice({
 
 export const nfts = nftsSlice.reducer;
 export const selectNfts = (state: RootState) => state.nfts;
+export const selectUniqueColors = createSelector(
+	(state: RootState) => state.nfts.nfts,
+	(nfts) =>
+		Array.from(
+			new Set(nfts.map((nft: INft) => nft.metadata.attributes[0].value))
+		)
+);
+
+// (state: RootState) =>
+
+// {
+// 	Array.from(
+// 		new Set(
+// 			state.nfts.nfts.map((nft: INft) => nft.metadata.attributes[0].value)
+// 		)
+// 	);
+// };

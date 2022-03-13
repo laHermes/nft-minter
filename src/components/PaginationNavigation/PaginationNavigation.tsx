@@ -9,7 +9,7 @@ const PaginationNavigation = ({
 	paginationGroup,
 }: any) => {
 	return (
-		<div className='inline-flex items-center gap-5 p-2 border text-lg  border-white w-fit rounded-md text-white'>
+		<nav className='inline-flex items-center gap-5 p-2 border text-lg  border-white w-fit rounded-md text-white'>
 			<button
 				onClick={previousPage}
 				className='backdrop-blur-sm bg-inherit  rounded-lg'>
@@ -31,7 +31,7 @@ const PaginationNavigation = ({
 			<button onClick={nextPage}>
 				<AiOutlineCaretRight className=' text-red-200 text-2xl' />
 			</button>
-		</div>
+		</nav>
 	);
 };
 

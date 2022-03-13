@@ -7,7 +7,7 @@ interface IPagination {
 	data: any;
 	CardComponent: React.FC<INft>;
 	WarningComponent: React.FC;
-	title: string;
+	title?: string;
 	itemsPerPage: number;
 	pageLimit: number;
 }
