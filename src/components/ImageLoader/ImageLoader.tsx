@@ -18,7 +18,7 @@ const ImageLoader = ({ url }: IImageLoader) => {
 			<div
 				className={`${
 					loaded ? 'hidden' : 'block'
-				} w-full h-full flex-1 animate-pulse bg-slate-900/30  rounded-md`}></div>
+				} w-full h-full flex-1 animate-pulse bg-slate-900/30 rounded-md`}></div>
 		</>
 	);
 };

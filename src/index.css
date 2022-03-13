@@ -11,58 +11,35 @@ body {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	overflow-y: scroll;
-
-	@apply back1;
-}
-
-code {
-	font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-		monospace;
-}
-
-.inter {
-	font-family: 'Inter', sans-serif;
-}
-
-.secular {
-	font-family: 'Secular One', sans-serif;
-}
-.text-box {
-	@apply bg-gray-800 text-gray-200;
-}
-
-.sidebarNav {
-	@apply w-full inline-flex border-l-transparent border-l-8 hover:border-l-8 hover:border-l-indigo-200 hover:bg-slate-800 pl-4 py-3;
-}
-
-.wrapperStyle {
-	@apply flex flex-row min-h-screen bg-gray-100 text-gray-800;
-}
-
-.mainStyle {
-	@apply h-screen transition-all duration-150 ease-in  pb-12;
-}
-
-.cardStyle {
-	@apply w-fit bg-gray-900 text-white;
-}
-
-.back1 {
-	@apply bg-blue-nft-theme;
-}
-.back {
-	@apply bg-gradient-to-r from-indigo-500 via-purple-700 to-pink-800 bg-no-repeat bg-fixed;
+	@apply background;
 }
 
 .background {
-	background: linear-gradient(120deg, #fd61db 0%, #51003f 100%),
-		linear-gradient(120deg, #0030ad 0%, #00071a 100%),
-		linear-gradient(180deg, #000346 0%, #ff0000 100%),
-		linear-gradient(60deg, #5f79ff 0%, #aa0014 100%),
-		radial-gradient(100% 165% at 100% 100%, #ff00a8 0%, #00ff47 100%),
-		radial-gradient(100% 150% at 0% 0%, #fff500 0%, #51d500 100%);
-	background-blend-mode: overlay, color-dodge, overlay, overlay, difference,
-		normal;
-	background-repeat: no-repeat;
-	background-attachment: fixed;
+	@apply bg-blue-nft-theme;
+}
+
+.navigationStyle {
+	@apply h-screen transition-all duration-150 ease-in pb-12;
+}
+
+.headerTop {
+	@apply flex items-center flex-row justify-between py-2 px-4;
+}
+
+.viewSwitch {
+	@apply max-w-md mx-auto bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-xl;
+}
+
+.viewSwitch-list {
+	@apply flex p-1 space-x-1 bg-white/50 rounded-xl text-lg;
+}
+
+.viewSwitch-item {
+	@apply flex-1 text-center py-2 font-bold text-xl text-blue-700 rounded-lg;
+}
+.viewSwitch-item-active {
+	@apply bg-blue-nft-theme/40 text-blue-100;
+}
+.viewSwitch-item-inactive {
+	@apply hover:bg-white/90;
 }

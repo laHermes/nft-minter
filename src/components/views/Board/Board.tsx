@@ -84,23 +84,12 @@ const Board = () => {
 										(nft: INft) => nft.metadata.attributes[0].value === e
 									);
 								}}>
-								<Listbox.Button className='bg-white px-2 rounded-sm'>
+								<Listbox.Button className='absolute bg-white w-24 px-2 rounded-sm'>
 									{selectedColor}
 								</Listbox.Button>
-								<Listbox.Options className='bg-yellow-50'>
+								<Listbox.Options className='absolute bg-white w-24 px-2 rounded-sm'>
 									{colors.map((color, index) => (
-										<Listbox.Option
-											key={index}
-											value={color}
-											// onClick={() =>
-											// 	toggleFilter(
-											// 		color,
-											// 		Group.COLOR,
-											// 		(nft: INft) =>
-											// 			nft.metadata.attributes[0].value === color
-											// 	)
-											// }
-											className='bg-white overflow-hidden'>
+										<Listbox.Option key={index} value={color}>
 											{color}
 										</Listbox.Option>
 									))}

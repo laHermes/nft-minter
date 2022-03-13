@@ -32,7 +32,7 @@ const Navigation = ({ children }: ILayout) => {
 	}, [dispatch, library]);
 
 	return (
-		<main className='mainStyle'>
+		<main className='navigationStyle'>
 			<Header />
 			<ToastContainer limit={3} />
 			{children}

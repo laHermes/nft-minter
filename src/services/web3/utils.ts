@@ -21,7 +21,7 @@ export const mintToken = async (amount: number) => {
 	}
 };
 
-// function to check user's balancek
+// function to check user's balance
 export const hasEnoughEth = async (price: string, amount: number) => {
 	const value = utils.parseEther(price).mul(amount);
 
@@ -33,16 +33,21 @@ export const hasEnoughEth = async (price: string, amount: number) => {
 
 // fetch minted NFTS from blockchain
 export const fetchAllNfts = async (): Promise<INft[]> => {
+	//define nft contract
 	const contract = new ethers.Contract(nftAddress, nftAbi, getProvider());
 
+	// fetch data from the contract
 	const data = await contract.getAllNfts();
 
+	// get image links
 	const meta = data.map(async (nft: INft) => {
 		return await axios.get(nft.uri).then((res) => res.data);
 	});
 
+	// resolve image links
 	const resolvedMetadata = await Promise.all(meta);
 
+	//create array of nfts to be returned to the view
 	return data.map((nft: INft, index: number) => {
 		return {
 			id: utils.formatUnits(nft.id, 0),

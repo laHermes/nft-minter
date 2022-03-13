@@ -17,12 +17,10 @@ const useFilter = (data: INft[]) => {
 	const [filtered, setFiltered] = useState<any[]>(data);
 
 	useEffect(() => {
-		console.log(filters);
 		const filteredData = data.filter((instance) => {
-			// filters.some((filter) => filter.fnc(instance));
-
 			const owned = isShownByOwned(instance, filters);
 			const color = isShownByColor(instance, filters);
+
 			return owned && color;
 		});
 		setFiltered(filteredData);
