@@ -40,6 +40,9 @@ const useFilter = (data: INft[]) => {
 			)
 		);
 
+	const resetFilters = () => {
+		setFilters([]);
+	};
 	const removeAllGroupFilters = (group: Group) => {
 		setFilters((currentFilters) =>
 			currentFilters.filter((filter) => !(filter.group === group))
@@ -47,12 +50,18 @@ const useFilter = (data: INft[]) => {
 	};
 
 	const toggleFilter = (name: string | number, group: Group, fnc: Function) => {
-		if (filterExists(name, group)) {
-			removeFilter.apply(null, [name, group]);
-			return;
-		}
 		if (group === Group.COLOR) {
+			if (filterExists(name, group)) {
+				return;
+			}
 			removeAllGroupFilters(group);
+		}
+
+		if (group !== Group.COLOR) {
+			if (filterExists(name, group)) {
+				removeFilter.apply(null, [name, group]);
+				return;
+			}
 		}
 
 		addFilter.apply(null, [name, group, fnc]);
@@ -84,7 +93,14 @@ const useFilter = (data: INft[]) => {
 		setFiltered(filteredData);
 	};
 
-	return { applyFilters, filters, toggleFilter, filterExists, filtered };
+	return {
+		applyFilters,
+		filters,
+		toggleFilter,
+		resetFilters,
+		filterExists,
+		filtered,
+	};
 };
 
 export default useFilter;

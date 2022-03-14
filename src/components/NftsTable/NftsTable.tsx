@@ -14,7 +14,7 @@ const NftsTable = () => {
 	const { nfts } = useSelector(selectNfts);
 	const filter = useFilter(nfts);
 
-	const { filtered, filters } = filter;
+	const { filtered, filters, resetFilters } = filter;
 
 	useEffect(() => {
 		if (!filtered.length && !filters.length) {
@@ -31,6 +31,11 @@ const NftsTable = () => {
 				<FilterOwned {...filter} />
 				<div>
 					<FilterColor {...filter} />
+				</div>
+				<div>
+					<button onClick={resetFilters} className='px-2 bg-white rounded-lg'>
+						Reset
+					</button>
 				</div>
 			</div>
 			<div className='flex flex-col gap-10 justify-start p-10'>

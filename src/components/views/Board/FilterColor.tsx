@@ -5,15 +5,19 @@ import { useSelector } from 'react-redux';
 import { Group } from '../../../hooks/useFilter';
 import { INft } from '../../../redux/types';
 
-const FilterColor = ({ toggleFilter }: any) => {
+const FilterColor = ({ toggleFilter, filters }: any) => {
 	const [selectedColor, setSelectedColor] = useState<string>();
-	// const [loaded, setLoaded] = useState<boolean>(false);
 
+	// const [loaded, setLoaded] = useState<boolean>(false);
 	const colors = useSelector(selectUniqueColors);
 
 	useEffect(() => {
 		setSelectedColor(colors[0]);
 	}, [colors]);
+
+	useEffect(() => {
+		if (!filters.length) setSelectedColor(colors[0]);
+	}, [colors, filters]);
 
 	return (
 		<Listbox
@@ -26,7 +30,7 @@ const FilterColor = ({ toggleFilter }: any) => {
 					(nft: INft) => nft.metadata.attributes[0].value === color
 				);
 			}}>
-			<Listbox.Button className='absolute bg-white w-24 px-2 rounded-lg'>
+			<Listbox.Button className='bg-white w-24 px-2 rounded-lg'>
 				{selectedColor}
 			</Listbox.Button>
 			<Listbox.Options className='absolute bg-white w-24 px-2 rounded-lg'>

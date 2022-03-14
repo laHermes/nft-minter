@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Switch } from '@headlessui/react';
 import { Group } from '../../../hooks/useFilter';
 import { INft } from '../../../redux/types';
@@ -7,11 +7,16 @@ import useWalletConnect from '../../../services/web3/wallet/useWalletConnect';
 interface IFilterOwned {
 	filterExists: any;
 	toggleFilter: any;
+	filters: any;
 }
 
-const FilterOwned = ({ filterExists, toggleFilter }: IFilterOwned) => {
+const FilterOwned = ({ filterExists, toggleFilter, filters }: IFilterOwned) => {
 	const [enabled, setEnabled] = useState(false);
 	const { account } = useWalletConnect();
+
+	useEffect(() => {
+		if (!filters.length) setEnabled(false);
+	}, [filters]);
 
 	return (
 		<Switch
