@@ -7,6 +7,7 @@ import NftCard from '../NftCard/NftCard';
 import Pagination from '../Pagination/Pagination';
 import FilterColor from '../views/Board/FilterColor';
 import FilterOwned from '../views/Board/FilterOwned';
+import { ErrorBoundary } from 'react-error-boundary';
 
 const NftsTable = () => {
 	const [data, setData] = useState<any[]>();
@@ -38,18 +39,17 @@ const NftsTable = () => {
 					</button>
 				</div>
 			</div>
-			<div className='flex flex-col gap-10 justify-start p-10'>
-				{data && (
+			<ErrorBoundary FallbackComponent={DataWarning} resetKeys={data}>
+				<div className='flex flex-col gap-10 justify-start p-10'>
 					<Pagination
 						data={data}
 						CardComponent={NftCard}
-						WarningComponent={DataWarning}
 						title='nftCollection'
 						itemsPerPage={6}
 						pageLimit={3}
 					/>
-				)}
-			</div>
+				</div>
+			</ErrorBoundary>
 		</>
 	);
 };

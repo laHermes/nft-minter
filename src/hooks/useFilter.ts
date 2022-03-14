@@ -41,6 +41,7 @@ const useFilter = (data: INft[]) => {
 		);
 
 	const resetFilters = () => {
+		if (!filters.length) return;
 		setFilters([]);
 	};
 	const removeAllGroupFilters = (group: Group) => {
