@@ -7,12 +7,13 @@ import { INft } from '../../../redux/types';
 
 const FilterColor = ({ toggleFilter }: any) => {
 	const [selectedColor, setSelectedColor] = useState<string>();
+	// const [loaded, setLoaded] = useState<boolean>(false);
 
 	const colors = useSelector(selectUniqueColors);
 
 	useEffect(() => {
 		setSelectedColor(colors[0]);
-	}, []);
+	}, [colors]);
 
 	return (
 		<Listbox

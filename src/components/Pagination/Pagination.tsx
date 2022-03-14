@@ -30,8 +30,8 @@ const Pagination = ({
 						<CardComponent {...nft} key={nft.id} />
 					))}
 			</div>
-			{!paginatedData?.length && <WarningComponent />}
-			{!!paginatedData?.length && <PaginationNavigation {...pagination} />}
+			{!paginatedData && <WarningComponent />}
+			{!!paginatedData && <PaginationNavigation {...pagination} />}
 		</>
 	);
 };

@@ -5,9 +5,22 @@ interface IUsePagination {
 	itemsPerPage: number;
 	pageLimit: number;
 }
+interface IPaginated {
+	nextPage: any;
+	previousPage: any;
+	changePage: any;
+	paginatedData: any[];
+	currentPage: number;
+	totalPages: number;
+	paginationGroup: number[];
+}
 
-const usePagination = ({ data, itemsPerPage, pageLimit }: IUsePagination) => {
-	const [paginatedData, setPaginatedData] = useState<any[]>();
+const usePagination = ({
+	data,
+	itemsPerPage,
+	pageLimit,
+}: IUsePagination): IPaginated => {
+	const [paginatedData, setPaginatedData] = useState<any[]>([]);
 	const [currentPage, setCurrentPage] = useState<number>(1);
 	const [paginationGroup, setPaginationGroup] = useState<Array<number>>([]);
 
