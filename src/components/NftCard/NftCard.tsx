@@ -5,9 +5,7 @@ import ImageLoader from '../ImageLoader/ImageLoader';
 
 const NftCard = ({ id, owner, metadata }: INft) => {
 	return (
-		<div
-			key={id}
-			className='p-2 bg-gradient-to-b from-purple-400 via-pink-500 to-purple-400 rounded-md'>
+		<div className='p-2 bg-gradient-to-b from-purple-400 via-pink-500 to-purple-400 rounded-md'>
 			<div className='flex flex-col gap-2 p-3 h-full bg-blue-nft-theme/80 rounded-md'>
 				<div className='h-64'>
 					<ImageLoader url={metadata.image} />

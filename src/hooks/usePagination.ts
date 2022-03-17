@@ -26,11 +26,11 @@ const usePagination = ({
 
 	// calculate total pages
 	const [totalPages, setTotalPages] = useState<any>(
-		Math.ceil(data.length / itemsPerPage)
+		Math.ceil(data?.length / itemsPerPage)
 	);
 
 	useEffect(() => {
-		setTotalPages(Math.ceil(data.length / itemsPerPage));
+		setTotalPages(Math.ceil(data?.length / itemsPerPage));
 		setCurrentPage(1);
 	}, [itemsPerPage, data]);
 
@@ -41,7 +41,8 @@ const usePagination = ({
 		const endingIndex = beginningIndex + itemsPerPage;
 
 		// calculate total pages
-		setTotalPages(Math.ceil(data.length / itemsPerPage));
+		setTotalPages(Math.ceil(data?.length / itemsPerPage));
+		console.log(data.slice(beginningIndex, endingIndex));
 
 		// get sliced (paginated) data
 		setPaginatedData(data.slice(beginningIndex, endingIndex));

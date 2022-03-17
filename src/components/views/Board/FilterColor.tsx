@@ -5,7 +5,12 @@ import { useSelector } from 'react-redux';
 import { Group } from '../../../hooks/useFilter';
 import { INft } from '../../../redux/types';
 
-const FilterColor = ({ toggleFilter, filters }: any) => {
+interface IFilterColor {
+	toggleGroupFilter: Function;
+	filters: any[];
+}
+
+const FilterColor = ({ toggleGroupFilter, filters }: IFilterColor) => {
 	const [selectedColor, setSelectedColor] = useState<string>();
 
 	// const [loaded, setLoaded] = useState<boolean>(false);
@@ -24,7 +29,7 @@ const FilterColor = ({ toggleFilter, filters }: any) => {
 			value={selectedColor}
 			onChange={(color: string) => {
 				setSelectedColor(color);
-				toggleFilter(
+				toggleGroupFilter(
 					color,
 					Group.COLOR,
 					(nft: INft) => nft.metadata.attributes[0].value === color

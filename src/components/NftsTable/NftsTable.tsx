@@ -1,56 +1,55 @@
-import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import React from 'react';
 import useFilter from '../../hooks/useFilter';
-import { selectNfts } from '../../redux/nfts/nfts';
 import DataWarning from '../DataWarning/DataWarning';
 import NftCard from '../NftCard/NftCard';
-import Pagination from '../Pagination/Pagination';
 import FilterColor from '../views/Board/FilterColor';
 import FilterOwned from '../views/Board/FilterOwned';
 import { ErrorBoundary } from 'react-error-boundary';
+import PaginationNavigation from '../PaginationNavigation/PaginationNavigation';
+import usePagination from '../../hooks/usePagination';
+import NftTable from '../NftTable/NftTable';
+import NoWalletWarning from '../NoWalletWarning/NoWalletWarning';
+import useWalletConnect from '../../services/web3/wallet/useWalletConnect';
 
-const NftsTable = () => {
-	const [data, setData] = useState<any[]>();
+interface INftsTable {
+	data: any[];
+}
 
-	const { nfts } = useSelector(selectNfts);
-	const filter = useFilter(nfts);
+const NftsTable = ({ data }: INftsTable) => {
+	const { account } = useWalletConnect();
 
-	const { filtered, filters, resetFilters } = filter;
+	const filter = useFilter(data);
+	const { filtered } = filter;
 
-	useEffect(() => {
-		if (!filtered.length && !filters.length) {
-			setData(nfts);
-			return;
-		}
-		setData(filtered);
-	}, [filtered, filters, nfts]);
+	const pagination = usePagination({
+		data: filtered,
+		itemsPerPage: 6,
+		pageLimit: 3,
+	});
+
+	const { paginatedData } = pagination;
 
 	return (
-		<>
-			<div className='flex flex-row gap-2 border-b border-purple-500/20 px-3 py-2'>
-				<p className='text-white/70'>Only Owned</p>
+		<NftTable>
+			<NftTable.Filters>
 				<FilterOwned {...filter} />
-				<div>
-					<FilterColor {...filter} />
-				</div>
-				<div>
-					<button onClick={resetFilters} className='px-2 bg-white rounded-lg'>
-						Reset
-					</button>
-				</div>
-			</div>
-			<ErrorBoundary FallbackComponent={DataWarning} resetKeys={data}>
-				<div className='flex flex-col gap-10 justify-start p-10'>
-					<Pagination
-						data={data}
-						CardComponent={NftCard}
-						title='nftCollection'
-						itemsPerPage={6}
-						pageLimit={3}
-					/>
-				</div>
-			</ErrorBoundary>
-		</>
+				<FilterColor {...filter} />
+			</NftTable.Filters>
+			<NftTable.GridWrapper>
+				{account ? (
+					<ErrorBoundary FallbackComponent={DataWarning} resetKeys={filtered}>
+						<NftTable.Grid>
+							{paginatedData.map((nft: any) => (
+								<NftCard {...nft} key={nft.id} />
+							))}
+						</NftTable.Grid>
+						<PaginationNavigation {...pagination} />
+					</ErrorBoundary>
+				) : (
+					<NoWalletWarning />
+				)}
+			</NftTable.GridWrapper>
+		</NftTable>
 	);
 };
 

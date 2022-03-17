@@ -1,7 +1,7 @@
 import React from 'react';
 import useMinter from '../../../hooks/useMinter';
 
-import MintCard from '../../MintCard/MintCard';
+import MintCard from '../../MintCard/Index';
 import { AiOutlinePlus, AiOutlineMinus } from 'react-icons/ai';
 
 const Mint = () => {
@@ -10,7 +10,6 @@ const Mint = () => {
 	return (
 		<div className='flex flex-col gap-4 max-w-md mx-auto p-5'>
 			<MintCard />
-
 			<div className='flex flex-row gap-2 content-center justify-between text-indigo-50'>
 				<button
 					onClick={decrement}

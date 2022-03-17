@@ -18,11 +18,12 @@ const useFilter = (data: INft[]) => {
 
 	useEffect(() => {
 		const filteredData = data.filter((instance) => {
-			const owned = isShownByOwned(instance, filters);
-			const color = isShownByColor(instance, filters);
+			const owned = isGroupFilterActive(instance, filters, Group.OWNED);
+			const color = isGroupFilterActive(instance, filters, Group.COLOR);
 
 			return owned && color;
 		});
+
 		setFiltered(filteredData);
 	}, [data, filters]);
 
@@ -40,64 +41,54 @@ const useFilter = (data: INft[]) => {
 			)
 		);
 
+	// resets all filters
 	const resetFilters = () => {
-		if (!filters.length) return;
+		if (!filters?.length) return;
 		setFilters([]);
 	};
+
+	// removes all filters of group Group
 	const removeAllGroupFilters = (group: Group) => {
 		setFilters((currentFilters) =>
 			currentFilters.filter((filter) => !(filter.group === group))
 		);
 	};
 
+	// toggle individual filter
 	const toggleFilter = (name: string | number, group: Group, fnc: Function) => {
-		if (group === Group.COLOR) {
-			if (filterExists(name, group)) {
-				return;
-			}
-			removeAllGroupFilters(group);
+		if (filterExists(name, group)) {
+			removeFilter(name, group);
+			return;
+		}
+		addFilter(name, group, fnc);
+	};
+
+	// toggle filter of Group (used by selectors and radio buttons)
+	const toggleGroupFilter = (
+		name: string | number,
+		group: Group,
+		fnc: Function
+	) => {
+		if (filterExists(name, group)) {
+			return;
 		}
 
-		if (group !== Group.COLOR) {
-			if (filterExists(name, group)) {
-				removeFilter.apply(null, [name, group]);
-				return;
-			}
-		}
+		removeAllGroupFilters(group);
 
 		addFilter.apply(null, [name, group, fnc]);
 	};
 
-	const isShownByOwned = (nft: any, filters: Filter[]) => {
-		const ownedFilters = filters.filter(
-			(filter) => filter.group === Group.OWNED
-		);
-		if (!ownedFilters.length) return true;
-		return ownedFilters.some((filter) => filter.fnc(nft));
-	};
-	const isShownByColor = (nft: any, filters: Filter[]) => {
-		const ownedFilters = filters.filter(
-			(filter) => filter.group === Group.COLOR
-		);
-		if (!ownedFilters.length) return true;
-		return ownedFilters.some((filter) => filter.fnc(nft));
-	};
-
-	const applyFilters = () => {
-		if (!filters.length) {
-			setFiltered(data);
-			return;
-		}
-		const filteredData = data.filter((instance) => {
-			return isShownByOwned(instance, filters);
-		});
-		setFiltered(filteredData);
+	// show data by owner
+	const isGroupFilterActive = (nft: any, filters: Filter[], group: Group) => {
+		const groupFilters = filters.filter((filter) => filter.group === group);
+		if (!groupFilters.length) return true;
+		return groupFilters.some((filter) => filter.fnc(nft));
 	};
 
 	return {
-		applyFilters,
 		filters,
 		toggleFilter,
+		toggleGroupFilter,
 		resetFilters,
 		filterExists,
 		filtered,
