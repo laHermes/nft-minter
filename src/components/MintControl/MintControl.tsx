@@ -5,11 +5,7 @@ interface IChildren {
 }
 
 const MintControl = ({ children }: IChildren) => {
-	return (
-		<div className='flex flex-row gap-2 content-center justify-between text-indigo-50'>
-			{children}
-		</div>
-	);
+	return <div className='flex flex-row gap-2 text-xl'>{children}</div>;
 };
 
 export default MintControl;

@@ -4,6 +4,7 @@ interface ICountToMint {
 	count: number;
 }
 
+// displays number of nfts to be minted
 const CountToMint = ({ count }: ICountToMint) => {
 	return (
 		<input
