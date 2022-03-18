@@ -15,6 +15,8 @@ const MintCard = ({ children }: IChildren) => {
 	);
 };
 
+//Card Heading Components
+
 export const ImageHolder = ({ url }: any) => {
 	return (
 		<div className='h-80'>

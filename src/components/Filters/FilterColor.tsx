@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Listbox } from '@headlessui/react';
-import { selectUniqueColors } from '../../../redux/nfts/nfts';
+import { selectUniqueColors } from '../../redux/nfts/nfts';
 import { useSelector } from 'react-redux';
-import { Group } from '../../../hooks/useFilter';
-import { INft } from '../../../redux/types';
+import { Group } from '../../hooks/useFilter';
+import { INft } from '../../redux/types';
 
 interface IFilterColor {
 	toggleGroupFilter: Function;

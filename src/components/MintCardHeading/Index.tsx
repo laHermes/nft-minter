@@ -4,6 +4,7 @@ import NFTImage from '../../assets/nft.png';
 import PricePill from './PricePill';
 
 const Index = () => {
+	// ToDo: Add Minting and Navigation to this component
 	return (
 		<MintCard>
 			<MintCard.ImageHolder url={NFTImage} />
