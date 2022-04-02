@@ -1,6 +1,6 @@
 import React from 'react';
 import useWalletConnect from '../../services/web3/wallet/useWalletConnect';
-import WalletButton from '../WalletButton/WalletButton';
+import WalletButton from '../Wallet/WalletButton/WalletButton';
 
 const AccountGroup = () => {
 	const { account, balance } = useWalletConnect();
