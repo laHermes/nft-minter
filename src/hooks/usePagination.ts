@@ -1,19 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-
-interface IUsePagination {
-	data: any[];
-	itemsPerPage: number;
-	pageLimit: number;
-}
-interface IPaginated {
-	nextPage: any;
-	previousPage: any;
-	changePage: any;
-	paginatedData: any[];
-	currentPage: number;
-	totalPages: number;
-	paginationGroup: number[];
-}
+import { IUsePagination, IPaginated } from '../types';
 
 const usePagination = ({
 	data,
@@ -42,7 +28,6 @@ const usePagination = ({
 
 		// calculate total pages
 		setTotalPages(Math.ceil(data?.length / itemsPerPage));
-		console.log(data.slice(beginningIndex, endingIndex));
 
 		// get sliced (paginated) data
 		setPaginatedData(data.slice(beginningIndex, endingIndex));
