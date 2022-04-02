@@ -6,7 +6,7 @@ interface IChildren {
 
 const NftTable = ({ children }: IChildren) => {
 	return (
-		<div className='w-full rounded-xl border border-purple-500/20'>
+		<div className='w-full rounded-xl border border-purple-500/20 bg-purple-900/20 shadow-sm shadow-black/50'>
 			{children}
 		</div>
 	);

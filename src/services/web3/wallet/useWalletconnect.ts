@@ -98,11 +98,14 @@ const useWalletConnect = (): IUseWalletConnect => {
 		setBalance(
 			roundBalance(utils.formatEther(await writeWeb3.signer.getBalance()))
 		);
-		library.on('block', async () => {
-			setBalance(
-				roundBalance(utils.formatEther(await writeWeb3.signer.getBalance()))
-			);
-		});
+
+		try {
+			library.on('block', async () => {
+				setBalance(
+					roundBalance(utils.formatEther(await writeWeb3.signer.getBalance()))
+				);
+			});
+		} catch (err) {}
 
 		return () => library.removeListeners('block');
 	}, [account, writeWeb3]);

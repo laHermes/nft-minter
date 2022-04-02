@@ -1,16 +1,16 @@
 import React from 'react';
-import useFilter from '../../../../hooks/useFilter';
-import DataWarning from '../../../DataFallback/DataWarning';
-import NftCard from '../NftCard';
-import FilterColor from '../../../Filters/FilterColor';
-import FilterOwned from '../../../Filters/FilterOwned';
+import useFilter from '../../../hooks/useFilter';
+import DataWarning from '../../DataFallback/DataWarning';
+import NftCard from '../NftCard/NftCard';
+import FilterColor from '../../Filters/FilterColor';
+import FilterOwned from '../../Filters/FilterOwned';
 import { ErrorBoundary } from 'react-error-boundary';
-import PaginationNavigation from '../../../Pagination/PaginationNavigation/PaginationNavigation';
-import usePagination from '../../../../hooks/usePagination';
-import NftTable from '../../NftTable/NftTable';
-import NoWalletWarning from '../../../Wallet/WalletButton/WalletFallback/NoWalletWarning';
-import useWalletConnect from '../../../../services/web3/wallet/useWalletConnect';
-import { INft } from '../../../../redux/types';
+import PaginationNavigation from '../../Pagination/PaginationNavigation/PaginationNavigation';
+import usePagination from '../../../hooks/usePagination';
+import NftTable from './styles';
+import NoWalletWarning from '../../Wallet/WalletButton/WalletFallback/NoWalletWarning';
+import useWalletConnect from '../../../services/web3/wallet/useWalletConnect';
+import { INft } from '../../../redux/types';
 
 interface INftsTable {
 	data: INft[];
