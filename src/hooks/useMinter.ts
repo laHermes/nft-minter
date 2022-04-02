@@ -1,8 +1,6 @@
 import { useState, useCallback } from 'react';
 import { mintToken } from '../services/web3/utils';
 import useWalletConnect from '../services/web3/wallet/useWalletConnect';
-import { useDispatch } from 'react-redux';
-import { addNotification } from '../redux/notification/notification';
 import { hasEnoughEth } from '../services/web3/utils';
 import { toast } from 'react-toastify';
 
@@ -13,7 +11,6 @@ const NFT_PRICE = '0.03';
 const useMinter = () => {
 	const [count, setCount] = useState<number>(1);
 
-	const dispatch = useDispatch();
 	const { account } = useWalletConnect();
 
 	const increment = useCallback(() => {
@@ -27,14 +24,15 @@ const useMinter = () => {
 	const mint = async () => {
 		// make sure the wallet is connected
 		if (!account) {
-			dispatch(addNotification('Please connect wallet'));
+			toast.warn('Please connect wallet');
 			return;
 		}
 
 		// make sure the user has enough matic tokens to mint nfts
 		const hasEnough = await hasEnoughEth(NFT_PRICE, count);
 		if (!hasEnough) {
-			dispatch(addNotification('Not enough funds'));
+			toast.warn('Not enough funds');
+
 			return;
 		}
 		//mint tokens function

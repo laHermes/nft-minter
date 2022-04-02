@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import ImageLoader from '../ImageLoader/ImageLoader';
+import ImageLoader from '../../ImageLoader/ImageLoader';
 
 interface IChildren {
 	children: ReactNode;

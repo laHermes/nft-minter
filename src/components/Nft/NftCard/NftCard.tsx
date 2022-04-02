@@ -1,7 +1,7 @@
 import React from 'react';
-import { INft } from '../../redux/types';
-import { shortenString } from '../../utils/pureFunctions';
-import ImageLoader from '../ImageLoader/ImageLoader';
+import { INft } from '../../../redux/types';
+import { shortenString } from '../../../utils/pureFunctions';
+import ImageLoader from '../../ImageLoader/ImageLoader';
 
 const NftCard = ({ id, owner, metadata }: INft) => {
 	return (

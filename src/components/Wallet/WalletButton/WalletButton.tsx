@@ -1,7 +1,7 @@
 import React from 'react';
-import useWalletConnect from '../../services/web3/wallet/useWalletConnect';
-import { SUPPORTED_WALLETS } from '../../services/web3/wallet/utils';
-import { shortenString } from '../../utils/pureFunctions';
+import useWalletConnect from '../../../services/web3/wallet/useWalletConnect';
+import { SUPPORTED_WALLETS } from '../../../services/web3/wallet/utils';
+import { shortenString } from '../../../utils/pureFunctions';
 import WButton from './WButton';
 
 const WalletButton = () => {

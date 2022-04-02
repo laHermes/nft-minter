@@ -1,6 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { nfts } from './nfts/nfts';
-import { notification } from './notification/notification';
 
 export const store = configureStore({
 	middleware: (getDefaultMiddleware) =>
@@ -11,7 +10,6 @@ export const store = configureStore({
 		}),
 	reducer: {
 		nfts,
-		notification,
 	},
 });
 

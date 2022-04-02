@@ -1,5 +1,5 @@
 import React from 'react';
-import useMinter from '../../hooks/useMinter';
+import useMinter from '../../../hooks/useMinter';
 import CountToMint from './CountToMint';
 import DecrementButton from './DecrementButton';
 import IncrementButton from './IncrementButton';

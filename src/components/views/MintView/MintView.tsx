@@ -1,8 +1,6 @@
 import React from 'react';
-
-import MintCard from '../../MintCardHeading/Index';
-
-import MintControl from '../../MintControl/Index';
+import MintCard from '../../Minting/MintCardHeading/Index';
+import MintControl from '../../Minting/MintControl/Index';
 
 const Mint = () => {
 	return (

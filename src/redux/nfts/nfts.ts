@@ -53,13 +53,3 @@ export const selectUniqueColors = createSelector(
 			new Set(nfts.map((nft: INft) => nft.metadata.attributes[0].value))
 		)
 );
-
-// (state: RootState) =>
-
-// {
-// 	Array.from(
-// 		new Set(
-// 			state.nfts.nfts.map((nft: INft) => nft.metadata.attributes[0].value)
-// 		)
-// 	);
-// };

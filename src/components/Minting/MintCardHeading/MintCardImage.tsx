@@ -1,5 +1,5 @@
 import React from 'react';
-import ImageLoader from '../ImageLoader/ImageLoader';
+import ImageLoader from '../../ImageLoader/ImageLoader';
 
 interface IMintCardImage {
 	url: string;

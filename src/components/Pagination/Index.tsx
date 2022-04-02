@@ -1,7 +1,7 @@
 import React from 'react';
 import usePagination from '../../hooks/usePagination';
 import { INft } from '../../redux/types';
-import PaginationNavigation from '../PaginationNavigation/PaginationNavigation';
+import PaginationNavigation from './PaginationNavigation/PaginationNavigation';
 
 interface IPagination {
 	data: any;
@@ -11,7 +11,7 @@ interface IPagination {
 	pageLimit: number;
 }
 
-const Pagination = ({
+const Index = ({
 	data,
 	CardComponent,
 	itemsPerPage,
@@ -35,4 +35,4 @@ const Pagination = ({
 	);
 };
 
-export default Pagination;
+export default Index;
