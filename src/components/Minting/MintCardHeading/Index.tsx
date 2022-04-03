@@ -1,9 +1,8 @@
 import React from 'react';
-import MintCard from './MintCard';
 import NFTImage from '../../../assets/nft.png';
-import PricePill from './PricePill';
 import polygonLogo from '../../../assets/polygon-matic-logo.svg';
 import { nftInfo } from '../../../info/nft';
+import { MintCard, PricePill } from './styles';
 
 const Index = () => {
 	return (

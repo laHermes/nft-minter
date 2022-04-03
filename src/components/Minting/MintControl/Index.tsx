@@ -1,10 +1,12 @@
 import React from 'react';
 import useMinter from '../../../hooks/useMinter';
-import CountToMint from './CountToMint';
-import DecrementButton from './DecrementButton';
-import IncrementButton from './IncrementButton';
-import MintButton from './MintButton';
-import MintControl from './MintControl';
+import {
+	CountToMint,
+	DecrementButton,
+	IncrementButton,
+	MintButton,
+	MintControl,
+} from './styles';
 
 const Index = () => {
 	const { count, increment, decrement, mint } = useMinter();

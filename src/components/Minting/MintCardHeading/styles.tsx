@@ -1,9 +1,22 @@
-import { ReactNode } from 'react';
+import { IChildren, IMintCardImage, IPricePill } from '../../../types';
 import ImageLoader from '../../ImageLoader/ImageLoader';
 
-interface IChildren {
-	children: ReactNode;
-}
+const MintCardImage = ({ url }: IMintCardImage) => {
+	return (
+		<div className='h-80'>
+			<ImageLoader url={url} />
+		</div>
+	);
+};
+
+const PricePill = ({ price, logoUrl }: IPricePill) => {
+	return (
+		<div className='inline-flex gap-1 bg-white/90 rounded-lg p-1'>
+			<p className='text-indigo-900 font-bold text-md '>{price}</p>
+			{logoUrl && <img src={logoUrl} alt='polygonLogo' className='w-5' />}{' '}
+		</div>
+	);
+};
 
 const MintCard = ({ children }: IChildren) => {
 	return (
@@ -50,4 +63,4 @@ MintCard.Heading = Heading;
 MintCard.Title = Title;
 MintCard.Description = Description;
 
-export default MintCard;
+export { MintCard, MintCardImage, PricePill };

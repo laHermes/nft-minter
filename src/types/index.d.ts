@@ -26,4 +26,36 @@ interface IPaginated {
 	paginationGroup: number[];
 }
 
-export { Ipfs, IpfsImageExtension, IChildren, IUsePagination, IPaginated };
+interface ICountToMint {
+	count: number;
+}
+
+interface IButton {
+	handler: Function;
+}
+
+interface IMintButton extends IButton {
+	children: ReactNode;
+}
+
+interface IPricePill {
+	price: string;
+	logoUrl?: string;
+}
+
+interface IMintCardImage {
+	url: string;
+}
+
+export {
+	Ipfs,
+	IpfsImageExtension,
+	IChildren,
+	IUsePagination,
+	IPaginated,
+	ICountToMint,
+	IButton,
+	IMintButton,
+	IPricePill,
+	IMintCardImage,
+};
