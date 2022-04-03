@@ -43,3 +43,7 @@ body {
 .viewSwitch-item-inactive {
 	@apply hover:bg-white/90;
 }
+
+.navigationArrow {
+	@apply text-red-200 text-3xl rounded-full border border-white p-1;
+}

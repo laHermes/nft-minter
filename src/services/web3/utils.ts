@@ -11,7 +11,7 @@ export const mintToken = async (amount: number) => {
 	try {
 		// define the contract
 		const contract = new Contract(nftAddress, nftAbi, writeWeb3.signer);
-		const userAddress = await writeWeb3.signer.getAddress();
+		const userAddress = await writeWeb3.signer?.getAddress();
 
 		await contract.mintToken(userAddress, amount, {
 			value,

@@ -9,27 +9,23 @@ const PaginationNavigation = ({
 	paginationGroup,
 }: any) => {
 	return (
-		<nav className='inline-flex items-center gap-5 p-2 border text-lg  border-white w-fit rounded-md text-white'>
-			<button
-				onClick={previousPage}
-				className='backdrop-blur-sm bg-inherit  rounded-lg'>
-				<AiOutlineCaretLeft className=' text-red-200 text-2xl' />
+		<nav className='inline-flex items-center gap-5 p-2  text-lg  border-white w-fit rounded-md text-white'>
+			<button onClick={previousPage}>
+				<AiOutlineCaretLeft className='navigationArrow' />
 			</button>
 
 			{paginationGroup.map((page: number, id: number) => (
-				<button
-					key={id}
-					onClick={changePage}
-					className={`h-full px-2 border-x ${
-						currentPage === page
-							? 'border-white/80'
-							: 'border-transparent hover:border-white/30'
-					} '`}>
-					<span>{page}</span>
+				<button key={id} onClick={changePage} className='h-full px-2'>
+					<span
+						className={
+							page === currentPage ? 'font-bold border-b border-white/50' : ''
+						}>
+						{page}
+					</span>
 				</button>
 			))}
 			<button onClick={nextPage}>
-				<AiOutlineCaretRight className=' text-red-200 text-2xl' />
+				<AiOutlineCaretRight className='navigationArrow' />
 			</button>
 		</nav>
 	);
