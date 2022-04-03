@@ -1,14 +1,10 @@
-import { ReactNode } from 'react';
-
-interface IChildren {
-	children: ReactNode;
-}
+import { IChildren } from '../../../types';
 
 const NavigationPrimary = ({ children }: IChildren) => {
 	return <div className='headerTop'>{children}</div>;
 };
 
-export const LogoText = ({ children }: IChildren) => {
+const LogoText = ({ children }: IChildren) => {
 	return (
 		<div className='inline-flex'>
 			<span className='text-indigo-900 text-2xl font-black inter'>
@@ -18,16 +14,26 @@ export const LogoText = ({ children }: IChildren) => {
 	);
 };
 
-export const BlockchainInfo = ({ children }: IChildren) => {
+const BlockchainInfo = ({ children }: IChildren) => {
 	return (
 		<div className='inline-flex'>
 			<span className='text-indigo-900 text-2xl font-black inter'>
 				{children}
 			</span>
+		</div>
+	);
+};
+
+const BlockchainInfoCard = ({ children }: IChildren) => {
+	return (
+		<div className='backdrop-blur-sm  rounded-md px-2 py-1 bg-white/5'>
+			<p className='font-extrabold text-transparent text-8xl bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600 text-md'>
+				{children}
+			</p>
 		</div>
 	);
 };
 
 NavigationPrimary.LogoText = LogoText;
 
-export default NavigationPrimary;
+export { NavigationPrimary, BlockchainInfo, BlockchainInfoCard };

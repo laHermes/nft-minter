@@ -1,22 +1,23 @@
 import React from 'react';
 import useFilter from '../../../hooks/useFilter';
-import DataWarning from '../../DataFallback/DataWarning';
-import NftCard from '../NftCard/NftCard';
+import DataFallback from '../../DataFallback/Index';
+import NftCard from '../NftCard/Index';
 import FilterColor from '../../Filters/FilterColor';
 import FilterOwned from '../../Filters/FilterOwned';
 import { ErrorBoundary } from 'react-error-boundary';
-import PaginationNavigation from '../../Pagination/PaginationNavigation/PaginationNavigation';
 import usePagination from '../../../hooks/usePagination';
 import NftTable from './styles';
-import NoWalletWarning from '../../Wallet/WalletButton/WalletFallback/NoWalletWarning';
+import NoWalletWarning from '../../Wallet/WalletFallback/Index';
 import useWalletConnect from '../../../services/web3/wallet/useWalletConnect';
 import { INft } from '../../../redux/types';
+
+import PageNavigation from '../../PageNavigation/Index';
 
 interface INftsTable {
 	data: INft[];
 }
 
-const NftsTable = ({ data }: INftsTable) => {
+const Index = ({ data }: INftsTable) => {
 	//get current account
 	const { account } = useWalletConnect();
 
@@ -43,13 +44,13 @@ const NftsTable = ({ data }: INftsTable) => {
 			</NftTable.Filters>
 			<NftTable.GridWrapper>
 				{account ? (
-					<ErrorBoundary FallbackComponent={DataWarning} resetKeys={filtered}>
+					<ErrorBoundary FallbackComponent={DataFallback} resetKeys={filtered}>
 						<NftTable.Grid>
 							{paginatedData.map((nft: any) => (
 								<NftCard {...nft} key={nft.id} />
 							))}
 						</NftTable.Grid>
-						<PaginationNavigation {...pagination} />
+						<PageNavigation {...pagination} />
 					</ErrorBoundary>
 				) : (
 					<NoWalletWarning />
@@ -59,4 +60,4 @@ const NftsTable = ({ data }: INftsTable) => {
 	);
 };
 
-export default NftsTable;
+export default Index;

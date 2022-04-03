@@ -2,9 +2,9 @@ import React from 'react';
 import useWalletConnect from '../../../services/web3/wallet/useWalletConnect';
 import { SUPPORTED_WALLETS } from '../../../services/web3/wallet/utils';
 import { shortenString } from '../../../utils/pureFunctions';
-import WButton from './WButton';
+import WalletButtonStyle from './styles';
 
-const WalletButton = () => {
+const Index = () => {
 	// extract data from custom wallet connect hook
 	const { account, handleDisconnect, handleConnect } = useWalletConnect();
 
@@ -19,7 +19,9 @@ const WalletButton = () => {
 	const clickHandler = account ? handleDisconnect : () => handleConnect(wallet);
 
 	//return component
-	return <WButton clickHandler={clickHandler} title={accountAddress} />;
+	return (
+		<WalletButtonStyle clickHandler={clickHandler} title={accountAddress} />
+	);
 };
 
-export default WalletButton;
+export default Index;

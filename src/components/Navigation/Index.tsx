@@ -4,11 +4,12 @@ import useAsyncEffect from 'use-async-effect';
 import { useWeb3React } from '@web3-react/core';
 import { getNfts } from '../../redux/nfts/nfts';
 import useAutoWalletConnect from '../../services/web3/wallet/useAutoConnect';
-import Header from './Header';
 
 //import notifications
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import HeaderPrimary from './HeaderPrimary';
+import HeaderSecondary from './HeaderSecondary';
 
 // app layout interface
 interface ILayout {
@@ -16,7 +17,7 @@ interface ILayout {
 }
 
 // NAVIGATION COMPONENT WRAPS ALL ROUTES
-const Navigation = ({ children }: ILayout) => {
+const Index = ({ children }: ILayout) => {
 	const dispatch = useDispatch();
 	const { library } = useWeb3React();
 
@@ -35,11 +36,14 @@ const Navigation = ({ children }: ILayout) => {
 
 	return (
 		<main className='navigationStyle'>
-			<Header />
+			<header>
+				<HeaderPrimary />
+				<HeaderSecondary />
+			</header>
 			<ToastContainer limit={3} />
 			{children}
 		</main>
 	);
 };
 
-export default Navigation;
+export default Index;

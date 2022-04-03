@@ -24,6 +24,7 @@ const PaginationNavigation = ({
 					</span>
 				</button>
 			))}
+
 			<button onClick={nextPage}>
 				<AiOutlineCaretRight className='navigationArrow' />
 			</button>

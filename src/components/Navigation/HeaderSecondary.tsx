@@ -2,7 +2,7 @@ import React from 'react';
 import { useLocation } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
-const ViewSwitch = () => {
+const HeaderSecondary = () => {
 	const location = useLocation();
 
 	const navObjects = [
@@ -39,4 +39,4 @@ const ViewSwitch = () => {
 	);
 };
 
-export default ViewSwitch;
+export default HeaderSecondary;

@@ -1,15 +1,14 @@
 import React from 'react';
 import { BiWalletAlt } from 'react-icons/bi';
+import { IChildren } from '../../../types';
 
-const NoWalletWarning = () => {
+const WalletFallback = ({ children }: IChildren) => {
 	return (
 		<div className='h-96 w-full flex flex-col gap-3 justify-start p-20'>
 			<BiWalletAlt className='self-center text-5xl text-white/70' />
-			<p className='self-center text-xl text-white/70'>
-				Please connect you wallet!
-			</p>
+			<p className='self-center text-xl text-white/70'>{children} </p>
 		</div>
 	);
 };
 
-export default NoWalletWarning;
+export { WalletFallback };

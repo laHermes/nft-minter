@@ -47,6 +47,10 @@ interface IMintCardImage {
 	url: string;
 }
 
+interface IDataFallback {
+	warningText: string;
+}
+
 export {
 	Ipfs,
 	IpfsImageExtension,
@@ -58,4 +62,5 @@ export {
 	IMintButton,
 	IPricePill,
 	IMintCardImage,
+	IDataFallback,
 };
