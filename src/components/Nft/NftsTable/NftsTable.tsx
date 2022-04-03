@@ -36,8 +36,10 @@ const NftsTable = ({ data }: INftsTable) => {
 	return (
 		<NftTable>
 			<NftTable.Filters>
-				<FilterOwned {...filter} />
+				<NftTable.FilterName>Dominant Color </NftTable.FilterName>
 				<FilterColor {...filter} />
+				<NftTable.FilterName>Show Owned</NftTable.FilterName>
+				<FilterOwned {...filter} />
 			</NftTable.Filters>
 			<NftTable.GridWrapper>
 				{account ? (

@@ -19,6 +19,9 @@ const Filters = ({ children }: IChildren) => {
 		</div>
 	);
 };
+const FilterName = ({ children }: IChildren) => {
+	return <p className='text-white'>{children}</p>;
+};
 
 const GridWrapper = ({ children }: IChildren) => {
 	return (
@@ -31,6 +34,7 @@ const Grid = ({ children }: IChildren) => {
 };
 
 NftTable.Filters = Filters;
+NftTable.FilterName = FilterName;
 NftTable.GridWrapper = GridWrapper;
 NftTable.Grid = Grid;
 

@@ -13,44 +13,39 @@ interface IFilterColor {
 const FilterColor = ({ toggleGroupFilter, filters }: IFilterColor) => {
 	const [selectedColor, setSelectedColor] = useState<string>('none');
 
-	// const [loaded, setLoaded] = useState<boolean>(false);
 	const colors = useSelector(selectUniqueColors);
 
 	useEffect(() => {
-		setSelectedColor('none');
-	}, [colors]);
-
-	useEffect(() => {
-		if (filters.length > 0) {
+		const isFilteredByColor = filters.some(
+			(instance) => instance.group === Group.COLOR
+		);
+		if (!isFilteredByColor) {
 			setSelectedColor(colors[0]);
 		}
 	}, [colors, filters]);
 
 	return (
-		<>
-			<p>Color</p>
-			<Listbox
-				value={selectedColor}
-				onChange={(color: string) => {
-					setSelectedColor(color);
-					toggleGroupFilter(
-						color,
-						Group.COLOR,
-						(nft: INft) => nft.metadata.attributes[0].value === color
-					);
-				}}>
-				<Listbox.Button className='bg-white w-24 px-2 rounded-lg'>
-					{selectedColor}
-				</Listbox.Button>
-				<Listbox.Options className='absolute bg-white w-24 px-2 rounded-lg'>
-					{colors.map((color) => (
-						<Listbox.Option key={color} value={color}>
-							{color}
-						</Listbox.Option>
-					))}
-				</Listbox.Options>
-			</Listbox>
-		</>
+		<Listbox
+			value={selectedColor}
+			onChange={(color: string) => {
+				setSelectedColor(color);
+				toggleGroupFilter(
+					color,
+					Group.COLOR,
+					(nft: INft) => nft.metadata.attributes[0].value === color
+				);
+			}}>
+			<Listbox.Button className='bg-white w-24 px-2 rounded-lg'>
+				{selectedColor}
+			</Listbox.Button>
+			<Listbox.Options className='absolute bg-white w-24 px-2 rounded-lg'>
+				{colors.map((color) => (
+					<Listbox.Option key={color} value={color}>
+						{color}
+					</Listbox.Option>
+				))}
+			</Listbox.Options>
+		</Listbox>
 	);
 };
 

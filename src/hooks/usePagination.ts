@@ -17,7 +17,6 @@ const usePagination = ({
 
 	useEffect(() => {
 		setTotalPages(Math.ceil(data?.length / itemsPerPage));
-		setCurrentPage(1);
 	}, [itemsPerPage, data]);
 
 	useEffect(() => {

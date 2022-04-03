@@ -91,6 +91,7 @@ const useFilter = (data: INft[]) => {
 		toggleGroupFilter,
 		resetFilters,
 		filterExists,
+		removeAllGroupFilters,
 		filtered,
 	};
 };
