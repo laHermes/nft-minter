@@ -39,8 +39,9 @@ const usePagination = ({
 		const PaginationArray = new Array(totalPages)
 			.fill(null)
 			.map((_, id) => Math.min(start + id + 1, totalPages));
+
 		setPaginationGroup(PaginationArray);
-	}, [data, itemsPerPage, pageLimit, totalPages, currentPage]);
+	}, [data, itemsPerPage, pageLimit, totalPages]);
 
 	useEffect(() => {
 		// every time the user changes page it goes to the top of the screen
