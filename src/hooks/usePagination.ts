@@ -33,6 +33,9 @@ const usePagination = ({
 	}, [currentPage, itemsPerPage, data, pageLimit, totalPages]);
 
 	useEffect(() => {
+		if (currentPage === totalPages) {
+			return;
+		}
 		// generates list of numbers for navigation
 		const start = Math.floor((currentPage - 1) / pageLimit) * pageLimit;
 		//if the user is on the last page, do not recreate list of pages for navigation
@@ -41,7 +44,7 @@ const usePagination = ({
 			.map((_, id) => Math.min(start + id + 1, totalPages));
 
 		setPaginationGroup(PaginationArray);
-	}, [data, itemsPerPage, pageLimit, totalPages]);
+	}, [data, itemsPerPage, pageLimit, currentPage, totalPages]);
 
 	useEffect(() => {
 		// every time the user changes page it goes to the top of the screen
