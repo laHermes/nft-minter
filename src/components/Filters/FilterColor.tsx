@@ -1,40 +1,22 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Listbox } from '@headlessui/react';
-import { selectUniqueColors } from '../../redux/nfts/nfts';
-import { useSelector } from 'react-redux';
-import { Group } from '../../hooks/useFilter';
-import { INft } from '../../redux/types';
 
-interface IFilterColor {
-	toggleGroupFilter: Function;
-	filters: any[];
-}
+import useColorFilter from '../../hooks/useColorFilter';
+import { IFilterColor } from '../../types';
 
-const FilterColor = ({ toggleGroupFilter, filters }: IFilterColor) => {
-	const [selectedColor, setSelectedColor] = useState<string>('none');
-
-	const colors = useSelector(selectUniqueColors);
-
-	useEffect(() => {
-		const isFilteredByColor = filters.some(
-			(instance) => instance.group === Group.COLOR
-		);
-		if (!isFilteredByColor) {
-			setSelectedColor(colors[0]);
-		}
-	}, [colors, filters]);
+const FilterColor = ({
+	toggleGroupFilter,
+	removeAllGroupFilters,
+	filters,
+}: IFilterColor) => {
+	const { colors, selectedColor, changeColor } = useColorFilter({
+		toggleGroupFilter,
+		removeAllGroupFilters,
+		filters,
+	});
 
 	return (
-		<Listbox
-			value={selectedColor}
-			onChange={(color: string) => {
-				setSelectedColor(color);
-				toggleGroupFilter(
-					color,
-					Group.COLOR,
-					(nft: INft) => nft.metadata.attributes[0].value === color
-				);
-			}}>
+		<Listbox value={selectedColor} onChange={changeColor}>
 			<Listbox.Button className='bg-white w-24 px-2 rounded-lg'>
 				{selectedColor}
 			</Listbox.Button>

@@ -1,5 +1,5 @@
 import React from 'react';
-import NftsTable from '../../Nft/NftsTable/Index';
+import NftsTable from '../../Nft/Table/Index';
 import { useSelector } from 'react-redux';
 import { selectNfts } from '../../../redux/nfts/nfts';
 

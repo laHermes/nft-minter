@@ -51,6 +51,12 @@ interface IDataFallback {
 	warningText: string;
 }
 
+interface IFilterColor {
+	toggleGroupFilter: Function;
+	removeAllGroupFilters: Function;
+	filters: any[];
+}
+
 export {
 	Ipfs,
 	IpfsImageExtension,
@@ -63,4 +69,5 @@ export {
 	IPricePill,
 	IMintCardImage,
 	IDataFallback,
+	IFilterColor,
 };

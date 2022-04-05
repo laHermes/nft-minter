@@ -1,7 +1,7 @@
 import React from 'react';
 import useFilter from '../../../hooks/useFilter';
 import DataFallback from '../../DataFallback/Index';
-import NftCard from '../NftCard/Index';
+import NftCard from '../Card/Index';
 import FilterColor from '../../Filters/FilterColor';
 import FilterOwned from '../../Filters/FilterOwned';
 import { ErrorBoundary } from 'react-error-boundary';
@@ -43,18 +43,19 @@ const Index = ({ data }: INftsTable) => {
 				<FilterOwned {...filter} />
 			</NftTable.Filters>
 			<NftTable.GridWrapper>
-				{account ? (
-					<ErrorBoundary FallbackComponent={DataFallback} resetKeys={filtered}>
+				{account && (
+					<ErrorBoundary
+						FallbackComponent={DataFallback}
+						resetKeys={paginatedData}>
 						<NftTable.Grid>
-							{paginatedData.map((nft: any) => (
-								<NftCard {...nft} key={nft.id} />
-							))}
+							{paginatedData.map((nft: any) => {
+								return <NftCard {...nft} key={nft.id} />;
+							})}
 						</NftTable.Grid>
 						<PageNavigation {...pagination} />
 					</ErrorBoundary>
-				) : (
-					<NoWalletWarning />
 				)}
+				{!account && <NoWalletWarning />}
 			</NftTable.GridWrapper>
 		</NftTable>
 	);

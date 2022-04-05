@@ -11,7 +11,7 @@ const Index = ({ id, owner, metadata }: INft) => {
 				<ImageLoader url={metadata.image} />
 			</ImageHolder>
 
-			<TitleHolder>Lorem Ipsum #{id}</TitleHolder>
+			<TitleHolder>Mesh NFT #{id}</TitleHolder>
 
 			<p className='text-sm text-indigo-50 font-medium tracking-wider '>
 				Owner: {shortenString(owner)}
