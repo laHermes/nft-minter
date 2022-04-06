@@ -23,7 +23,7 @@ interface IPaginated {
 	paginatedData: any[];
 	currentPage: number;
 	totalPages: number;
-	paginationGroup: number[];
+	paginationGroup: number[] | [];
 }
 
 interface ICountToMint {
