@@ -12,7 +12,7 @@ const usePagination = ({
 
 	// // calculate total pages
 	const [totalPages, setTotalPages] = useState<any>(
-		Math.ceil(data?.length / itemsPerPage)
+		Math.ceil(data!.length / itemsPerPage)
 	);
 
 	useEffect(() => {
@@ -21,21 +21,20 @@ const usePagination = ({
 	}, [itemsPerPage, data.length]);
 
 	useEffect(() => {
+		// const start = Math.floor((currentPage - 1) / pageLimit) * pageLimit;
+		const PaginationArray = new Array(totalPages)
+			.fill(null)
+			.map((_, id) => id + 1, totalPages);
+
+		setPaginationGroup(PaginationArray);
+	}, [data.length, itemsPerPage, pageLimit, currentPage, totalPages]);
+
+	useEffect(() => {
 		const beginningIndex = (currentPage - 1) * itemsPerPage;
 		const endingIndex = beginningIndex + itemsPerPage;
 		setTotalPages(Math.ceil(data?.length / itemsPerPage));
 		setPaginatedData(data.slice(beginningIndex, endingIndex));
 	}, [currentPage, itemsPerPage, data, pageLimit, totalPages]);
-
-	useEffect(() => {
-		if (currentPage === totalPages) return;
-		const start = Math.floor((currentPage - 1) / pageLimit) * pageLimit;
-		const PaginationArray = new Array(totalPages)
-			.fill(null)
-			.map((_, id) => start + id + 1, totalPages);
-
-		setPaginationGroup(PaginationArray);
-	}, [data.length, itemsPerPage, pageLimit, currentPage, totalPages]);
 
 	// every time the user changes page it goes to the top of the screen
 	useEffect(() => {

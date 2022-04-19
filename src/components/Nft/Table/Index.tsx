@@ -18,7 +18,9 @@ interface INftsTable {
 
 const Index = ({ data }: INftsTable) => {
 	//get current account
+
 	const { account } = useWalletConnect();
+
 	// filter data
 	const filter = useFilter(data);
 	const { filtered } = filter;

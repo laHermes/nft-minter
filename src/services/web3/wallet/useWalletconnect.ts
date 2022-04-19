@@ -23,7 +23,9 @@ export interface IUseWalletConnect {
 }
 
 const useWalletConnect = (): IUseWalletConnect => {
-	const { activate, deactivate, account, connector, library } = useWeb3React();
+	const web3React = useWeb3React();
+
+	const { activate, deactivate, account, connector, library } = web3React;
 
 	const [isPending, setIsPending] = useState<boolean>(false);
 	const [isError, setIsError] = useState<boolean>(false);
@@ -94,26 +96,23 @@ const useWalletConnect = (): IUseWalletConnect => {
 	);
 
 	useAsyncEffect(async () => {
-		if (!account) return;
+		if (!account || !library) return;
 		setBalance(
 			roundBalance(utils.formatEther(await writeWeb3.signer.getBalance()))
 		);
-
-		try {
-			library.on('block', async () => {
-				setBalance(
-					roundBalance(utils.formatEther(await writeWeb3.signer.getBalance()))
-				);
-			});
-		} catch (err) {}
+		library.on('block', async () => {
+			setBalance(
+				roundBalance(utils.formatEther(await writeWeb3.signer.getBalance()))
+			);
+		});
 
 		return () => library.removeListeners('block');
 	}, [account, writeWeb3]);
 
 	return {
+		...web3React,
 		isError,
 		isPending,
-		account,
 		balance,
 		handleConnect,
 		handleDisconnect,

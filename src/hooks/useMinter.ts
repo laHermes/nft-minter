@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState } from 'react';
 import { mintToken } from '../services/web3/utils';
 import useWalletConnect from '../services/web3/wallet/useWalletConnect';
 import { hasEnoughEth } from '../services/web3/utils';
@@ -13,13 +13,11 @@ const useMinter = () => {
 
 	const { account } = useWalletConnect();
 
-	const increment = useCallback(() => {
+	const increment = () =>
 		setCount((count: number) => Math.min(count + 1, UPPER_BOUND));
-	}, []);
 
-	const decrement = useCallback(() => {
+	const decrement = () =>
 		setCount((count: number) => Math.max(count - 1, LOWER_BOUND));
-	}, []);
 
 	const mint = async () => {
 		// make sure the wallet is connected
@@ -32,9 +30,9 @@ const useMinter = () => {
 		const hasEnough = await hasEnoughEth(NFT_PRICE, count);
 		if (!hasEnough) {
 			toast.warn('Not enough funds');
-
 			return;
 		}
+
 		//mint tokens function
 		await toast.promise(mintToken(count), {
 			pending: 'NFT minting is pending',

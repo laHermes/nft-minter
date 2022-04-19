@@ -17,6 +17,7 @@ export const mintToken = async (amount: number) => {
 			value,
 		});
 	} catch (err) {
+		console.warn(err);
 		throw new Error();
 	}
 };
@@ -24,10 +25,8 @@ export const mintToken = async (amount: number) => {
 // function to check user's balance
 export const hasEnoughEth = async (price: string, amount: number) => {
 	const value = utils.parseEther(price).mul(amount);
+	if (!(await web3.balance).gte(value)) return false;
 
-	if (!(await web3.balance).gte(value)) {
-		return false;
-	}
 	return true;
 };
 

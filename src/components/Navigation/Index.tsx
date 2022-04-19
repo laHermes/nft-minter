@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
-import useAsyncEffect from 'use-async-effect';
 import { useWeb3React } from '@web3-react/core';
 import { getNfts } from '../../redux/nfts/nfts';
 import useAutoWalletConnect from '../../services/web3/wallet/useAutoConnect';
@@ -20,18 +19,25 @@ interface ILayout {
 const Index = ({ children }: ILayout) => {
 	const dispatch = useDispatch();
 	const { library } = useWeb3React();
+	const isMounted = useRef(true);
 
 	useAutoWalletConnect();
-
-	useAsyncEffect(async () => {
-		//dispatch event to fetch nfts from blockchain
+	useEffect(() => {
 		dispatch(getNfts());
+	}, [dispatch]);
+
+	useEffect(() => {
+		//dispatch event to fetch nfts from blockchain
+		if (!isMounted.current) return;
 		if (!library) return;
 		// on every block minted fetch nfts
 		library.on('block', async () => {
 			dispatch(getNfts());
 		});
-		return () => library.removeListeners('block');
+		return () => {
+			library.removeListeners('block');
+			isMounted.current = false;
+		};
 	}, [dispatch, library]);
 
 	return (
