@@ -5,13 +5,12 @@ import { INft } from '../redux/types';
 import { IFilterColor } from '../types';
 import { Group } from './useFilter';
 
-const defaultString = 'No Color';
-
 const useColorFilter = ({
 	toggleGroupFilter,
 	removeAllGroupFilters,
 	filters,
 }: IFilterColor) => {
+	const defaultString = 'No Color';
 	const [selectedColor, setSelectedColor] = useState<string>(defaultString);
 	const selectColors = useSelector(selectUniqueColors);
 

@@ -10,7 +10,6 @@ import NftTable from './styles';
 import NoWalletWarning from '../../Wallet/WalletFallback/Index';
 import useWalletConnect from '../../../services/web3/wallet/useWalletConnect';
 import { INft } from '../../../redux/types';
-
 import PageNavigation from '../../PageNavigation/Index';
 
 interface INftsTable {
@@ -20,7 +19,6 @@ interface INftsTable {
 const Index = ({ data }: INftsTable) => {
 	//get current account
 	const { account } = useWalletConnect();
-
 	// filter data
 	const filter = useFilter(data);
 	const { filtered } = filter;
@@ -48,13 +46,16 @@ const Index = ({ data }: INftsTable) => {
 						FallbackComponent={DataFallback}
 						resetKeys={paginatedData}>
 						<NftTable.Grid>
-							{paginatedData.map((nft: any) => {
-								return <NftCard {...nft} key={nft.id} />;
-							})}
+							{!!paginatedData.length &&
+								paginatedData.map((nft: any) => {
+									return <NftCard {...nft} key={nft.id} />;
+								})}
 						</NftTable.Grid>
-						<PageNavigation {...pagination} />
+						{!!paginatedData.length && <PageNavigation {...pagination} />}
+						{!paginatedData.length && <DataFallback />}
 					</ErrorBoundary>
 				)}
+
 				{!account && <NoWalletWarning />}
 			</NftTable.GridWrapper>
 		</NftTable>
