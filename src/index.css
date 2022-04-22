@@ -23,7 +23,7 @@ body {
 }
 
 .headerTop {
-	@apply flex items-center flex-row justify-between py-2 px-4;
+	@apply flex items-center content-center flex-row justify-between py-2 px-4;
 }
 
 .viewSwitch {

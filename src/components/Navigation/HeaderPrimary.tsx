@@ -2,12 +2,8 @@ import React from 'react';
 import useWalletConnect from '../../services/web3/wallet/useWalletConnect';
 import WalletButton from '../Wallet/WalletButton/Index';
 import polygonLogo from '../../assets/polygon-matic-logo.svg';
-import meshLogo from '../../assets/mesh-logo.png';
-import {
-	HeaderConnectionWrapper,
-	HeaderInfoCard,
-	HeaderTextLogo,
-} from './styles';
+import meshLogo from '../../assets/mesh-second-logo.png';
+import { HeaderConnectionWrapper } from './styles';
 import HeaderSecondary from './HeaderSecondary';
 
 const HeaderPrimary = () => {
@@ -16,14 +12,18 @@ const HeaderPrimary = () => {
 	return (
 		<div className='headerTop'>
 			<div className='inline-flex gap-12'>
-				<img src={meshLogo} alt='mesh logo' className='h-8' />
+				<img src={meshLogo} alt='mesh logo' className='h-14' />
 				<HeaderSecondary />
 			</div>
 			<HeaderConnectionWrapper>
 				{/* {account && <HeaderInfoCard>~{balance}</HeaderInfoCard>} */}
 				{account && (
-					<div className='bg-default-primary h-10 flex flex-row items-center py-1 px-2 rounded-[12px]'>
-						<img src={polygonLogo} alt='polygon logo' className='h-5' />
+					<div className='p-[3px] '>
+						<img
+							src={polygonLogo}
+							alt='polygon logo'
+							className='bg-default-primary h-10 p-2 rounded-[12px]'
+						/>
 					</div>
 				)}
 				<WalletButton />

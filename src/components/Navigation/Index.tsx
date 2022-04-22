@@ -19,7 +19,6 @@ interface ILayout {
 const Index = ({ children }: ILayout) => {
 	const dispatch = useDispatch();
 	const { library } = useWeb3React();
-	const isMounted = useRef(true);
 
 	useAutoWalletConnect();
 	useEffect(() => {
@@ -28,16 +27,13 @@ const Index = ({ children }: ILayout) => {
 
 	useEffect(() => {
 		//dispatch event to fetch nfts from blockchain
-		if (!isMounted.current) return;
 		if (!library) return;
+
 		// on every block minted fetch nfts
 		library.on('block', async () => {
 			dispatch(getNfts());
 		});
-		return () => {
-			library.removeListeners('block');
-			isMounted.current = false;
-		};
+		// return () => library.removeListeners('block');
 	}, [dispatch, library]);
 
 	return (

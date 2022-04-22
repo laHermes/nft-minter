@@ -8,10 +8,10 @@ interface IWalletButton {
 // component used in WalletButton.tsx
 const WalletButtonStyle = ({ clickHandler, title }: IWalletButton) => {
 	return (
-		<div className='backdrop-blur-sm text-indigo-50 text-[16px] font-semibold rounded-[12px] p-[3px] bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500'>
+		<div className='backdrop-blur-sm text-indigo-50 text-[16px] rounded-[12px] p-[2.5px] bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500'>
 			<button
 				onClick={clickHandler}
-				className='bg-default-primary px-[14px] py-[12px] rounded-[12px] hover:bg-transparent '>
+				className='bg-default-primary px-[12px] py-[10px] rounded-[12px] hover:bg-transparent font-bold'>
 				<p>{title}</p>
 			</button>
 		</div>

@@ -17,7 +17,7 @@ const HeaderSecondary = () => {
 	];
 
 	return (
-		<ul className='flex flex-row gap-6 font-semibold text-lg'>
+		<ul className='inline-flex gap-8 font-semibold text-lg'>
 			{navObjects.map((object) => {
 				return (
 					<li
