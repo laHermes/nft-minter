@@ -42,9 +42,8 @@ const Index = ({ children }: ILayout) => {
 
 	return (
 		<main className='navigationStyle'>
-			<header>
+			<header className='pt-5 max-w-screen-lg mx-auto'>
 				<HeaderPrimary />
-				<HeaderSecondary />
 			</header>
 			<ToastContainer limit={3} />
 			{children}

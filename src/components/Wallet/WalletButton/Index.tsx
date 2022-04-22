@@ -20,7 +20,7 @@ const Index = () => {
 
 	//return component
 	return (
-		<WalletButtonStyle clickHandler={clickHandler} title={accountAddress} />
+		<WalletButtonStyle clickHandler={clickHandler} title='Connect wallet' />
 	);
 };
 

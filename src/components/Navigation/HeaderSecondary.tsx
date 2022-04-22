@@ -7,7 +7,7 @@ const HeaderSecondary = () => {
 
 	const navObjects = [
 		{
-			label: 'Mint',
+			label: 'Claim',
 			location: '/mint',
 		},
 		{
@@ -17,25 +17,21 @@ const HeaderSecondary = () => {
 	];
 
 	return (
-		<div className='w-full p-4'>
-			<div className='viewSwitch '>
-				<ul className='viewSwitch-list'>
-					{navObjects.map((object) => {
-						return (
-							<li
-								key={object.location}
-								className={`${
-									location.pathname === object.location
-										? 'viewSwitch-item-active'
-										: 'viewSwitch-item-inactive'
-								} viewSwitch-item`}>
-								<Link to={object.location}>{object.label}</Link>
-							</li>
-						);
-					})}
-				</ul>
-			</div>
-		</div>
+		<ul className='flex flex-row gap-6 font-semibold text-lg'>
+			{navObjects.map((object) => {
+				return (
+					<li
+						key={object.location}
+						className={`${
+							location.pathname === object.location
+								? 'text-white/95'
+								: 'text-white/60'
+						} hover:text-white`}>
+						<Link to={object.location}>{object.label}</Link>
+					</li>
+				);
+			})}
+		</ul>
 	);
 };
 

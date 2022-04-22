@@ -11,6 +11,9 @@ module.exports = {
 				xl: '1280px',
 			},
 		},
+		// borderRadius: {
+		// 	large: '12px',
+		// },
 		fontSize: {
 			xxs: '.5rem',
 			xs: '.75rem',
@@ -30,6 +33,8 @@ module.exports = {
 			colors: {
 				'blue-theme': '#010e1b',
 				'blue-nft-theme': '#03091f',
+				'blue-background': '#07050f',
+				'default-primary': '#322d47',
 			},
 		},
 	},
