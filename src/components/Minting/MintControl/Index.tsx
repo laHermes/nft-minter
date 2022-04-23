@@ -14,11 +14,11 @@ const Index = () => {
 	return (
 		<>
 			<MintControl>
-				<DecrementButton handler={decrement} />
+				<DecrementButton onClick={decrement} />
 				<CountToMint count={count} />
-				<IncrementButton handler={increment} />
+				<IncrementButton onClick={increment} />
 			</MintControl>
-			<MintButton handler={mint}>Mint</MintButton>
+			<MintButton onClick={mint}>Mint</MintButton>
 		</>
 	);
 };

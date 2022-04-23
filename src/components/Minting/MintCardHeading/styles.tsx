@@ -21,7 +21,7 @@ const PricePill = ({ price, logoUrl }: IPricePill) => {
 const MintCard = ({ children }: IChildren) => {
 	return (
 		<div className='p-[2px] bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-[12px]'>
-			<div className='flex flex-col gap-4 p-3 bg-blue-nft-theme/90 rounded-[12px]'>
+			<div className='flex flex-col gap-4 p-3 bg-default-primary/90 rounded-[12px]'>
 				{children}
 			</div>
 		</div>

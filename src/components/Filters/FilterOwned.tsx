@@ -31,8 +31,8 @@ const FilterOwned = ({ filterExists, toggleFilter, filters }: IFilterOwned) => {
 				);
 			}}
 			className={`${
-				enabled ? 'bg-purple-600/80' : 'bg-gray-200'
-			} relative inline-flex items-center h-6 rounded-full w-11 text-indigo-900`}>
+				enabled ? 'bg-default-primary' : 'bg-default-primary/20'
+			} relative inline-flex items-center h-7 border rounded-full w-12 `}>
 			<span
 				className={`${
 					enabled ? 'translate-x-6' : 'translate-x-1'

@@ -36,7 +36,7 @@ module.exports = {
 				'blue-background': '#07050f',
 				'default-primary': '#322d47',
 				'hover-primary': '#463f63',
-				'modal-base': '#0a090e',
+				'modal-base': '#17151e',
 			},
 		},
 	},

@@ -12,7 +12,7 @@ body {
 		sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	overflow-y: scroll;
+	/* overflow-y: scroll; */
 	@apply background;
 }
 
@@ -47,5 +47,5 @@ body {
 }
 
 .navigationArrow {
-	@apply text-red-200 text-3xl rounded-full border border-white p-1;
+	@apply text-white text-3xl rounded-full border border-white p-1;
 }

@@ -10,7 +10,7 @@ const usePagination = ({
 	const [currentPage, setCurrentPage] = useState<number>(1);
 	const [paginationGroup, setPaginationGroup] = useState<Array<number>>([]);
 
-	// // calculate total pages
+	// calculate total pages
 	const [totalPages, setTotalPages] = useState<any>(
 		Math.ceil(data!.length / itemsPerPage)
 	);

@@ -1,5 +1,4 @@
-import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
-import { IButton, IChildren, ICountToMint, IMintButton } from '../../../types';
+import { IChildren, ICountToMint } from '../../../types';
 
 // displays number of nfts to be minted
 const CountToMint = ({ count }: ICountToMint) => {
@@ -13,44 +12,78 @@ const CountToMint = ({ count }: ICountToMint) => {
 	);
 };
 
-const DecrementButton = ({ handler }: IButton) => {
+const DecrementButton: React.FC<React.HTMLAttributes<HTMLButtonElement>> = ({
+	...props
+}) => {
 	return (
 		<button
-			onClick={() => handler()}
-			className='w-16 h-16 inline-flex flex-1 justify-center text-4xl font-black bg-gradient-to-r from-indigo-500 to-purple-500 shadow-md rounded-full hover:ring hover:ring-white'>
-			<AiOutlineMinus className='self-center text-5xl font-black' />
+			{...props}
+			className='h-fit p-3 flex flex-col justify-center text-4xl font-black bg-gradient-to-r from-indigo-500 to-purple-500 shadow-md rounded-full '>
+			<svg
+				xmlns='http://www.w3.org/2000/svg'
+				className='h-8 w-8'
+				viewBox='0 0 20 20'
+				fill='currentColor'>
+				<path
+					fillRule='evenodd'
+					d='M3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z'
+					clipRule='evenodd'
+					className='text-white'
+				/>
+			</svg>
 		</button>
 	);
 };
 
-const IncrementButton = ({ handler }: IButton) => {
+const IncrementButton: React.FC<React.HTMLAttributes<HTMLButtonElement>> = ({
+	...props
+}) => {
 	return (
 		<button
-			onClick={() => handler()}
-			className='w-16 h-16 inline-flex flex-1 justify-center text-4xl font-black bg-gradient-to-r from-purple-500 to-pink-500 shadow-md rounded-full hover:ring hover:ring-white'>
-			<AiOutlinePlus className='self-center text-5xl font-black' />
+			{...props}
+			className='h-fit p-3 flex flex-col justify-center text-4xl font-black bg-gradient-to-r from-indigo-500 to-purple-500 shadow-md rounded-full '>
+			<svg
+				xmlns='http://www.w3.org/2000/svg'
+				className='h-8 w-8'
+				viewBox='0 0 20 20'
+				fill='currentColor'>
+				<path
+					fillRule='evenodd'
+					d='M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z'
+					clipRule='evenodd'
+					className='text-white'
+				/>
+			</svg>
 		</button>
 	);
 };
 
-const MintButton = ({ handler, children }: IMintButton) => {
+const MintButton: React.FC<
+	IChildren & React.HTMLAttributes<HTMLButtonElement>
+> = ({ children, ...props }) => {
 	return (
-		<button
-			onClick={() => handler()}
-			className='text-sky-500 py-4 font-black rounded-[12px] text-lg bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500'>
-			{children}
-		</button>
+		<div className='backdrop-blur-sm text-indigo-50 text-[16px] rounded-[12px] p-[2px] bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500'>
+			<button
+				{...props}
+				className='w-full bg-default-primary px-[12px] py-[10px] rounded-[12px] hover:bg-transparent font-bold'>
+				<p>{children}</p>
+			</button>
+		</div>
 	);
 };
 
 const MintControl = ({ children }: IChildren) => {
-	return <div className='flex flex-row gap-2 text-xl'>{children}</div>;
+	return (
+		<div className='flex flex-row justify-between gap-2 text-xl'>
+			{children}
+		</div>
+	);
 };
 
 export {
 	CountToMint,
+	MintControl,
 	DecrementButton,
 	IncrementButton,
 	MintButton,
-	MintControl,
 };

@@ -10,7 +10,7 @@ const Index = ({
 }: any) => {
 	return (
 		<PageNavigationWrapper>
-			<PreviousPage handler={previousPage} />
+			<PreviousPage onClick={previousPage} />
 
 			{paginationGroup.map((page: number, id: number) => (
 				<button key={id} onClick={changePage} className='h-full px-2'>
@@ -23,7 +23,7 @@ const Index = ({
 				</button>
 			))}
 
-			<NextPage handler={nextPage} />
+			<NextPage onClick={nextPage} />
 		</PageNavigationWrapper>
 	);
 };

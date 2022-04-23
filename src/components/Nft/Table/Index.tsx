@@ -9,15 +9,13 @@ import usePagination from '../../../hooks/usePagination';
 import NftTable from './styles';
 import NoWalletWarning from '../../Wallet/WalletFallback/Index';
 import useWalletConnect from '../../../services/web3/wallet/useWalletConnect';
-import { INft } from '../../../redux/types';
 import PageNavigation from '../../PageNavigation/Index';
+import { useSelector } from 'react-redux';
+import { selectNfts } from '../../../redux/nfts/nfts';
 
-interface INftsTable {
-	data: INft[];
-}
-
-const Index = ({ data }: INftsTable) => {
+const Index = () => {
 	//get current account
+	const { nfts: data } = useSelector(selectNfts);
 
 	const { account } = useWalletConnect();
 
@@ -36,12 +34,20 @@ const Index = ({ data }: INftsTable) => {
 
 	return (
 		<NftTable>
-			<NftTable.Filters>
-				<NftTable.FilterName>Dominant Color </NftTable.FilterName>
-				<FilterColor {...filter} />
-				<NftTable.FilterName>Show Owned</NftTable.FilterName>
-				<FilterOwned {...filter} />
-			</NftTable.Filters>
+			<NftTable.Heading>
+				<div className='flex flex-row w-full py-6'>
+					<div className='grow'>
+						<h2 className='text-white text-4xl font-bold'>Collection</h2>
+						<p className='text-white/40 font-semibold'>
+							Only minted nfts will be displayed in collection!
+						</p>
+					</div>
+					<div className='self-center flex flex-row gap-2'>
+						<NftTable.FilterName>Owned</NftTable.FilterName>
+						<FilterOwned {...filter} />
+					</div>
+				</div>
+			</NftTable.Heading>
 			<NftTable.GridWrapper>
 				{account && (
 					<ErrorBoundary

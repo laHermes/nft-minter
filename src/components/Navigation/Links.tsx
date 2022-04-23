@@ -7,7 +7,7 @@ const Links = () => {
 
 	const navObjects = [
 		{
-			label: 'Claim',
+			label: 'Mint',
 			location: '/mint',
 		},
 		{

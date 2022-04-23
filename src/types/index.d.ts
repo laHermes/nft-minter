@@ -30,10 +30,6 @@ interface ICountToMint {
 	count: number;
 }
 
-interface IButton {
-	handler: Function;
-}
-
 interface IMintButton extends IButton {
 	children: ReactNode;
 }

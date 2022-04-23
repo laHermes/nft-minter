@@ -10,17 +10,21 @@ const PageNavigationWrapper = ({ children }: IChildren) => {
 	);
 };
 
-const PreviousPage = ({ handler }: IButton) => {
+const PreviousPage: React.FC<
+	IButton & React.HTMLAttributes<HTMLButtonElement>
+> = ({ ...props }) => {
 	return (
-		<button onClick={() => handler()}>
+		<button {...props}>
 			<AiOutlineCaretLeft className='navigationArrow' />
 		</button>
 	);
 };
 
-const NextPage = ({ handler }: IButton) => {
+const NextPage: React.FC<IButton & React.HTMLAttributes<HTMLButtonElement>> = ({
+	...props
+}) => {
 	return (
-		<button onClick={() => handler()}>
+		<button {...props}>
 			<AiOutlineCaretRight className='navigationArrow' />
 		</button>
 	);

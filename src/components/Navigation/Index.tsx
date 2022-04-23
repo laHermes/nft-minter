@@ -24,16 +24,16 @@ const Index = ({ children }: ILayout) => {
 		dispatch(getNfts());
 	}, [dispatch]);
 
-	useEffect(() => {
-		//dispatch event to fetch nfts from blockchain
-		if (!library) return;
+	// useEffect(() => {
+	// 	//dispatch event to fetch nfts from blockchain
+	// 	if (!library) return;
 
-		// on every block minted fetch nfts
-		library.on('block', async () => {
-			dispatch(getNfts());
-		});
-		// return () => library.removeListeners('block');
-	}, [dispatch, library]);
+	// 	// on every block minted fetch nfts
+	// 	library.on('block', async () => {
+	// 		dispatch(getNfts());
+	// 	});
+	// 	// return () => library.removeListeners('block');
+	// }, [dispatch, library]);
 
 	return (
 		<main className='navigationStyle'>
