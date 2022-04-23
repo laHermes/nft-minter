@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useRef, Fragment } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
+import { shortenString } from '../../../utils/pureFunctions';
+import Jazzicon, { jsNumberForAddress } from 'react-jazzicon';
 
 interface IAccountModal {
 	open: boolean;
@@ -11,10 +13,33 @@ interface IAccountModal {
 
 const Index = ({ open, setOpen, account, handleDisconnect }: IAccountModal) => {
 	const [copied, setCopied] = useState<string>('');
+	const [isCopied, setIsCopied] = useState<Boolean>(false);
 
 	useEffect(() => {
 		setCopied('');
 	}, [open]);
+
+	useEffect(() => {
+		if (!isCopied) return;
+		const listener = setTimeout(() => {
+			setIsCopied(false);
+		}, 1000);
+
+		return () => {
+			clearTimeout(listener);
+		};
+	}, [isCopied]);
+
+	const copyHandler = () => {
+		navigator.clipboard.writeText(account!).then(
+			() => {
+				setIsCopied(true);
+			},
+			() => {
+				setIsCopied(false);
+			}
+		);
+	};
 
 	const cancelButtonRef = useRef(null);
 
@@ -52,7 +77,7 @@ const Index = ({ open, setOpen, account, handleDisconnect }: IAccountModal) => {
 						leaveFrom='opacity-100 translate-y-0 sm:scale-100'
 						leaveTo='opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95'>
 						<div className='relative inline-block align-bottom bg-modal-base rounded-[12px] text-center overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full'>
-							<div className=' px-4 pt-5 pb-4 sm:p-6 sm:pb-4'>
+							<div className='px-4 pt-5 pb-4 sm:p-6 sm:pb-4'>
 								<div className='sm:flex sm:items-start'>
 									<div className='flex flex-col gap-4 mt-3 w-full text-center sm:mt-0 sm:ml-4 sm:text-left'>
 										<Dialog.Title
@@ -60,34 +85,75 @@ const Index = ({ open, setOpen, account, handleDisconnect }: IAccountModal) => {
 											className='text-2xl leading-6 font-medium text-white/90'>
 											Account
 										</Dialog.Title>
-										<div className='flex flex-row grow gap-1 items-stretch bg-default-primary/40 rounded-[12px]'>
-											<input
-												type='text'
-												name='account'
-												id='account'
-												readOnly
-												value={account!}
-												className='grow p-2 bg-transparent text-white/90 font-bold text-xl rounded-[12px] outline-0	'
-											/>
-											<div className='bg-default-primary/60 hover:bg-default-primary rounded-[12px]'>
-												<svg
-													onClick={() =>
-														navigator.clipboard.writeText(account!).then(
-															() => {
-																setCopied('Address copied!');
-															},
-															() => {
-																setCopied('Copy failed!');
-															}
-														)
-													}
-													xmlns='http://www.w3.org/2000/svg'
-													className='h-12 w-12 text-white/80 hover:text-white/90 p-2'
-													viewBox='0 0 20 20'
-													fill='currentColor'>
-													<path d='M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z' />
-													<path d='M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z' />
-												</svg>
+										<div className='flex flex-col grow gap-4 border rounded-[12px] py-4 px-2'>
+											<p className='text-white/50'>Connected with Metamask</p>
+
+											<div className='flex flex-row gap-2'>
+												<Jazzicon
+													diameter={24}
+													seed={jsNumberForAddress(account!)}
+												/>
+
+												<span className='text-white text-2xl leading-none'>
+													{shortenString(account!)}
+												</span>
+											</div>
+											<div className='flex flex-row gap-3'>
+												{isCopied ? (
+													<button className='inline-flex gap-1 text-white/60'>
+														<svg
+															xmlns='http://www.w3.org/2000/svg'
+															className='h-4 w-4'
+															fill='none'
+															viewBox='0 0 24 24'
+															stroke='currentColor'
+															strokeWidth={2}>
+															<path
+																strokeLinecap='round'
+																strokeLinejoin='round'
+																d='M5 13l4 4L19 7'
+															/>
+														</svg>
+														<p className='text-sm'>Copied</p>
+													</button>
+												) : (
+													<button
+														className='inline-flex gap-1 text-white/60'
+														onClick={copyHandler}>
+														<svg
+															xmlns='http://www.w3.org/2000/svg'
+															className='h-4 w-4 '
+															fill='none'
+															viewBox='0 0 24 24'
+															stroke='currentColor'
+															strokeWidth={2}>
+															<path
+																strokeLinecap='round'
+																strokeLinejoin='round'
+																d='M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z'
+															/>
+														</svg>
+														<p className='text-sm'>Copy Address</p>
+													</button>
+												)}
+												<button
+													className='inline-flex gap-1 text-white/60'
+													onClick={copyHandler}>
+													<svg
+														xmlns='http://www.w3.org/2000/svg'
+														className='h-4 w-4'
+														fill='none'
+														viewBox='0 0 24 24'
+														stroke='currentColor'
+														strokeWidth={2}>
+														<path
+															strokeLinecap='round'
+															strokeLinejoin='round'
+															d='M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14'
+														/>
+													</svg>
+													<p className='text-sm'>View on Explorer</p>
+												</button>
 											</div>
 										</div>
 									</div>
@@ -102,7 +168,6 @@ const Index = ({ open, setOpen, account, handleDisconnect }: IAccountModal) => {
 									className='bg-white rounded-[12px] p-2'>
 									Disconnect
 								</button>
-								{copied && <p className='text-white'>{copied}</p>}
 							</div>
 						</div>
 					</Transition.Child>
