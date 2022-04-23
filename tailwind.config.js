@@ -35,6 +35,8 @@ module.exports = {
 				'blue-nft-theme': '#03091f',
 				'blue-background': '#07050f',
 				'default-primary': '#322d47',
+				'hover-primary': '#463f63',
+				'modal-base': '#0a090e',
 			},
 		},
 	},

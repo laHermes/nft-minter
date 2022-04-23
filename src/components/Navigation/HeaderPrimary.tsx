@@ -5,6 +5,7 @@ import polygonLogo from '../../assets/polygon-matic-logo.svg';
 import meshLogo from '../../assets/mesh-second-logo.png';
 import { HeaderConnectionWrapper } from './styles';
 import HeaderSecondary from './HeaderSecondary';
+import Account from '../Account/Index';
 
 const HeaderPrimary = () => {
 	const { account, balance } = useWalletConnect();
@@ -22,11 +23,11 @@ const HeaderPrimary = () => {
 						<img
 							src={polygonLogo}
 							alt='polygon logo'
-							className='bg-default-primary h-10 p-2 rounded-[12px]'
+							className='bg-default-primary h-10 p-2 rounded-[12px] hover:bg-hover-primary'
 						/>
 					</div>
 				)}
-				<WalletButton />
+				{account ? <Account /> : <WalletButton />}
 			</HeaderConnectionWrapper>
 		</div>
 	);
