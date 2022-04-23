@@ -2,7 +2,7 @@ import React from 'react';
 import { useLocation } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
-const HeaderSecondary = () => {
+const Links = () => {
 	const location = useLocation();
 
 	const navObjects = [
@@ -26,7 +26,7 @@ const HeaderSecondary = () => {
 							location.pathname === object.location
 								? 'text-white/95'
 								: 'text-white/60'
-						} hover:text-white`}>
+						} hover:text-white pt-2`}>
 						<Link to={object.location}>{object.label}</Link>
 					</li>
 				);
@@ -35,4 +35,4 @@ const HeaderSecondary = () => {
 	);
 };
 
-export default HeaderSecondary;
+export default Links;

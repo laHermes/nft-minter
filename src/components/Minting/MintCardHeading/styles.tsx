@@ -11,17 +11,17 @@ const MintCardImage = ({ url }: IMintCardImage) => {
 
 const PricePill = ({ price, logoUrl }: IPricePill) => {
 	return (
-		<div className='inline-flex gap-1 bg-white/90 rounded-lg p-1'>
-			<p className='text-indigo-900 font-bold text-md '>price: {price}</p>
-			{logoUrl && <img src={logoUrl} alt='polygonLogo' className='w-5' />}{' '}
+		<div className='inline-flex gap-1 bg-white/90 rounded-[12px] p-1'>
+			<p className='text-indigo-900 font-bold text-md '>{price}</p>
+			{logoUrl && <img src={logoUrl} alt='polygonLogo' className='w-6 h-6' />}
 		</div>
 	);
 };
 
 const MintCard = ({ children }: IChildren) => {
 	return (
-		<div className='p-2 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-md'>
-			<div className='flex flex-col gap-4 p-3 bg-blue-nft-theme/90 rounded-md'>
+		<div className='p-[2px] bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-[12px]'>
+			<div className='flex flex-col gap-4 p-3 bg-blue-nft-theme/90 rounded-[12px]'>
 				{children}
 			</div>
 		</div>

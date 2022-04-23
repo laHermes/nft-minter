@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useWeb3React } from '@web3-react/core';
 import { getNfts } from '../../redux/nfts/nfts';
@@ -8,7 +8,6 @@ import useAutoWalletConnect from '../../services/web3/wallet/useAutoConnect';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import HeaderPrimary from './HeaderPrimary';
-import HeaderSecondary from './HeaderSecondary';
 
 // app layout interface
 interface ILayout {
