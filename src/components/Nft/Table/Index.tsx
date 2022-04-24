@@ -1,17 +1,19 @@
 import React from 'react';
-import useFilter from '../../../hooks/useFilter';
-import DataFallback from '../../DataFallback/Index';
-import NftCard from '../Card/Index';
-import FilterColor from '../../Filters/FilterColor';
-import FilterOwned from '../../Filters/FilterOwned';
-import { ErrorBoundary } from 'react-error-boundary';
-import usePagination from '../../../hooks/usePagination';
-import NftTable from './styles';
-import NoWalletWarning from '../../Wallet/WalletFallback/Index';
-import useWalletConnect from '../../../services/web3/wallet/useWalletConnect';
-import PageNavigation from '../../PageNavigation/Index';
+
+// hooks & selectors
 import { useSelector } from 'react-redux';
-import { selectNfts } from '../../../redux/nfts/nfts';
+import useWalletConnect from '@services/web3/wallet/useWalletConnect';
+import useFilter from '@hooks/useFilter';
+import usePagination from '@hooks/usePagination';
+import { selectNfts } from '@redux/nfts/nfts';
+
+// components
+import FilterOwned from '@components/Filters/FilterOwned';
+import NftCard from '../Card/Index';
+import NftTable from './styles';
+import PageNavigation from '@components/PageNavigation/Index';
+import DataFallback from '@components/DataFallback/Index';
+import NoWalletWarning from '@components/Wallet/WalletFallback/Index';
 
 const Index = () => {
 	//get current account

@@ -1,6 +1,6 @@
 import React from 'react';
-import { INft } from '../../../redux/types';
-import { shortenString } from '../../../utils/pureFunctions';
+import { INft } from '@redux/types';
+import { shortenString } from '@utils/pureFunctions';
 import ImageLoader from '../../ImageLoader/ImageLoader';
 import { ImageHolder, NftCardWrapper, TitleHolder } from './styles';
 

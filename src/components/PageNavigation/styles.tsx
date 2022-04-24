@@ -1,6 +1,10 @@
 import React from 'react';
+
+// types
+import { IButton, IChildren } from 'types';
+
+// icons
 import { AiOutlineCaretLeft, AiOutlineCaretRight } from 'react-icons/ai';
-import { IButton, IChildren } from '../../types';
 
 const PageNavigationWrapper = ({ children }: IChildren) => {
 	return (

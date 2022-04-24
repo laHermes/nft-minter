@@ -2,6 +2,13 @@ import { Web3Provider } from '@ethersproject/providers';
 import { AbstractConnector } from '@web3-react/abstract-connector';
 import { injected } from './connectors';
 
+export interface IWalletInfo {
+	connector: AbstractConnector;
+	name: string;
+	icon?: string;
+	mobile?: boolean;
+}
+
 export const getLibrary = (provider: any): Web3Provider => {
 	const library = new Web3Provider(
 		provider,
@@ -15,12 +22,6 @@ export const getLibrary = (provider: any): Web3Provider => {
 	return library;
 };
 
-export interface IWalletInfo {
-	connector: AbstractConnector;
-	name: string;
-	icon?: string;
-	mobile?: boolean;
-}
 export const SUPPORTED_WALLETS: IWalletInfo[] = [
 	{
 		connector: injected,

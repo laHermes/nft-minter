@@ -1,15 +1,20 @@
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { useWeb3React } from '@web3-react/core';
-import { getNfts } from '../../redux/nfts/nfts';
-import useAutoWalletConnect from '../../services/web3/wallet/useAutoConnect';
 
-//import notifications
-import { ToastContainer } from 'react-toastify';
+//redux
+import { useDispatch } from 'react-redux';
+import { getNfts } from 'redux/nfts/nfts';
+
+// web3
+import { useWeb3React } from '@web3-react/core';
+import useAutoWalletConnect from '@services/web3/wallet/useAutoConnect';
+
+// notifications
 import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
+
+// components
 import Navigation from './Navigation';
 
-// app layout interface
 interface ILayout {
 	children: JSX.Element | JSX.Element[] | React.ReactNode;
 }
@@ -17,7 +22,7 @@ interface ILayout {
 // NAVIGATION COMPONENT WRAPS ALL ROUTES
 const Index = ({ children }: ILayout) => {
 	const dispatch = useDispatch();
-	const { library } = useWeb3React();
+	// const { library } = useWeb3React();
 
 	useAutoWalletConnect();
 	useEffect(() => {

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { INft } from '../redux/types';
+import { INft } from '@redux/types';
 
 export enum Group {
 	OWNED = 'owned',

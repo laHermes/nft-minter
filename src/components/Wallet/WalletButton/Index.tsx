@@ -1,6 +1,6 @@
 import React from 'react';
-import useWalletConnect from '../../../services/web3/wallet/useWalletConnect';
-import { SUPPORTED_WALLETS } from '../../../services/web3/wallet/utils';
+import useWalletConnect from '@services/web3/wallet/useWalletConnect';
+import { SUPPORTED_WALLETS } from '@services/web3/wallet/utils';
 
 interface IWalletButton {
 	title: string;

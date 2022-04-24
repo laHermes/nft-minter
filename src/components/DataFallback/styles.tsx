@@ -1,6 +1,6 @@
 import React from 'react';
 import { InboxIcon } from '@heroicons/react/outline';
-import { IDataFallback } from '../../types';
+import { IDataFallback } from 'types';
 
 const DataFallback = ({ warningText }: IDataFallback) => {
 	return (

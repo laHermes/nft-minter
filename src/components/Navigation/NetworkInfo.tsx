@@ -1,7 +1,10 @@
 import React from 'react';
-import polygonLogo from '../../assets/polygon-logo-circle.png';
+// hooks
+import useWalletConnect from '@services/web3/wallet/useWalletConnect';
+
+// assets
 import { ExclamationIcon } from '@heroicons/react/solid';
-import useWalletConnect from '../../services/web3/wallet/useWalletConnect';
+import polygonLogo from '@assets/polygon-logo-circle.png';
 
 const NetworkInfo = () => {
 	const { chainId } = useWalletConnect();

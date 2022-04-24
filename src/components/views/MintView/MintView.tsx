@@ -1,15 +1,23 @@
 import React from 'react';
-import useWalletConnect from '../../../services/web3/wallet/useWalletConnect';
-import { MintCard } from '../../Minting/MintCardHeading/styles';
-import { MintControl } from '../../Minting/MintControl/styles';
-import Benefit from '../../Benefit/Index';
-import useMinter from '../../../hooks/useMinter';
+
+// hooks
+import useWalletConnect from '@services/web3/wallet/useWalletConnect';
+import useMinter from '@hooks/useMinter';
+
+// components
+import { MintCard } from '@components/Minting/MintCardHeading/styles';
+import { MintControl } from '@components/Minting/MintControl/styles';
+import Benefit from '@components/Benefit/Index';
+
+// styles
 import {
 	CountToMint,
 	DecrementButton,
 	IncrementButton,
 	MintButton,
 } from '../../Minting/MintControl/styles';
+
+// errors
 import Error from './Error';
 
 const benefits = [

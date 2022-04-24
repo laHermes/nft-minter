@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { IUsePagination, IPaginated } from '../types';
+import { IUsePagination, IPaginated } from 'types';
 
 const usePagination = ({
 	data,

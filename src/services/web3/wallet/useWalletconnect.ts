@@ -1,8 +1,9 @@
 import { useCallback, useState } from 'react';
 import useAsyncEffect from 'use-async-effect';
-// blockchain
+
+// web3
 import { useWeb3React } from '@web3-react/core';
-import { setAutoLoginLS } from '../../../utils/localStorage';
+import { setAutoLoginLS } from '@utils/localStorage';
 import { setSigner, writeWeb3 } from '../index';
 import { Web3Provider } from '@ethersproject/providers';
 import { SUPPORTED_WALLETS, roundBalance, IWalletInfo } from './utils';

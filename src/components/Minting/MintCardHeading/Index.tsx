@@ -1,9 +1,10 @@
 import React from 'react';
-import NFTImage from '../../../assets/nft.png';
-import polygonLogo from '../../../assets/polygon-logo-circle.png';
-import { nftInfo } from '../../../info/nft';
-import { MintCard, PricePill } from './styles';
-import Benefit from '../../Benefit/Index';
+import NFTImage from 'assets/nft.png';
+import polygonLogo from 'assets/polygon-logo-circle.png';
+import { nftInfo } from 'info/nft';
+import { MintCard } from './styles';
+import Benefit from 'components/Benefit/Index';
+
 const Index = () => {
 	return (
 		<MintCard>

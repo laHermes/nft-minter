@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useRef, Fragment } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
-import { shortenString } from '../../../utils/pureFunctions';
+import { shortenString } from 'utils/pureFunctions';
 import Jazzicon, { jsNumberForAddress } from 'react-jazzicon';
 import {
 	DuplicateIcon,

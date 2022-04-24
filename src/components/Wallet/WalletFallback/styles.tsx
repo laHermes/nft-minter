@@ -1,6 +1,6 @@
 import React from 'react';
 import { BiWalletAlt } from 'react-icons/bi';
-import { IChildren } from '../../../types';
+import { IChildren } from 'types';
 
 const WalletFallback = ({ children }: IChildren) => {
 	return (

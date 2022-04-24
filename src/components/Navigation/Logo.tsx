@@ -1,5 +1,5 @@
 import React from 'react';
-import meshLogo from '../../assets/mesh-second-logo.png';
+import meshLogo from '@assets/mesh-second-logo.png';
 
 const Logo: React.FC<React.HTMLAttributes<HTMLImageElement>> = ({
 	...props

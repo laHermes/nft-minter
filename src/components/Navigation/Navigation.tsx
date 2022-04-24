@@ -1,12 +1,19 @@
 import React from 'react';
-import useWalletConnect from '../../services/web3/wallet/useWalletConnect';
-import WalletButton from '../Wallet/WalletButton/Index';
-import polygonLogo from '../../assets/polygon-logo-circle.png';
-import meshLogo from '../../assets/mesh-second-logo.png';
-import Links from './Links';
-import Account from '../Account/Index';
+
+//hooks
+import useWalletConnect from 'services/web3/wallet/useWalletConnect';
+
+// svgs
+import polygonLogo from 'assets/polygon-logo-circle.png';
+import meshLogo from 'assets/mesh-second-logo.png';
 import Logo from './Logo';
+
+//components
+import Links from './Links';
+import WalletButton from 'components/Wallet/WalletButton/Index';
+import Account from '@components/Account/Index';
 import NetworkInfo from './NetworkInfo';
+
 const Navigation = () => {
 	const { account } = useWalletConnect();
 

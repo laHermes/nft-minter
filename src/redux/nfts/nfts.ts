@@ -4,7 +4,7 @@ import {
 	createAsyncThunk,
 	PayloadAction,
 } from '@reduxjs/toolkit';
-import { RootState } from '../index';
+import { RootState } from '../store';
 
 import { fetchAllNfts } from '../../services/web3/utils';
 

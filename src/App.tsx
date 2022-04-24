@@ -3,7 +3,7 @@ import Routes from './routes/Routing';
 import { Web3ReactProvider } from '@web3-react/core';
 import { getLibrary } from './services/web3/wallet/utils';
 import { Provider } from 'react-redux';
-import { store } from './redux/index';
+import { store } from './redux/store';
 
 function App() {
 	return (

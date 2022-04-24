@@ -1,8 +1,8 @@
 import React from 'react';
 import { Listbox } from '@headlessui/react';
 
-import useColorFilter from '../../hooks/useColorFilter';
-import { IFilterColor } from '../../types';
+import useColorFilter from 'hooks/useColorFilter';
+import { IFilterColor } from 'types';
 
 const FilterColor = ({
 	toggleGroupFilter,

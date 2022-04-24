@@ -1,7 +1,11 @@
 import { useState } from 'react';
-import { mintToken } from '../services/web3/utils';
-import useWalletConnect from '../services/web3/wallet/useWalletConnect';
-import { hasEnoughEth } from '../services/web3/utils';
+
+// utility functions
+import { mintToken } from '@services/web3/utils';
+import useWalletConnect from '@services/web3/wallet/useWalletConnect';
+import { hasEnoughEth } from '@services/web3/utils';
+
+// toast notifications
 import { toast } from 'react-toastify';
 
 const UPPER_BOUND = 10;
