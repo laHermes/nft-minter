@@ -1,14 +1,5 @@
 {
 	"compilerOptions": {
-		"baseUrl": "src",
-		"paths": {
-			"@components/*": ["components/*"],
-			"@assets/*": ["assets/*"],
-			"@services/*": ["services/*"],
-			"@hooks/*": ["hooks/*"],
-			"@utils/*": ["utils/*"],
-			"@redux/*": ["redux/*"]
-		},
 		"target": "es5",
 		"lib": ["dom", "dom.iterable", "esnext"],
 		"allowJs": true,
@@ -25,7 +16,17 @@
 		"noEmit": true,
 		"jsx": "react-jsx",
 		"declaration": true,
-		"declarationDir": "./src/types"
+		"declarationDir": "./src/types",
+		"baseUrl": "./src",
+		"paths": {
+			"@components/*": ["components/*"],
+			"@assets/*": ["assets/*"],
+			"@services/*": ["services/*"],
+			"@hooks/*": ["hooks/*"],
+			"@utils/*": ["utils/*"],
+			"@redux/*": ["redux/*"],
+			"@routes/*": ["routes/*"]
+		}
 	},
 	"include": ["src/**/*"]
 }

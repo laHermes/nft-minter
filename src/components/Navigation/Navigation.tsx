@@ -10,9 +10,17 @@ import Logo from './Logo';
 
 //components
 import Links from './Links';
-import WalletButton from 'components/Wallet/WalletButton/Index';
-import Account from '@components/Account/Index';
+import WalletButton from '@components/Wallet/WalletButton/Index';
+import BaseAccount from '@components/Account/Index';
 import NetworkInfo from './NetworkInfo';
+
+const withConditionalRendering = (Component: React.FC) => (props: any) => {
+	if (!props.account) return <WalletButton title='Connect Wallet' />;
+
+	return <Component {...props} />;
+};
+
+const Account = withConditionalRendering(BaseAccount);
 
 const Navigation = () => {
 	const { account } = useWalletConnect();
@@ -25,7 +33,8 @@ const Navigation = () => {
 			</div>
 			<div className='flex flex-row gap-2 text-xl'>
 				<NetworkInfo />
-				{account ? <Account /> : <WalletButton title='Connect Wallet' />}
+
+				<Account />
 			</div>
 		</div>
 	);
