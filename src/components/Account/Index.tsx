@@ -1,12 +1,13 @@
 import { useState } from 'react';
-import Account from './styles';
+import Account from './Account';
 import useWalletConnect from '../../services/web3/wallet/useWalletConnect';
 import { shortenString } from '../../utils/pureFunctions';
 import AccountModal from './Modal/Index';
+
 const Index = () => {
 	const [open, setOpen] = useState<boolean>(false);
-
 	const { account, handleDisconnect } = useWalletConnect();
+
 	return (
 		<>
 			<AccountModal

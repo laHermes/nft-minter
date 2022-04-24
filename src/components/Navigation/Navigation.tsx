@@ -18,7 +18,7 @@ const Navigation = () => {
 			</div>
 			<div className='flex flex-row gap-2 text-xl'>
 				<NetworkInfo />
-				{account ? <Account /> : <WalletButton />}
+				{account ? <Account /> : <WalletButton title='Connect Wallet' />}
 			</div>
 		</div>
 	);

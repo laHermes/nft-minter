@@ -10,6 +10,7 @@ import {
 	IncrementButton,
 	MintButton,
 } from '../../Minting/MintControl/styles';
+import Error from './Error';
 
 const benefits = [
 	{
@@ -34,23 +35,26 @@ const Mint = () => {
 	const { chainId } = useWalletConnect();
 	const { count, increment, decrement, mint } = useMinter();
 
+	const getBenefits = () =>
+		benefits.map(({ title, description, symbol }) => (
+			<Benefit
+				key={title}
+				title={title}
+				description={description}
+				symbol={symbol}
+			/>
+		));
+
 	return (
 		<div className='flex flex-col gap-4 max-w-md mx-auto p-5'>
-			{chainId !== 80001 ? (
-				<div className='border border-red-500/40 p-4 bg-gradient-to-r from-transparent to-red-500/40 rounded-[12px] text-red-500 font-semibold'>
-					<p>This app is supported only on the Polygon Mumbai Testnet!</p>
-				</div>
+			{!(window as any).ethereum ? (
+				<Error message='Make sure you have Metamask Wallet installed' />
+			) : chainId !== 80001 ? (
+				<Error message='This app is supported only on the Polygon Mumbai Testnet' />
 			) : (
 				<>
 					<MintCard>
-						{benefits.map(({ title, description, symbol }) => (
-							<Benefit
-								key={title}
-								title={title}
-								description={description}
-								symbol={symbol}
-							/>
-						))}
+						{getBenefits()}
 
 						{/* <MintCard.ImageHolder url={NFTImage} />
 			<MintCard.Heading>

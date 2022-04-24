@@ -76,10 +76,10 @@ const Index = ({ open, setOpen, account, handleDisconnect }: IAccountModal) => {
 						leave='ease-in duration-200'
 						leaveFrom='opacity-100 translate-y-0 sm:scale-100'
 						leaveTo='opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95'>
-						<div className='relative inline-block align-bottom bg-modal-base rounded-[12px] text-center overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full'>
-							<div className='p-4 sm:p-6 sm:pb-4'>
-								<div className='sm:flex sm:items-start'>
-									<div className='flex flex-col gap-4 w-full text-center sm:mt-0 sm:ml-4 sm:text-left'>
+						<div className=' relative inline-block align-bottom bg-modal-base rounded-[12px] text-center overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full'>
+							<div className='p-4 sm:p-6 sm:pb-4 '>
+								<div className='sm:flex sm:items-start '>
+									<div className='flex flex-col gap-4 w-full text-left '>
 										<Dialog.Title
 											as='h3'
 											className='text-2xl leading-6 font-medium text-white/90'>
