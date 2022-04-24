@@ -6,7 +6,7 @@ import polygonLogo from 'assets/polygon-logo-circle.png';
 import { nftInfo } from 'info/nft';
 
 // components
-import Benefit from '@components/Benefit/Index';
+import Benefit from 'components/Benefit/Index';
 
 // styles
 import { MintCard } from './styles';

@@ -1,72 +1,70 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 // hooks & selectors
 import { useSelector } from 'react-redux';
-import useWalletConnect from '@services/web3/wallet/useWalletConnect';
-import useFilter from '@hooks/useFilter';
-import usePagination from '@hooks/usePagination';
-import { selectNfts } from '@redux/nfts/nfts';
+import useWalletConnect from 'services/web3/wallet/useWalletConnect';
+import useFilter from 'hooks/useFilter';
+import usePagination from 'hooks/usePagination';
+import { selectNfts } from 'redux/nfts/nfts';
 
 // components
-import FilterOwned from '@components/Filters/FilterOwned';
+import FilterOwned from 'components/Filters/FilterOwned';
 import NftCard from '../Card/Index';
 import NftTable from './styles';
-import PageNavigation from '@components/PageNavigation/Index';
-import DataFallback from '@components/DataFallback/Index';
-import NoWalletWarning from '@components/Wallet/WalletFallback/Index';
+import PageNavigation from 'components/PageNavigation/Index';
+import DataFallback from 'components/DataFallback/Index';
+import NoWalletWarning from 'components/Wallet/WalletFallback/Index';
+import { PaginationCtx } from 'store/PaginationContext';
 
-const Index = () => {
-	//get current account
-	const { nfts: data } = useSelector(selectNfts);
-
+const withHigherOrderContent = (Component: React.FC) => (props: any) => {
 	const { account } = useWalletConnect();
 
-	// filter data
-	const filter = useFilter(data);
-	const { filtered } = filter;
+	if (!account) return <NoWalletWarning />;
+	if (!props.data.length) return <DataFallback />;
 
-	//paginate data
-	const pagination = usePagination({
-		data: filtered,
-		itemsPerPage: 6,
-		pageLimit: 3,
-	});
+	return <Component {...props} />;
+};
 
-	const { paginatedData } = pagination;
-
+const BaseContent: React.ComponentType<any> = ({ data }) => {
 	return (
-		<NftTable>
-			<NftTable.Heading>
-				<div className='flex flex-row w-full py-6'>
-					<div className='grow'>
-						<h2 className='text-white text-4xl font-bold'>Collection</h2>
-						<p className='text-white/40 font-semibold'>
-							Only minted nfts will be displayed in collection!
-						</p>
-					</div>
-					<div className='self-center flex flex-row gap-2'>
-						<NftTable.FilterName>Owned</NftTable.FilterName>
-						<FilterOwned {...filter} />
-					</div>
-				</div>
-			</NftTable.Heading>
-			<NftTable.GridWrapper>
-				{account && (
-					<>
-						<NftTable.Grid>
-							{!!paginatedData.length &&
-								paginatedData.map((nft: any) => {
-									return <NftCard {...nft} key={nft.id} />;
-								})}
-						</NftTable.Grid>
-						{!!paginatedData.length && <PageNavigation {...pagination} />}
-						{!paginatedData.length && <DataFallback />}
-					</>
-				)}
+		<NftTable.Grid>
+			{data.map((nft: any) => {
+				return <NftCard {...nft} key={nft.id} />;
+			})}
+		</NftTable.Grid>
+	);
+};
 
-				{!account && <NoWalletWarning />}
-			</NftTable.GridWrapper>
-		</NftTable>
+const Content = withHigherOrderContent(BaseContent);
+
+const Index = () => {
+	const pagCtx = useContext(PaginationCtx);
+	const { pagination, filtered } = pagCtx;
+	console.log(pagCtx);
+	return (
+		<p>heloo</p>
+		// <NftTable>
+		// 	<NftTable.Heading>
+		// 		<div className='flex flex-row w-full py-6'>
+		// 			<div className='grow'>
+		// 				<h2 className='text-white text-4xl font-bold'>Collection</h2>
+		// 				<p className='text-white/40 font-semibold'>
+		// 					Only minted nfts will be displayed in collection!
+		// 				</p>
+		// 			</div>
+		// 			<div className='self-center flex flex-row gap-2'>
+		// 				<NftTable.FilterName>Owned</NftTable.FilterName>
+		// 				<FilterOwned {...filtered!} />
+		// 			</div>
+		// 		</div>
+		// 	</NftTable.Heading>
+		// 	<NftTable.GridWrapper>
+		// 		<Content data={pagination?.paginatedData} />
+		// 		{!!pagination?.paginatedData.length && (
+		// 			<PageNavigation {...pagination} />
+		// 		)}
+		// 	</NftTable.GridWrapper>
+		// </NftTable>
 	);
 };
 

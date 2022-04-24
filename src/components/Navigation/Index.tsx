@@ -6,7 +6,7 @@ import { getNfts } from 'redux/nfts/nfts';
 
 // web3
 import { useWeb3React } from '@web3-react/core';
-import useAutoWalletConnect from '@services/web3/wallet/useAutoConnect';
+import useAutoWalletConnect from 'services/web3/wallet/useAutoConnect';
 
 // notifications
 import 'react-toastify/dist/ReactToastify.css';

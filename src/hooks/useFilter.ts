@@ -12,7 +12,17 @@ type Filter = {
 	fnc: Function;
 };
 
-const useFilter = (data: INft[]) => {
+export interface IFiltered {
+	filters: any[];
+	filtered: any[];
+	toggleFilter: Function;
+	toggleGroupFilter: Function;
+	resetFilters: Function;
+	filterExists: Function;
+	removeAllGroupFilters: Function;
+}
+
+const useFilter = (data: INft[]): IFiltered => {
 	const [filters, setFilters] = useState<Filter[]>([]);
 	const [filtered, setFiltered] = useState<any[]>(data);
 
@@ -87,12 +97,12 @@ const useFilter = (data: INft[]) => {
 
 	return {
 		filters,
+		filtered,
 		toggleFilter,
 		toggleGroupFilter,
 		resetFilters,
 		filterExists,
 		removeAllGroupFilters,
-		filtered,
 	};
 };
 

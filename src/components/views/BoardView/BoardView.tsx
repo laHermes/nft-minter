@@ -1,8 +1,8 @@
 import React from 'react';
 
 // components
-import NftsTable from '@components/Nft/Table/Index';
-import StyledLink from '@components/Link/Index';
+import NftsTable from 'components/Nft/Table/Index';
+import StyledLink from 'components/Link/Index';
 
 const Board = () => {
 	return (

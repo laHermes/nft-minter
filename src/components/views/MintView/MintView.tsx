@@ -1,13 +1,13 @@
 import React from 'react';
 
 // hooks
-import useWalletConnect from '@services/web3/wallet/useWalletConnect';
-import useMinter from '@hooks/useMinter';
+import useWalletConnect from 'services/web3/wallet/useWalletConnect';
+import useMinter from 'hooks/useMinter';
 
 // components
-import { MintCard } from '@components/Minting/MintCardHeading/styles';
-import { MintControl } from '@components/Minting/MintControl/styles';
-import Benefit from '@components/Benefit/Index';
+import { MintCard } from 'components/Minting/MintCardHeading/styles';
+import { MintControl } from 'components/Minting/MintControl/styles';
+import Benefit from 'components/Benefit/Index';
 
 // styles
 import {
