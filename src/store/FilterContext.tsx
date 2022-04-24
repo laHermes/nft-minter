@@ -18,7 +18,6 @@ const FilterContext = ({ children }: IProvider) => {
 	const { nfts: data } = useSelector(selectNfts);
 
 	const filter = useFilter(data);
-	console.log('adasdadsa');
 
 	return (
 		<FilterCtx.Provider value={{ data, filtered: filter }}>

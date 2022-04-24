@@ -1,11 +1,7 @@
 import React, { useContext } from 'react';
 
 // hooks & selectors
-import { useSelector } from 'react-redux';
 import useWalletConnect from 'services/web3/wallet/useWalletConnect';
-import useFilter from 'hooks/useFilter';
-import usePagination from 'hooks/usePagination';
-import { selectNfts } from 'redux/nfts/nfts';
 
 // components
 import FilterOwned from 'components/Filters/FilterOwned';
@@ -40,31 +36,30 @@ const Content = withHigherOrderContent(BaseContent);
 const Index = () => {
 	const pagCtx = useContext(PaginationCtx);
 	const { pagination, filtered } = pagCtx;
-	console.log(pagCtx);
+
 	return (
-		<p>heloo</p>
-		// <NftTable>
-		// 	<NftTable.Heading>
-		// 		<div className='flex flex-row w-full py-6'>
-		// 			<div className='grow'>
-		// 				<h2 className='text-white text-4xl font-bold'>Collection</h2>
-		// 				<p className='text-white/40 font-semibold'>
-		// 					Only minted nfts will be displayed in collection!
-		// 				</p>
-		// 			</div>
-		// 			<div className='self-center flex flex-row gap-2'>
-		// 				<NftTable.FilterName>Owned</NftTable.FilterName>
-		// 				<FilterOwned {...filtered!} />
-		// 			</div>
-		// 		</div>
-		// 	</NftTable.Heading>
-		// 	<NftTable.GridWrapper>
-		// 		<Content data={pagination?.paginatedData} />
-		// 		{!!pagination?.paginatedData.length && (
-		// 			<PageNavigation {...pagination} />
-		// 		)}
-		// 	</NftTable.GridWrapper>
-		// </NftTable>
+		<NftTable>
+			<NftTable.Heading>
+				<div className='flex flex-row w-full py-6'>
+					<div className='grow'>
+						<h2 className='text-white text-4xl font-bold'>Collection</h2>
+						<p className='text-white/40 font-semibold'>
+							Only minted nfts will be displayed in collection!
+						</p>
+					</div>
+					<div className='self-center flex flex-row gap-2'>
+						<NftTable.FilterName>Owned</NftTable.FilterName>
+						<FilterOwned {...filtered!} />
+					</div>
+				</div>
+			</NftTable.Heading>
+			<NftTable.GridWrapper>
+				<Content data={pagination?.paginatedData} />
+				{!!pagination?.paginatedData.length && (
+					<PageNavigation {...pagination} />
+				)}
+			</NftTable.GridWrapper>
+		</NftTable>
 	);
 };
 
