@@ -1,7 +1,7 @@
 import React from 'react';
-
+import Mint from './MintView';
 const Index = () => {
-	return <div>Index</div>;
+	return <Mint />;
 };
 
 export default Index;

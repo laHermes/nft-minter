@@ -50,9 +50,7 @@ const Index = () => {
 			</NftTable.Heading>
 			<NftTable.GridWrapper>
 				{account && (
-					<ErrorBoundary
-						FallbackComponent={DataFallback}
-						resetKeys={paginatedData}>
+					<>
 						<NftTable.Grid>
 							{!!paginatedData.length &&
 								paginatedData.map((nft: any) => {
@@ -61,7 +59,7 @@ const Index = () => {
 						</NftTable.Grid>
 						{!!paginatedData.length && <PageNavigation {...pagination} />}
 						{!paginatedData.length && <DataFallback />}
-					</ErrorBoundary>
+					</>
 				)}
 
 				{!account && <NoWalletWarning />}

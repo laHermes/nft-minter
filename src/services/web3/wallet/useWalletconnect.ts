@@ -19,9 +19,9 @@ export interface IUseWalletConnect {
 	balance?: string | null;
 	isPending: boolean;
 	isError: boolean;
+	chainId?: number | undefined;
 	selectedWallet?: any;
 }
-
 const useWalletConnect = (): IUseWalletConnect => {
 	const web3React = useWeb3React();
 
@@ -56,7 +56,7 @@ const useWalletConnect = (): IUseWalletConnect => {
 					setSelectedWallet(wallet);
 					setIsPending(false);
 				} catch (e: any) {
-					console.log('Failed Wallet Connection!');
+					console.log('Failed connecting to the Wallet!');
 					setIsError(true);
 					setIsPending(false);
 					toast.error('Error connecting to the wallet!');
@@ -77,23 +77,21 @@ const useWalletConnect = (): IUseWalletConnect => {
 		account && handleDisconnect();
 	}, [account, handleDisconnect]);
 
-	useAsyncEffect(
-		async (isActive) => {
-			if (selectedWallet) return;
-			if (connector) {
-				const signer = new Web3Provider(
-					await connector.getProvider()
-				).getSigner();
-				setSigner(signer);
+	useAsyncEffect(async (isActive) => {
+		if (selectedWallet) return;
+		if (connector) {
+			const signer = new Web3Provider(
+				await connector.getProvider()
+			).getSigner();
+			setSigner(signer);
 
-				const wallet = SUPPORTED_WALLETS.find(
-					(wallet) => typeof wallet.connector === typeof connector
-				);
-				if (isActive()) setSelectedWallet(wallet);
-			}
-		},
-		[connector]
-	);
+			const wallet = SUPPORTED_WALLETS.find(
+				(wallet) => typeof wallet.connector === typeof connector
+			);
+
+			if (isActive()) setSelectedWallet(wallet);
+		}
+	}, []);
 
 	useAsyncEffect(async () => {
 		if (!account || !library) return;

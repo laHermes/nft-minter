@@ -7,7 +7,7 @@ import useAutoWalletConnect from '../../services/web3/wallet/useAutoConnect';
 //import notifications
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import HeaderPrimary from './HeaderPrimary';
+import Navigation from './Navigation';
 
 // app layout interface
 interface ILayout {
@@ -38,7 +38,7 @@ const Index = ({ children }: ILayout) => {
 	return (
 		<main className='navigationStyle'>
 			<header className='pt-5 max-w-screen-lg mx-auto'>
-				<HeaderPrimary />
+				<Navigation />
 			</header>
 			<ToastContainer limit={3} />
 			{children}
