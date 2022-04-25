@@ -1,3 +1,4 @@
+import useWalletConnect from 'services/web3/wallet/useWalletConnect';
 import { useEffect, useState } from 'react';
 import { IUsePagination, IPaginated } from 'types';
 

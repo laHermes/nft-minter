@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { INft } from '@redux/types';
+import useWalletConnect from 'services/web3/wallet/useWalletConnect';
 
 export enum Group {
 	OWNED = 'owned',
@@ -26,6 +27,10 @@ const useFilter = (data: INft[]): IFiltered => {
 	const [filters, setFilters] = useState<Filter[]>([]);
 	const [filtered, setFiltered] = useState<any[]>(data);
 
+	const accountRef = useRef<any>(null);
+
+	const { account } = useWalletConnect();
+
 	useEffect(() => {
 		const filteredData = data.filter((instance) => {
 			const owned = isGroupFilterActive(instance, filters, Group.OWNED);
@@ -36,6 +41,19 @@ const useFilter = (data: INft[]): IFiltered => {
 
 		setFiltered(filteredData);
 	}, [data, filters]);
+
+	// filters nfts when account is changed and filter is active
+	useEffect(() => {
+		if (filterExists(accountRef.current, Group.OWNED) && account) {
+			removeAllGroupFilters(Group.OWNED);
+			toggleGroupFilter(
+				account,
+				Group.OWNED,
+				(nft: INft) => nft.owner === account
+			);
+		}
+		accountRef.current = account;
+	}, [account]);
 
 	const filterExists = (name: string | number, group: Group) =>
 		filters.find((filter) => filter.name === name && filter.group === group) !==
