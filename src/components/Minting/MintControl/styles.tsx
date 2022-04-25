@@ -65,10 +65,21 @@ const MintButton: React.FC<
 		<div className='backdrop-blur-sm text-indigo-50 text-[16px] rounded-[12px] p-[2px] bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500'>
 			<button
 				{...props}
-				className='w-full bg-default-primary px-[12px] py-[10px] rounded-[12px] hover:bg-transparent font-bold'>
-				<p>{children}</p>
+				className='w-full transition-all bg-default-primary px-[12px] py-[10px] rounded-[12px] hover:bg-transparent font-bold'>
+				{children}
 			</button>
 		</div>
+	);
+};
+const ViewCollections: React.FC<
+	IChildren & React.HTMLAttributes<HTMLButtonElement>
+> = ({ children, ...props }) => {
+	return (
+		<button
+			{...props}
+			className='w-full bg-pill-grey hover:bg-zinc-200 transition-all px-[12px] py-[10px] rounded-[12px] text-white hover:text-zinc-700 font-bold'>
+			{children}
+		</button>
 	);
 };
 
@@ -86,4 +97,5 @@ export {
 	DecrementButton,
 	IncrementButton,
 	MintButton,
+	ViewCollections,
 };

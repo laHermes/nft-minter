@@ -8,7 +8,7 @@ interface IBenefit {
 }
 const Index = ({ title, symbol, description }: IBenefit) => {
 	return (
-		<div className='flex flex-row gap-1'>
+		<div className='flex flex-row gap-2'>
 			<div className='p-2'>
 				<div className='bg-white/10 rounded-full flex flex-wrap justify-center p-2'>
 					<Emoji symbol={symbol} className='self-center text-2xl' />
@@ -16,7 +16,7 @@ const Index = ({ title, symbol, description }: IBenefit) => {
 			</div>
 			<div className='flex flex-col'>
 				<h4 className='text-xl font-semibold text-white/90'>{title}</h4>
-				<p className='text-md text-white/60'>{description}</p>
+				<p className='text-md  text-white/60'>{description}</p>
 			</div>
 		</div>
 	);

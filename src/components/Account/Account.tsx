@@ -12,7 +12,7 @@ const Account: React.FC<IAccount & React.HTMLAttributes<HTMLButtonElement>> = ({
 	return (
 		<div className='text-indigo-50 text-[16px] rounded-[12px] p-[2px] bg-gradient-to-r '>
 			<button
-				className='bg-default-primary px-[12px] py-[10px] rounded-[12px] font-bold hover:bg-hover-primary'
+				className='transition-all bg-default-primary px-[12px] py-[10px] rounded-[12px] font-bold hover:bg-hover-primary'
 				{...props}>
 				<p>{title}</p>
 			</button>

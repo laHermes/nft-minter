@@ -1,10 +1,12 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 interface IImageLoader {
 	url: string;
 }
 
-const ImageLoader = ({ url }: IImageLoader) => {
+const ImageLoader: React.FC<
+	IImageLoader & React.HTMLAttributes<HTMLImageElement>
+> = ({ url, ...props }: IImageLoader) => {
 	const [loaded, setLoaded] = useState<boolean>(false);
 
 	return (
@@ -14,6 +16,7 @@ const ImageLoader = ({ url }: IImageLoader) => {
 				alt='nft'
 				className={`${loaded ? 'block' : 'hidden'} rounded-md w-full h-full`}
 				onLoad={() => setLoaded(true)}
+				{...props}
 			/>
 			<div
 				className={`${

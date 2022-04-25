@@ -3,7 +3,7 @@ import ImageLoader from '../../ImageLoader/ImageLoader';
 
 const MintCardImage = ({ url }: IMintCardImage) => {
 	return (
-		<div className='h-80'>
+		<div className='h-56'>
 			<ImageLoader url={url} />
 		</div>
 	);

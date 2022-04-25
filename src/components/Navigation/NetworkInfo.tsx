@@ -31,7 +31,7 @@ const NetworkInfo = () => {
 			<NetworkIcon
 				src={polygonLogo}
 				alt='polygon logo'
-				className='bg-default-primary h-10 p-2 rounded-[12px] hover:bg-hover-primary'
+				className='transition-all bg-default-primary h-10 p-2 rounded-[12px] hover:bg-hover-primary'
 			/>
 		</div>
 	);

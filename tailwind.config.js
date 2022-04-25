@@ -37,6 +37,7 @@ module.exports = {
 				'default-primary': '#322d47',
 				'hover-primary': '#463f63',
 				'modal-base': '#17151e',
+				'pill-grey': '#26242d',
 			},
 		},
 	},
