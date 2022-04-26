@@ -13,6 +13,8 @@ import Links from './Links';
 import WalletButton from 'components/Wallet/WalletButton/Index';
 import BaseAccount from 'components/Account/Index';
 import NetworkInfo from './NetworkInfo';
+import { Button } from 'components/Elements/Button/Button';
+import { shortenString } from 'utils/pureFunctions';
 
 const withConditionalRendering = (Component: React.FC) => (props: any) => {
 	const { account } = useWalletConnect();
@@ -24,6 +26,8 @@ const withConditionalRendering = (Component: React.FC) => (props: any) => {
 const Account = withConditionalRendering(BaseAccount);
 
 const Navigation = () => {
+	const { account } = useWalletConnect();
+
 	return (
 		<div className='headerTop'>
 			<div className='inline-flex gap-12'>

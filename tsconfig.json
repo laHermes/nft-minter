@@ -17,16 +17,16 @@
 		"jsx": "react-jsx",
 		"declaration": true,
 		"declarationDir": "./src/types",
-		"baseUrl": "./src",
-		"paths": {
-			"@components/*": ["components/*"],
-			"@assets/*": ["assets/*"],
-			"@services/*": ["services/*"],
-			"@hooks/*": ["hooks/*"],
-			"@utils/*": ["utils/*"],
-			"@redux/*": ["redux/*"],
-			"@routes/*": ["routes/*"]
-		}
+		"baseUrl": "./src"
+		// "paths": {
+		// 	"@components/*": ["components/*"],
+		// 	"@assets/*": ["assets/*"],
+		// 	"@services/*": ["services/*"],
+		// 	"@hooks/*": ["hooks/*"],
+		// 	"@utils/*": ["utils/*"],
+		// 	"@redux/*": ["redux/*"],
+		// 	"@routes/*": ["routes/*"]
+		// }
 	},
 	"include": ["src/**/*"]
 }

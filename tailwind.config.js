@@ -11,9 +11,7 @@ module.exports = {
 				xl: '1280px',
 			},
 		},
-		// borderRadius: {
-		// 	large: '12px',
-		// },
+
 		fontSize: {
 			xxs: '.5rem',
 			xs: '.75rem',
@@ -39,7 +37,41 @@ module.exports = {
 				'modal-base': '#17151e',
 				'pill-grey': '#26242d',
 			},
+
+			linearBorderGradients: {
+				directions: {
+					// defaults to these values
+					t: 'to top',
+					tr: 'to top right',
+					r: 'to right',
+					br: 'to bottom right',
+					b: 'to bottom',
+					bl: 'to bottom left',
+					l: 'to left',
+					tl: 'to top left',
+				},
+				colors: {
+					// defaults to {}
+					red: '#f00',
+					'red-blue': ['#f00', '#00f'],
+					'blue-green': ['#0000ff', '#00FF00'],
+					'red-green-blue': ['#f00', '#0f0', '#00f'],
+					'black-white-with-stops': ['#000', '#000 45%', '#fff 55%', '#fff'],
+					'indigo-purple-pink': ['#6366f1', '#a855f7', '#ec4899'],
+				},
+				background: {
+					transparent: '#000000 0%',
+					modal: '#17151e',
+					'gray-50': '#F9FAFB',
+					'gray-900': '#111827',
+				},
+				borders: {
+					1: '1px',
+					2: '2px',
+					4: '4px',
+				},
+			},
 		},
 	},
-	plugins: [],
+	plugins: [require('tailwindcss-border-gradient-radius')],
 };

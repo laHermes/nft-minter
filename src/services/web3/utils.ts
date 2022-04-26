@@ -1,7 +1,7 @@
 import { ethers, utils, Contract } from 'ethers';
 import { writeWeb3, getProvider, web3 } from './index';
 import { nftAddress, nftAbi, nftPrice } from '../../contracts/ContractExports';
-import { INft } from '@redux/types';
+import { INft } from 'redux/types';
 import axios from 'axios';
 
 // Mint token

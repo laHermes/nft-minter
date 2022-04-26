@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { INft } from '@redux/types';
+import { INft } from 'redux/types';
 import useWalletConnect from 'services/web3/wallet/useWalletConnect';
 
 export enum Group {

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 // hooks
 import useWalletConnect from 'services/web3/wallet/useWalletConnect';
@@ -7,20 +8,21 @@ import useMinter from 'hooks/useMinter';
 // components
 import { MintCard } from 'components/Minting/MintCardHeading/styles';
 import { MintControl } from 'components/Minting/MintControl/styles';
-
+import Benefits from './Benefits';
+import ImageLoader from 'components/ImageLoader/ImageLoader';
+import { Button } from 'components/Elements/Button/Index';
 // styles
 import {
 	CountToMint,
 	DecrementButton,
 	IncrementButton,
 	MintButton,
-	ViewCollections,
 } from '../../Minting/MintControl/styles';
 import NFTImage from 'assets/nft.png';
+import { InboxIcon } from '@heroicons/react/outline';
 
 // errors
 import Error from './Error';
-import Benefits from './Benefits';
 
 const Mint = () => {
 	const { chainId } = useWalletConnect();
@@ -35,40 +37,26 @@ const Mint = () => {
 			) : (
 				<>
 					<div className='rounded-[12px] w-fit text-white bg-pill-grey py-1.5 px-3 text-sm text-center self-center'>
-						<p>Polygon Mumbai</p>
+						<span>Polygon Mumbai</span>
 					</div>
 					<h2 className='text-white text-4xl font-bold'>Mint NFT</h2>
 
 					<div className='grid grid-cols-2 gap-8 mt-12'>
-						<div className='flex flex-col justify-between'>
-							<MintCard.ImageHolder url={NFTImage} />
+						<div className='flex flex-col justify-between gap-6'>
+							<div className='h-72'>
+								<ImageLoader url={NFTImage} />
+							</div>
 							<MintButton onClick={mint}>Mint</MintButton>
 						</div>
 						<div className='flex flex-col gap-6'>
 							<Benefits />
-							<ViewCollections onClick={mint}>View Collection</ViewCollections>
+							<Link
+								className='w-full text-center bg-pill-grey hover:bg-zinc-200 transition-all px-[12px] py-[10px] rounded-[12px] text-white hover:text-zinc-700 font-bold'
+								to='/'>
+								View Collection
+							</Link>
 						</div>
-						{/* <MintCard> */}
-						{/* 
-			<MintCard.Heading>
-			<MintCard.Title>{nftInfo.title.toLowerCase()}</MintCard.Title>
-			<PricePill price={nftInfo.price} logoUrl={polygonLogo} />
-			</MintCard.Heading>
-			<MintCard.Description>
-				there are 10 images of a mesh that are assigned randomly to an nft when
-				minted.
-			</MintCard.Description>
-			<MintCard.Description>
-			each time you can mint up to 10 nfts.
-		</MintCard.Description> */}
-						{/* </MintCard> */}
 					</div>
-					{/* <MintControl>
-						<DecrementButton onClick={decrement} />
-						<CountToMint count={count} />
-						<IncrementButton onClick={increment} />
-					</MintControl>
-					<MintButton onClick={mint}>Mint</MintButton> */}
 				</>
 			)}
 		</div>

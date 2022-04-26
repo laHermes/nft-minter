@@ -1,46 +1,18 @@
-import React, { useEffect, useState } from 'react';
 import { useRef, Fragment } from 'react';
+
+// Components
 import { Dialog, Transition } from '@headlessui/react';
-import { shortenString } from 'utils/pureFunctions';
-import Jazzicon, { jsNumberForAddress } from 'react-jazzicon';
-import {
-	DuplicateIcon,
-	CheckCircleIcon,
-	ExternalLinkIcon,
-} from '@heroicons/react/outline';
+import CopyButton from './Elements/CopyButton';
+import AccountInfo from './Elements/AccountInfo';
+import ViewExplorer from './Elements/ViewExplorer';
 
 interface IAccountModal {
 	open: boolean;
 	setOpen: any;
-	account: string;
 	handleDisconnect: () => void;
 }
 
-const Index = ({ open, setOpen, account, handleDisconnect }: IAccountModal) => {
-	const [isCopied, setIsCopied] = useState<Boolean>(false);
-
-	useEffect(() => {
-		if (!isCopied) return;
-		const listener = setTimeout(() => {
-			setIsCopied(false);
-		}, 1000);
-
-		return () => {
-			clearTimeout(listener);
-		};
-	}, [isCopied]);
-
-	const copyHandler = () => {
-		navigator.clipboard.writeText(account!).then(
-			() => {
-				setIsCopied(true);
-			},
-			() => {
-				setIsCopied(false);
-			}
-		);
-	};
-
+const Index = ({ open, setOpen, handleDisconnect }: IAccountModal) => {
 	const cancelButtonRef = useRef(null);
 
 	return (
@@ -85,7 +57,8 @@ const Index = ({ open, setOpen, account, handleDisconnect }: IAccountModal) => {
 											className='text-2xl leading-6 font-medium text-white/90'>
 											Account
 										</Dialog.Title>
-										<div className='flex flex-col grow gap-5 border border-white/30 rounded-[12px] p-4'>
+
+										<Dialog.Description className='flex flex-col grow gap-5 border border-white/30 rounded-[12px] p-4'>
 											<div className='flex flex-row justify-between'>
 												<p className='text-white/50'>Connected with Metamask</p>
 												<button
@@ -98,36 +71,13 @@ const Index = ({ open, setOpen, account, handleDisconnect }: IAccountModal) => {
 												</button>
 											</div>
 											<div className='flex flex-row gap-2'>
-												<Jazzicon
-													diameter={20}
-													seed={jsNumberForAddress(account!)}
-												/>
-												<span className='text-white text-xl leading-none'>
-													{shortenString(account!)}
-												</span>
+												<AccountInfo />
 											</div>
 											<div className='flex flex-row gap-3'>
-												{isCopied ? (
-													<button className='inline-flex gap-1 text-white/60 text-xs'>
-														<CheckCircleIcon className='h-4 w-4' />
-														Copied
-													</button>
-												) : (
-													<button
-														className='inline-flex gap-1 text-white/60 text-xs'
-														onClick={copyHandler}>
-														<DuplicateIcon className='h-4 w-4' />
-														Copy Address
-													</button>
-												)}
-												<button
-													className='inline-flex gap-1 text-white/60 text-xs'
-													onClick={copyHandler}>
-													<ExternalLinkIcon className='h-4 w-4' />
-													View on Explorer
-												</button>
+												<CopyButton />
+												<ViewExplorer />
 											</div>
-										</div>
+										</Dialog.Description>
 									</div>
 								</div>
 							</div>

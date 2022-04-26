@@ -1,3 +1,4 @@
+import React from 'react';
 import { IChildren, IMintCardImage, IPricePill } from '../../../types';
 import ImageLoader from '../../ImageLoader/ImageLoader';
 
@@ -30,9 +31,11 @@ const MintCard = ({ children }: IChildren) => {
 
 //Card Heading Components
 
-export const ImageHolder = ({ url }: any) => {
+export const ImageHolder: React.FC<
+	React.HTMLAttributes<HTMLDivElement> & React.HTMLAttributes<HTMLImageElement>
+> = ({ url, ...props }: any) => {
 	return (
-		<div className='h-80'>
+		<div className='h-80' {...props}>
 			<ImageLoader url={url} />
 		</div>
 	);

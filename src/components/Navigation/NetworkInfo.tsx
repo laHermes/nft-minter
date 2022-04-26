@@ -6,34 +6,21 @@ import useWalletConnect from 'services/web3/wallet/useWalletConnect';
 import { ExclamationIcon } from '@heroicons/react/solid';
 import polygonLogo from 'assets/polygon-logo-circle.png';
 
+import { Button } from 'components/Elements/Button/Index';
+
 import { EthNetworks } from 'services/web3/types';
 
-const withHigherOrder = (Component: React.FC) => (props: any) => {
-	const { chainId } = useWalletConnect();
-	if (!chainId || chainId !== EthNetworks.Mumbai)
-		return (
-			<ExclamationIcon className='bg-default-primary text-yellow-400 h-10 p-2 rounded-[12px] hover:bg-hover-primary' />
-		);
-
-	return <Component {...props} />;
-};
-
-// network icon
-const NetIcon: React.FC<React.HTMLAttributes<HTMLImageElement>> = ({
-	...props
-}) => <img {...props} alt='Network Icon' />;
-
-const NetworkIcon = withHigherOrder(NetIcon);
-
 const NetworkInfo = () => {
+	const { chainId } = useWalletConnect();
+
 	return (
-		<div className='p-[3px]'>
-			<NetworkIcon
-				src={polygonLogo}
-				alt='polygon logo'
-				className='transition-all bg-default-primary h-10 p-2 rounded-[12px] hover:bg-hover-primary'
-			/>
-		</div>
+		<Button>
+			{!chainId || chainId !== EthNetworks.Mumbai ? (
+				<ExclamationIcon className=' text-yellow-400 h-10 ' />
+			) : (
+				<img alt='Network Icon' src={polygonLogo} className='h-10 ' />
+			)}
+		</Button>
 	);
 };
 
