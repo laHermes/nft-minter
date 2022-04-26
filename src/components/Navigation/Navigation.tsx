@@ -34,7 +34,7 @@ const Navigation = () => {
 				<Logo />
 				<Links />
 			</div>
-			<div className='flex flex-row gap-2 text-xl'>
+			<div className='flex flex-row gap-2'>
 				<NetworkInfo />
 				<Account />
 			</div>

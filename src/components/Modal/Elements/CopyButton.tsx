@@ -3,8 +3,14 @@ import { useEffect, useState } from 'react';
 //hooks
 import useWalletConnect from 'services/web3/wallet/useWalletConnect';
 
+//components
+import { Button } from 'components/Elements/Button/Button';
+
 //icons
 import { CheckCircleIcon, DuplicateIcon } from '@heroicons/react/outline';
+
+const buttonStyle = 'inline-flex gap-1 text-white/60 text-xs';
+const iconStyle = 'h-4 w-4';
 
 const CopyButton = () => {
 	const [isCopied, setIsCopied] = useState<Boolean>(false);
@@ -33,15 +39,13 @@ const CopyButton = () => {
 	};
 
 	return isCopied ? (
-		<button className='inline-flex gap-1 text-white/60 text-xs'>
-			<CheckCircleIcon className='h-4 w-4' />
+		<button className={buttonStyle}>
+			<CheckCircleIcon className={iconStyle} />
 			Copied
 		</button>
 	) : (
-		<button
-			className='inline-flex gap-1 text-white/60 text-xs'
-			onClick={copyHandler}>
-			<DuplicateIcon className='h-4 w-4' />
+		<button className={buttonStyle} onClick={copyHandler}>
+			<DuplicateIcon className={iconStyle} />
 			Copy Address
 		</button>
 	);

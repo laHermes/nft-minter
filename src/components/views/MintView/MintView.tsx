@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'components/Elements/Link/Link';
 
 // hooks
 import useWalletConnect from 'services/web3/wallet/useWalletConnect';

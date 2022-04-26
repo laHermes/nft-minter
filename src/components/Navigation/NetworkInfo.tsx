@@ -14,11 +14,11 @@ const NetworkInfo = () => {
 	const { chainId } = useWalletConnect();
 
 	return (
-		<Button>
+		<Button size='md'>
 			{!chainId || chainId !== EthNetworks.Mumbai ? (
-				<ExclamationIcon className=' text-yellow-400 h-10 ' />
+				<ExclamationIcon className='text-yellow-400 h-6' />
 			) : (
-				<img alt='Network Icon' src={polygonLogo} className='h-10 ' />
+				<img alt='Network Icon' src={polygonLogo} className='h-6' />
 			)}
 		</Button>
 	);

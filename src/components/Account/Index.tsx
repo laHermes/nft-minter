@@ -18,7 +18,7 @@ const Index = () => {
 				setOpen={setOpen}
 				handleDisconnect={handleDisconnect}
 			/>
-			<Button onClick={() => setOpen((state) => !state)}>
+			<Button onClick={() => setOpen((state) => !state)} size='sm'>
 				{shortenString(account!)}
 			</Button>
 			{/* <Account

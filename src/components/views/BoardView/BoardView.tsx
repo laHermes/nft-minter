@@ -2,7 +2,7 @@ import React from 'react';
 
 // components
 import NftsTable from 'components/Nft/Table/Index';
-import StyledLink from 'components/Link/Index';
+import Link from 'components/Elements/Link/Link';
 
 const Board = () => {
 	return (
@@ -15,7 +15,7 @@ const Board = () => {
 					</p>
 				</div>
 				<div className='self-center'>
-					<StyledLink to='/mint'>Go To Minter </StyledLink>
+					<Link to='/mint'>Go To Minter </Link>
 				</div>
 			</div>
 

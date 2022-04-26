@@ -3,12 +3,15 @@ import clsx from 'clsx';
 
 const variants = {
 	primary: 'bg-default-primary text-white hover:bg-hover-primary',
+	disconnect:
+		'border border-red-500/40 hover:border-red-400/60 text-red-600 hover:text-red-500',
+	small: 'inline-flex gap-1 text-white/60 ',
 };
 
 const sizes = {
-	sm: 'py-2 px-4 text-sm',
-	md: 'p-2 text-lg font-bold',
-	lg: 'py-3 px-8 text-lg',
+	sm: 'p-3 font-bold text-sm',
+	md: 'py-2 px-4 font-bold text-md',
+	lg: 'py-3 px-8 font-bold text-lg',
 };
 
 type IconProps =
@@ -42,14 +45,14 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 				ref={ref}
 				type={type}
 				className={clsx(
-					'transition-all flex justify-center items-center rounded-[12px]',
+					'transition-all flex justify-center items-center rounded-[12px] leading-none ',
 					variants[variant],
 					sizes[size],
 					className
 				)}
 				{...props}>
 				{!isLoading && startIcon}
-				<span className='mx-2'>{children}</span> {!isLoading && endIcon}
+				<span>{children}</span> {!isLoading && endIcon}
 			</button>
 		);
 	}

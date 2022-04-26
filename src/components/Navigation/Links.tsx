@@ -1,6 +1,7 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+
+import Link from 'components/Elements/Link/Link';
 
 const Links = () => {
 	const location = useLocation();
@@ -17,17 +18,19 @@ const Links = () => {
 	];
 
 	return (
-		<ul className='inline-flex gap-8 font-semibold text-lg'>
+		<ul className='inline-flex gap-1 font-semibold text-lg pt-3'>
 			{navObjects.map((object) => {
 				return (
-					<li
-						key={object.location}
-						className={`${
-							location.pathname === object.location
-								? 'text-white/95'
-								: 'text-white/60'
-						} hover:text-white pt-2`}>
-						<Link to={object.location}>{object.label}</Link>
+					<li key={object.location}>
+						<Link
+							variant={
+								location.pathname === object.location
+									? 'headerActive'
+									: 'headerDisable'
+							}
+							to={object.location}>
+							{object.label}
+						</Link>
 					</li>
 				);
 			})}

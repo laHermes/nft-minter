@@ -18,18 +18,16 @@ const FilterOwned = ({ filterExists, toggleFilter, filters }: IFilterOwned) => {
 		if (!filters.length) setEnabled(false);
 	}, [filters]);
 
+	const switchHandler = () => {
+		setEnabled(!enabled);
+		toggleFilter(account, Group.OWNED, (nft: INft) => nft.owner === account);
+	};
+
 	return (
 		<Switch
 			disabled={!account}
 			checked={filterExists(account, Group.OWNED)}
-			onChange={() => {
-				setEnabled(!enabled);
-				toggleFilter(
-					account,
-					Group.OWNED,
-					(nft: INft) => nft.owner === account
-				);
-			}}
+			onChange={switchHandler}
 			className={`${
 				enabled ? 'bg-default-primary' : 'bg-default-primary/20'
 			} relative inline-flex items-center h-7 border rounded-full w-12 `}>
