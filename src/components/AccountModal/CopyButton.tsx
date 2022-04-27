@@ -3,9 +3,6 @@ import { useEffect, useState } from 'react';
 //hooks
 import useWalletConnect from 'services/web3/wallet/useWalletConnect';
 
-//components
-import { Button } from 'components/Elements/Button/Button';
-
 //icons
 import { CheckCircleIcon, DuplicateIcon } from '@heroicons/react/outline';
 

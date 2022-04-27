@@ -9,11 +9,11 @@ const Links = () => {
 	const navObjects = [
 		{
 			label: 'Mint',
-			location: '/mint',
+			location: '/',
 		},
 		{
 			label: 'Collection',
-			location: '/',
+			location: '/collection',
 		},
 	];
 

@@ -2,9 +2,9 @@ import { useRef, Fragment } from 'react';
 
 // Components
 import { Dialog } from '@headlessui/react';
-import CopyButton from './Elements/CopyButton';
-import AccountInfo from './Elements/AccountInfo';
-import ViewExplorer from './Elements/ViewExplorer';
+import CopyButton from './CopyButton';
+import AccountInfo from './AccountInfo';
+import ViewExplorer from './ViewExplorer';
 import Modal from 'components/Elements/Modal/Modal';
 import { Button } from 'components/Elements/Button/Button';
 

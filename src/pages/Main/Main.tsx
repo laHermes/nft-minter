@@ -6,7 +6,7 @@ import useWalletConnect from 'services/web3/wallet/useWalletConnect';
 import useMinter from 'features/mint/hooks/useMinter';
 
 // components
-import Benefits from '../../Benefit/Benefits';
+import Benefits from 'components/Benefit/Benefits';
 import ImageLoader from 'components/ImageLoader/ImageLoader';
 
 import NFTImage from 'assets/nft.png';
@@ -15,7 +15,7 @@ import NFTImage from 'assets/nft.png';
 import Error from 'components/Elements/Error/Error';
 import { Button } from 'components/Elements/Button/Button';
 
-const Mint = () => {
+const Main = () => {
 	const { chainId } = useWalletConnect();
 	const { count, increment, decrement, mint } = useMinter();
 
@@ -43,7 +43,7 @@ const Mint = () => {
 						</div>
 						<div className='flex flex-col gap-6'>
 							<Benefits />
-							<Link variant='secondary' to='/'>
+							<Link variant='secondary' to='/collection'>
 								View Collection
 							</Link>
 						</div>
@@ -54,7 +54,7 @@ const Mint = () => {
 	);
 };
 
-export default Mint;
+export default Main;
 
 const withProperWeb3Connection = (Component: React.FC) => (props: any) => {
 	const { chainId } = useWalletConnect();

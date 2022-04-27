@@ -39,7 +39,7 @@ const Collection = () => {
 					</p>
 				</div>
 				<div className='self-center'>
-					<Link to='/mint'>Go To Minter </Link>
+					<Link to='/'>Go To Minter </Link>
 				</div>
 			</div>
 			<Table>
