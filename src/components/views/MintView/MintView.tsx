@@ -6,23 +6,14 @@ import useWalletConnect from 'services/web3/wallet/useWalletConnect';
 import useMinter from 'hooks/useMinter';
 
 // components
-import { MintCard } from 'components/Minting/MintCardHeading/styles';
-import { MintControl } from 'components/Minting/MintControl/styles';
 import Benefits from './Benefits';
 import ImageLoader from 'components/ImageLoader/ImageLoader';
-import { Button } from 'components/Elements/Button/Index';
-// styles
-import {
-	CountToMint,
-	DecrementButton,
-	IncrementButton,
-	MintButton,
-} from '../../Minting/MintControl/styles';
+
 import NFTImage from 'assets/nft.png';
-import { InboxIcon } from '@heroicons/react/outline';
 
 // errors
 import Error from './Error';
+import { Button } from 'components/Elements/Button/Button';
 
 const Mint = () => {
 	const { chainId } = useWalletConnect();
@@ -44,15 +35,15 @@ const Mint = () => {
 					<div className='grid grid-cols-2 gap-8 mt-12'>
 						<div className='flex flex-col justify-between gap-6'>
 							<div className='h-72'>
-								<ImageLoader url={NFTImage} />
+								<ImageLoader src={NFTImage} />
 							</div>
-							<MintButton onClick={mint}>Mint</MintButton>
+							<Button onClick={mint} variant='gradientBg' gradientBorder={true}>
+								Mint
+							</Button>
 						</div>
 						<div className='flex flex-col gap-6'>
 							<Benefits />
-							<Link
-								className='w-full text-center bg-pill-grey hover:bg-zinc-200 transition-all px-[12px] py-[10px] rounded-[12px] text-white hover:text-zinc-700 font-bold'
-								to='/'>
+							<Link variant='secondary' to='/'>
 								View Collection
 							</Link>
 						</div>
@@ -77,3 +68,5 @@ const withProperWeb3Connection = (Component: React.FC) => (props: any) => {
 
 	return <Component {...props} />;
 };
+
+// const ComponentToBe = withProperWeb3Connection(Component)

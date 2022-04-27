@@ -3,8 +3,7 @@ import { shortenString } from 'utils/pureFunctions';
 import useWalletConnect from 'services/web3/wallet/useWalletConnect';
 
 // components
-import Account from './Account';
-import AccountModal from 'components/Modal/Index';
+import AccountModal from 'components/AccountModal/Index';
 import { Button } from 'components/Elements/Button/Button';
 
 const Index = () => {
@@ -18,13 +17,10 @@ const Index = () => {
 				setOpen={setOpen}
 				handleDisconnect={handleDisconnect}
 			/>
-			<Button onClick={() => setOpen((state) => !state)} size='sm'>
+
+			<Button onClick={() => setOpen((state) => !state)} variant='primary'>
 				{shortenString(account!)}
 			</Button>
-			{/* <Account
-				title={shortenString(account!)}
-				onClick={() => setOpen((state) => !state)}
-			/> */}
 		</>
 	);
 };

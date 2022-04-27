@@ -1,7 +1,7 @@
 import React from 'react';
 import { Listbox } from '@headlessui/react';
 
-import useColorFilter from 'hooks/useColorFilter';
+import useColorFilter from 'features/Filter/hooks/useColorFilter';
 import { IFilterColor } from 'types';
 
 const FilterColor = ({

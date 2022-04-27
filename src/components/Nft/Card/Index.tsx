@@ -8,7 +8,7 @@ const Index = ({ id, owner, metadata }: INft) => {
 	return (
 		<NftCardWrapper>
 			<ImageHolder>
-				<ImageLoader url={metadata.image} />
+				<ImageLoader src={metadata.image} />
 			</ImageHolder>
 
 			<TitleHolder>Mesh NFT #{id}</TitleHolder>

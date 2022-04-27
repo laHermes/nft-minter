@@ -1,6 +1,6 @@
 import React from 'react';
-import FilterContext from 'store/FilterContext';
-import PaginationContext from 'store/PaginationContext';
+import FilterContext from 'features/Filter/context/FilterContext';
+import PaginationContext from 'features/Paginate/context/PaginationContext';
 import Board from './BoardView';
 const Index = () => {
 	return (

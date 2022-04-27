@@ -2,16 +2,17 @@ import React from 'react';
 import clsx from 'clsx';
 
 const variants = {
-	primary: 'bg-default-primary text-white hover:bg-hover-primary',
+	primary: 'bg-default-primary hover:bg-hover-primary text-md h-full',
+	gradientBg:
+		'bg-default-primary hover:bg-hover-primary hover:bg-transparent text-md h-full w-full',
 	disconnect:
-		'border border-red-500/40 hover:border-red-400/60 text-red-600 hover:text-red-500',
-	small: 'inline-flex gap-1 text-white/60 ',
+		'font-medium border border-red-500/40 hover:border-red-400/60 text-red-600 hover:text-red-500',
+	none: '',
 };
 
-const sizes = {
-	sm: 'p-3 font-bold text-sm',
-	md: 'py-2 px-4 font-bold text-md',
-	lg: 'py-3 px-8 font-bold text-lg',
+const border = {
+	default:
+		'backdrop-blur-sm text-[16px] rounded-[12px] p-[2px] bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500',
 };
 
 type IconProps =
@@ -21,8 +22,8 @@ type IconProps =
 
 export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
 	variant?: keyof typeof variants;
-	size?: keyof typeof sizes;
 	isLoading?: boolean;
+	gradientBorder?: boolean;
 } & IconProps;
 
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
@@ -31,8 +32,8 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 			type = 'button',
 			className = '',
 			variant = 'primary',
-			size = 'md',
 			isLoading = false,
+			gradientBorder = false,
 			startIcon,
 			endIcon,
 			children,
@@ -41,19 +42,20 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 		ref
 	) => {
 		return (
-			<button
-				ref={ref}
-				type={type}
-				className={clsx(
-					'transition-all flex justify-center items-center rounded-[12px] leading-none ',
-					variants[variant],
-					sizes[size],
-					className
-				)}
-				{...props}>
-				{!isLoading && startIcon}
-				<span>{children}</span> {!isLoading && endIcon}
-			</button>
+			<div className={clsx(border['default'], !gradientBorder && 'bg-none')}>
+				<button
+					ref={ref}
+					type={type}
+					className={clsx(
+						'transition-all flex justify-center items-center rounded-[12px] leading-none px-[12px] py-[10px] text-white font-bold',
+						variants[variant],
+						className
+					)}
+					{...props}>
+					{!isLoading && startIcon}
+					<span>{children}</span> {!isLoading && endIcon}
+				</button>
+			</div>
 		);
 	}
 );

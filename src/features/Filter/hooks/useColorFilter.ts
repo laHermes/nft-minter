@@ -2,11 +2,11 @@ import { useState, useMemo } from 'react';
 
 // redux
 import { useSelector } from 'react-redux';
-import { selectUniqueColors } from '../redux/nfts/nfts';
-import { INft } from '../redux/types';
+import { selectUniqueColors } from '../../../redux/nfts/nfts';
+import { INft } from '../../../redux/types';
 
 // types & interface
-import { IFilterColor } from '../types';
+import { IFilterColor } from '../../../types';
 import { Group } from './useFilter';
 
 const useColorFilter = ({

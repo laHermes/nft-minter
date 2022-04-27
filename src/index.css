@@ -44,5 +44,5 @@ body {
 }
 
 .navigationArrow {
-	@apply text-white text-3xl rounded-full border border-white p-1;
+	@apply text-white/80 hover:text-white/90 text-3xl rounded-full border border-white p-1;
 }

@@ -1,14 +1,17 @@
 import React from 'react';
-import { InboxIcon } from '@heroicons/react/outline';
-import { IDataFallback } from 'types';
 
-const DataFallback = ({ warningText }: IDataFallback) => {
+interface IFallback {
+	warningText: string;
+	Icon?: React.FC<any>;
+}
+
+const Fallback = ({ Icon, warningText }: IFallback) => {
 	return (
 		<div className='motion-safe:animate-pulse h-96 w-full flex flex-col items-center gap-3 justify-start p-20'>
-			<InboxIcon width={80} />
+			{Icon && <Icon width={80} />}
 			<p className='self-center text-xl text-white/70'>{warningText}</p>
 		</div>
 	);
 };
 
-export default DataFallback;
+export default Fallback;

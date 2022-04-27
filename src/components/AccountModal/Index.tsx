@@ -27,13 +27,10 @@ const Index = ({ open, setOpen, handleDisconnect }: IAccountModal) => {
 				Account
 			</Dialog.Title>
 
-			<Dialog.Description className='flex flex-col grow gap-5 border border-white/30 rounded-[12px] p-4'>
+			<div className='flex flex-col grow gap-5 border border-white/30 rounded-[12px] p-4'>
 				<div className='flex flex-row justify-between'>
 					<p className='text-white/50'>Connected with Metamask</p>
-					<Button
-						onClick={disconnectWalletAndClose}
-						variant='disconnect'
-						size='sm'>
+					<Button onClick={disconnectWalletAndClose} variant='disconnect'>
 						Disconnect
 					</Button>
 				</div>
@@ -44,7 +41,7 @@ const Index = ({ open, setOpen, handleDisconnect }: IAccountModal) => {
 					<CopyButton />
 					<ViewExplorer />
 				</div>
-			</Dialog.Description>
+			</div>
 		</Modal>
 	);
 };

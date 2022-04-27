@@ -1,6 +1,6 @@
 import { createContext, useContext } from 'react';
-import { FilterCtx, IFilterCtx } from './FilterContext';
-import usePagination from 'hooks/usePagination';
+import { FilterCtx, IFilterCtx } from '../../Filter/context/FilterContext';
+import usePagination from 'features/Paginate/hooks/usePagination';
 
 import { IPaginated } from 'types';
 

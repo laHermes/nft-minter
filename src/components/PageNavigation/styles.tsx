@@ -1,7 +1,7 @@
 import React from 'react';
 
 // types
-import { IButton, IChildren } from 'types';
+import { IChildren } from 'types';
 
 // icons
 import { AiOutlineCaretLeft, AiOutlineCaretRight } from 'react-icons/ai';
@@ -14,9 +14,9 @@ const PageNavigationWrapper = ({ children }: IChildren) => {
 	);
 };
 
-const PreviousPage: React.FC<
-	IButton & React.HTMLAttributes<HTMLButtonElement>
-> = ({ ...props }) => {
+const PreviousPage: React.FC<React.HTMLAttributes<HTMLButtonElement>> = ({
+	...props
+}) => {
 	return (
 		<button {...props}>
 			<AiOutlineCaretLeft className='navigationArrow' />
@@ -24,7 +24,7 @@ const PreviousPage: React.FC<
 	);
 };
 
-const NextPage: React.FC<IButton & React.HTMLAttributes<HTMLButtonElement>> = ({
+const NextPage: React.FC<React.HTMLAttributes<HTMLButtonElement>> = ({
 	...props
 }) => {
 	return (

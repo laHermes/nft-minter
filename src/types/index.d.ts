@@ -26,14 +26,6 @@ interface IPaginated {
 	paginationGroup: number[] | [] | undefined;
 }
 
-interface ICountToMint {
-	count: number;
-}
-
-interface IMintButton extends IButton {
-	children: ReactNode;
-}
-
 interface IPricePill {
 	price: string;
 	logoUrl?: string;
@@ -41,10 +33,6 @@ interface IPricePill {
 
 interface IMintCardImage {
 	url: string;
-}
-
-interface IDataFallback {
-	warningText: string;
 }
 
 interface IFilterColor {
@@ -60,10 +48,7 @@ export {
 	IUsePagination,
 	IPaginated,
 	ICountToMint,
-	IButton,
-	IMintButton,
 	IPricePill,
 	IMintCardImage,
-	IDataFallback,
 	IFilterColor,
 };

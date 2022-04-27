@@ -1,18 +1,17 @@
 import React, { useState } from 'react';
 
-interface IImageLoader {
-	url: string;
-}
-
 const ImageLoader: React.FC<
-	IImageLoader & React.HTMLAttributes<HTMLImageElement>
-> = ({ url, ...props }: IImageLoader) => {
+	React.DetailedHTMLProps<
+		React.ImgHTMLAttributes<HTMLImageElement>,
+		HTMLImageElement
+	>
+> = ({ src, ...props }) => {
 	const [loaded, setLoaded] = useState<boolean>(false);
 
 	return (
 		<>
 			<img
-				src={url}
+				src={src}
 				alt='nft'
 				className={`${loaded ? 'block' : 'hidden'} rounded-md w-full h-full`}
 				onLoad={() => setLoaded(true)}

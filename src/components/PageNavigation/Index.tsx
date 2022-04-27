@@ -11,7 +11,6 @@ const Index = ({
 	return (
 		<PageNavigationWrapper>
 			<PreviousPage onClick={previousPage} />
-
 			{paginationGroup?.map((page: number, id: number) => (
 				<button key={id} onClick={changePage} className='h-full px-2'>
 					<span

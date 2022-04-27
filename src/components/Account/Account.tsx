@@ -1,12 +1,7 @@
 import React from 'react';
 
-interface IAccount {
-	title: string;
-}
-
 // component used in WalletButton.tsx
-const Account: React.FC<IAccount & React.HTMLAttributes<HTMLButtonElement>> = ({
-	title,
+const Account: React.FC<React.HTMLAttributes<HTMLButtonElement>> = ({
 	...props
 }) => {
 	return (
@@ -14,7 +9,7 @@ const Account: React.FC<IAccount & React.HTMLAttributes<HTMLButtonElement>> = ({
 			<button
 				className='transition-all bg-default-primary px-[12px] py-[10px] rounded-[12px] font-bold hover:bg-hover-primary'
 				{...props}>
-				<p>{title}</p>
+				<p>{props.children}</p>
 			</button>
 		</div>
 	);
