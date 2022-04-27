@@ -3,7 +3,7 @@ import Link from 'components/Elements/Link/Link';
 
 // hooks
 import useWalletConnect from 'services/web3/wallet/useWalletConnect';
-import useMinter from 'hooks/useMinter';
+import useMinter from 'features/mint/hooks/useMinter';
 
 // components
 import Benefits from './Benefits';
