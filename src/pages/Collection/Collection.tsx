@@ -25,7 +25,7 @@ import {
 // types
 import { INft } from 'redux/types';
 
-const Board = () => {
+const Collection = () => {
 	const pagCtx = useContext(PaginationCtx);
 	const { pagination, filtered } = pagCtx;
 	const { account } = useWalletConnect();
@@ -69,7 +69,7 @@ const Board = () => {
 	);
 };
 
-export default Board;
+export default Collection;
 
 // HOC
 

@@ -12,7 +12,7 @@ import meshLogo from 'assets/mesh-second-logo.png';
 
 //components
 import Links from './Links';
-import WalletButton from 'components/Wallet/WalletButton/Index';
+import WalletButton from 'features/connect/components/WalletButton';
 import { Button } from 'components/Elements/Button/Button';
 import { shortenString } from 'utils/pureFunctions';
 import { EthNetworks } from 'services/web3/types';

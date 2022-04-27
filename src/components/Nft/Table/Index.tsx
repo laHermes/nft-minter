@@ -5,7 +5,7 @@ import useWalletConnect from 'services/web3/wallet/useWalletConnect';
 
 // components
 import FilterOwned from 'features/Filter/components/FilterOwned';
-import NftCard from '../Card/Index';
+import NftCard from '../../Elements/Card/Index';
 import NftTable from './styles';
 import PageNav from 'features/Paginate/components/PageNav';
 import { PaginationCtx } from 'features/Paginate/context/PaginationContext';

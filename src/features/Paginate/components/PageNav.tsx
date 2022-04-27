@@ -11,11 +11,11 @@ const PageNav = ({
 	paginationGroup,
 }: any) => {
 	return (
-		<PageNavigationWrapper>
+		<div className='inline-flex items-center gap-5 p-2  text-lg border-white w-fit rounded-md text-white'>
 			<Button onClick={previousPage} variant='none'>
 				<AiOutlineCaretLeft className='navigationArrow' />
 			</Button>
-			{/* <PreviousPage onClick={previousPage} /> */}
+
 			{paginationGroup?.map((page: number, id: number) => (
 				<button key={id} onClick={changePage} className='h-full px-2'>
 					<span
@@ -30,17 +30,8 @@ const PageNav = ({
 			<Button onClick={nextPage} variant='none'>
 				<AiOutlineCaretRight className='navigationArrow' />
 			</Button>
-			{/* <NextPage onClick={nextPage} /> */}
-		</PageNavigationWrapper>
+		</div>
 	);
 };
 
 export default PageNav;
-
-const PageNavigationWrapper = ({ children }: IChildren) => {
-	return (
-		<nav className='inline-flex items-center gap-5 p-2  text-lg  border-white w-fit rounded-md text-white'>
-			{children}
-		</nav>
-	);
-};

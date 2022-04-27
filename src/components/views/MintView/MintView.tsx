@@ -6,13 +6,13 @@ import useWalletConnect from 'services/web3/wallet/useWalletConnect';
 import useMinter from 'features/mint/hooks/useMinter';
 
 // components
-import Benefits from './Benefits';
+import Benefits from '../../Benefit/Benefits';
 import ImageLoader from 'components/ImageLoader/ImageLoader';
 
 import NFTImage from 'assets/nft.png';
 
 // errors
-import Error from './Error';
+import Error from 'components/Elements/Error/Error';
 import { Button } from 'components/Elements/Button/Button';
 
 const Mint = () => {
