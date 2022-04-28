@@ -8,7 +8,7 @@ import useMinter from 'features/mint/hooks/useMinter';
 // components
 import Benefits from 'components/Benefit/Benefits';
 import ImageLoader from 'components/ImageLoader/ImageLoader';
-
+import { NftDetails } from 'config/nft';
 import NFTImage from 'assets/nft.png';
 
 // errors
@@ -24,14 +24,15 @@ const Main = () => {
 			{!(window as any).ethereum ? (
 				<Error message='Make sure you have Metamask Wallet installed' />
 			) : chainId !== 80001 ? (
-				<Error message='This app is supported only on the Polygon Mumbai Testnet' />
+				<Error
+					message={`This app is supported only on the ${NftDetails.NETWORK}`}
+				/>
 			) : (
 				<>
 					<div className='rounded-[12px] w-fit text-white bg-pill-grey py-1.5 px-3 text-sm text-center self-center'>
-						<span>Polygon Mumbai</span>
+						<span>{NftDetails.NETWORK}</span>
 					</div>
 					<h2 className='text-white text-4xl font-bold'>Mint NFT</h2>
-
 					<div className='grid grid-cols-2 gap-8 mt-12'>
 						<div className='flex flex-col justify-between gap-6'>
 							<div className='h-72'>

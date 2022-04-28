@@ -90,7 +90,7 @@ const BaseContent: React.ComponentType<any> = ({ data }) => {
 	return (
 		<Grid>
 			{data.map((data: INft) => {
-				return <NftCard {...data} />;
+				return <NftCard key={data.id} {...data} />;
 			})}
 		</Grid>
 	);

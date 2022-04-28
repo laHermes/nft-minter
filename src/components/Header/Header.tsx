@@ -16,8 +16,9 @@ import WalletButton from 'features/connect/components/WalletButton';
 import { Button } from 'components/Elements/Button/Button';
 import { shortenString } from 'utils/pureFunctions';
 import { EthNetworks } from 'services/web3/types';
-import { ExclamationIcon } from '@heroicons/react/outline';
+import { ExclamationIcon } from '@heroicons/react/solid';
 import { ToastContainer } from 'react-toastify';
+import { useWeb3React } from '@web3-react/core';
 
 const Header = () => {
 	const [open, setOpen] = useState<boolean>(false);
@@ -25,23 +26,24 @@ const Header = () => {
 	const { chainId, account } = useWalletConnect();
 	const dispatch = useDispatch();
 
-	// const { library } = useWeb3React();
+	const { library } = useWeb3React();
 
 	useAutoWalletConnect();
+
 	useEffect(() => {
 		dispatch(getNfts());
 	}, [dispatch]);
 
-	// useEffect(() => {
-	// 	//dispatch event to fetch nfts from blockchain
-	// 	if (!library) return;
+	useEffect(() => {
+		//dispatch event to fetch nfts from blockchain
+		if (!library) return;
 
-	// 	// on every block minted fetch nfts
-	// 	library.on('block', async () => {
-	// 		dispatch(getNfts());
-	// 	});
-	// 	// return () => library.removeListeners('block');
-	// }, [dispatch, library]);
+		// on every block minted fetch nfts
+		library.on('block', async () => {
+			dispatch(getNfts());
+		});
+		// return () => library.removeListeners('block');
+	}, [dispatch, library]);
 
 	return (
 		<header className='navigationStyle'>

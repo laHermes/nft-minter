@@ -16,7 +16,6 @@ export const FilterCtx = createContext<Partial<IFilterCtx>>({});
 
 const FilterContext = ({ children }: IProvider) => {
 	const { nfts: data } = useSelector(selectNfts);
-	console.log(data);
 
 	const filter = useFilter(data);
 
