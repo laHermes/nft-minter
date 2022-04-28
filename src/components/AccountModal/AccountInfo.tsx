@@ -1,5 +1,5 @@
 import React from 'react';
-import useWalletConnect from 'services/web3/wallet/useWalletConnect';
+import useWalletConnect from 'features/connect/hooks/useWalletConnect';
 import Jazzicon, { jsNumberForAddress } from 'react-jazzicon';
 import { shortenString } from 'utils/pureFunctions';
 

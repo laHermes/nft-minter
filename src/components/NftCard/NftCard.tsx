@@ -3,6 +3,7 @@ import ImageLoader from 'components/ImageLoader/ImageLoader';
 import React from 'react';
 import { INft } from 'redux/types';
 import { shortenString } from 'utils/pureFunctions';
+import Attribute from './Attribute';
 
 const NftCard = ({ metadata, owner, id }: INft) => {
 	return (
@@ -11,14 +12,13 @@ const NftCard = ({ metadata, owner, id }: INft) => {
 				<ImageLoader src={metadata.image} />
 			</ImageHolder>
 			<TitleHolder>Mesh NFT #{id}</TitleHolder>
-			<p className='text-sm text-indigo-50 font-medium tracking-wider '>
-				Owner: {shortenString(owner)}
-			</p>
-
+			<Attribute attribute='Owner' value={shortenString(owner)} />
 			{metadata.attributes.map((attribute: any, index: number) => (
-				<p key={index} className='text-md text-indigo-50 font-medium'>
-					{attribute.trait_type}: {attribute.value}
-				</p>
+				<Attribute
+					key={index}
+					attribute={attribute.trait_type}
+					value={attribute.value}
+				/>
 			))}
 		</Card>
 	);

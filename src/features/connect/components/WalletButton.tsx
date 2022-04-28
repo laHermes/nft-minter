@@ -1,5 +1,5 @@
 import React from 'react';
-import useWalletConnect from 'services/web3/wallet/useWalletConnect';
+import useWalletConnect from 'features/connect/hooks/useWalletConnect';
 import { SUPPORTED_WALLETS } from 'services/web3/wallet/utils';
 import { Button } from 'components/Elements/Button/Button';
 
@@ -15,11 +15,7 @@ const Index: React.FC<
 	const connect = () => handleConnect(wallet);
 
 	return (
-		<Button
-			onClick={connect}
-			variant='gradientBg'
-			gradientBorder={true}
-			{...props}>
+		<Button onClick={connect} variant='gradientBg' {...props}>
 			{title}
 		</Button>
 	);

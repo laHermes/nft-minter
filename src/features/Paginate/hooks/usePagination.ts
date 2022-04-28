@@ -1,4 +1,4 @@
-import useWalletConnect from 'services/web3/wallet/useWalletConnect';
+import useWalletConnect from 'features/connect/hooks/useWalletConnect';
 import { useEffect, useState } from 'react';
 import { IUsePagination, IPaginated } from 'types';
 

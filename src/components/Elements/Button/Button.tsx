@@ -23,7 +23,6 @@ type IconProps =
 export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
 	variant?: keyof typeof variants;
 	isLoading?: boolean;
-	gradientBorder?: boolean;
 } & IconProps;
 
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
@@ -33,7 +32,6 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 			className = '',
 			variant = 'primary',
 			isLoading = false,
-			gradientBorder = false,
 			startIcon,
 			endIcon,
 			children,
@@ -42,7 +40,11 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 		ref
 	) => {
 		return (
-			<div className={clsx(border['default'], !gradientBorder && 'bg-none')}>
+			<div
+				className={clsx(
+					border['default'],
+					variant !== 'gradientBg' && 'bg-none'
+				)}>
 				<button
 					ref={ref}
 					type={type}

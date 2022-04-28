@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'components/Elements/Link/Link';
 
 // hooks
-import useWalletConnect from 'services/web3/wallet/useWalletConnect';
+import useWalletConnect from 'features/connect/hooks/useWalletConnect';
 import useMinter from 'features/mint/hooks/useMinter';
 
 // components
@@ -38,7 +38,7 @@ const Main = () => {
 							<div className='h-72'>
 								<ImageLoader src={NFTImage} />
 							</div>
-							<Button onClick={mint} variant='gradientBg' gradientBorder={true}>
+							<Button onClick={mint} variant='gradientBg'>
 								Mint
 							</Button>
 						</div>

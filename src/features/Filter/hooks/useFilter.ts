@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { INft } from 'redux/types';
-import useWalletConnect from 'services/web3/wallet/useWalletConnect';
+import useWalletConnect from 'features/connect/hooks/useWalletConnect';
 
 export enum Group {
 	OWNED = 'owned',

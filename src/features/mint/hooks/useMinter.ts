@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 // utility functions
 import { mintToken } from 'services/web3/utils';
-import useWalletConnect from 'services/web3/wallet/useWalletConnect';
+import useWalletConnect from 'features/connect/hooks/useWalletConnect';
 import { hasEnoughEth } from 'services/web3/utils';
 
 // toast notifications

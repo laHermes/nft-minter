@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useWeb3React } from '@web3-react/core';
 import { getAutoLoginLS, setAutoLoginLS } from 'utils/localStorage';
-import { injected } from './connectors';
+import { injected } from '../../../services/web3/wallet/connectors';
 
 export const useAutoWalletConnect = () => {
 	const { activate, active } = useWeb3React();

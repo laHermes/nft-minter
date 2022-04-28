@@ -18,11 +18,11 @@ body {
 }
 
 .navigationStyle {
-	@apply transition-all duration-150 ease-in;
+	@apply max-w-screen-lg mx-auto transition-all duration-150 ease-in;
 }
 
 .headerTop {
-	@apply flex items-center content-center flex-row justify-between py-2 px-4;
+	@apply flex items-center content-center flex-row justify-between py-2 px-4 pt-5;
 }
 
 .viewSwitch {

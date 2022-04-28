@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 
 //hooks
-import useWalletConnect from 'services/web3/wallet/useWalletConnect';
-import useAutoWalletConnect from 'services/web3/wallet/useAutoConnect';
+import useWalletConnect from 'features/connect/hooks/useWalletConnect';
+import useAutoWalletConnect from 'features/connect/hooks/useAutoConnect';
 import { getNfts } from 'redux/nfts/nfts';
 import { useDispatch } from 'react-redux';
 
@@ -15,68 +15,30 @@ import Links from './Links';
 import WalletButton from 'features/connect/components/WalletButton';
 import { Button } from 'components/Elements/Button/Button';
 import { shortenString } from 'utils/pureFunctions';
-import { EthNetworks } from 'services/web3/types';
-import { ExclamationIcon } from '@heroicons/react/solid';
 import { ToastContainer } from 'react-toastify';
 import { useWeb3React } from '@web3-react/core';
+import NetworkStatus from './NetworkStatus';
+import ConnectAccount from './ConnectAccount';
+import useFetch from 'features/connect/hooks/useFetch';
 
 const Header = () => {
 	const [open, setOpen] = useState<boolean>(false);
 
-	const { chainId, account } = useWalletConnect();
-	const dispatch = useDispatch();
-
-	const { library } = useWeb3React();
-
 	useAutoWalletConnect();
-
-	useEffect(() => {
-		dispatch(getNfts());
-	}, [dispatch]);
-
-	useEffect(() => {
-		//dispatch event to fetch nfts from blockchain
-		if (!library) return;
-
-		// on every block minted fetch nfts
-		library.on('block', async () => {
-			dispatch(getNfts());
-		});
-		// return () => library.removeListeners('block');
-	}, [dispatch, library]);
+	useFetch();
 
 	return (
 		<header className='navigationStyle'>
-			<div className='pt-5 max-w-screen-lg mx-auto'>
-				<div className='headerTop'>
-					<div className='inline-flex gap-12'>
-						<img src={meshLogo} alt='mesh logo' className='h-12 inline' />
-						<Links />
-					</div>
-					<div className='flex flex-row gap-2'>
-						{/* Conditionally render network warning */}
-						<Button>
-							{!chainId || chainId !== EthNetworks.Mumbai ? (
-								<ExclamationIcon className='text-yellow-400 h-6' />
-							) : (
-								<img alt='Network Icon' src={polygonLogo} className='h-6' />
-							)}
-						</Button>
-
-						{/* Conditionally render account info or connect wallet */}
-						{!account ? (
-							<WalletButton title='Connect Wallet' />
-						) : (
-							<Button
-								onClick={() => setOpen((state) => !state)}
-								variant='primary'>
-								{shortenString(account!)}
-							</Button>
-						)}
-					</div>
+			<div className='headerTop'>
+				<div className='flex flex-row gap-6'>
+					<img src={meshLogo} alt='mesh logo' className='h-12' />
+					<Links />
+				</div>
+				<div className='flex flex-row gap-2'>
+					<NetworkStatus />
+					<ConnectAccount />
 				</div>
 			</div>
-			<ToastContainer limit={3} />
 		</header>
 	);
 };

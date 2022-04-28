@@ -5,7 +5,7 @@ import { compose } from '@reduxjs/toolkit';
 import Link from 'components/Elements/Link/Link';
 
 // hooks & selectors
-import useWalletConnect from 'services/web3/wallet/useWalletConnect';
+import useWalletConnect from 'features/connect/hooks/useWalletConnect';
 
 // components
 import FilterOwned from 'features/Filter/components/FilterOwned';
