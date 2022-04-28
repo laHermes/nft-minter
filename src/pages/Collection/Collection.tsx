@@ -1,18 +1,16 @@
 import React, { useContext } from 'react';
 import { compose } from '@reduxjs/toolkit';
 
-// components
-import Link from 'components/Elements/Link/Link';
-
 // hooks & selectors
 import useWalletConnect from 'features/connect/hooks/useWalletConnect';
 
 // components
+import Link from 'components/Elements/Link/Link';
+import InfoCard from 'components/Elements/InfoCard/InfoCard';
 import FilterOwned from 'features/Filter/components/FilterOwned';
 import NftCard from 'components/NftCard/NftCard';
 import PageNav from 'features/Paginate/components/PageNav';
 import { PaginationCtx } from 'features/Paginate/context/PaginationContext';
-import { IPaginated } from 'types';
 import Fallback from 'components/Elements/Fallback/Fallback';
 import { InboxIcon } from '@heroicons/react/outline';
 import {
@@ -25,23 +23,24 @@ import {
 // types
 import { INft } from 'redux/types';
 
+const Info = {
+	title: 'Mint NFT',
+	description: 'Only minted nfts will be displayed in collection!',
+	action: <Link to='/'>Go To Minter </Link>,
+};
+
 const Collection = () => {
 	const pagCtx = useContext(PaginationCtx);
 	const { pagination, filtered } = pagCtx;
 	const { account } = useWalletConnect();
+
 	return (
 		<div className='max-w-screen-lg mx-auto p-5 pt-8'>
-			<div className='flex flex-row w-full bg-modal-base px-6 py-4 rounded-[12px]'>
-				<div className='grow'>
-					<h2 className='text-white text-2xl font-bold'>Mint NFT</h2>
-					<p className='text-white/40 font-semibold'>
-						Only minted nfts will be displayed in collection!
-					</p>
-				</div>
-				<div className='self-center'>
-					<Link to='/'>Go To Minter </Link>
-				</div>
-			</div>
+			<InfoCard
+				title={Info.title}
+				description={Info.description}
+				action={Info.action}
+			/>
 			<Table>
 				<div className='flex flex-row w-full py-6'>
 					<div className='grow'>
@@ -56,7 +55,10 @@ const Collection = () => {
 					</div>
 				</div>
 				<GridWrapper>
-					<Content data={pagination?.paginatedData} showIcon />
+					<Grid>
+						<Content data={pagination?.paginatedData} showIcon />
+					</Grid>
+
 					<PageNavigation
 						account={account}
 						showIcon={false}
@@ -73,7 +75,7 @@ export default Collection;
 
 // HOC
 
-const withData = (Component: React.FC<IPaginated>) => (props: any) => {
+const withData = (Component: React.FC<any>) => (props: any) => {
 	const { data, showIcon } = props;
 
 	if (!data?.length) {
@@ -86,15 +88,10 @@ const withData = (Component: React.FC<IPaginated>) => (props: any) => {
 	return <Component {...props} />;
 };
 
-const BaseContent: React.ComponentType<any> = ({ data }) => {
-	return (
-		<Grid>
-			{data.map((data: INft) => {
-				return <NftCard key={data.id} {...data} />;
-			})}
-		</Grid>
-	);
-};
+const BaseContent: React.ComponentType<any> = ({ data }) =>
+	data.map((data: INft) => {
+		return <NftCard key={data.id} {...data} />;
+	});
 
 const Content = compose(withData)(BaseContent) as React.ComponentType<any>;
 

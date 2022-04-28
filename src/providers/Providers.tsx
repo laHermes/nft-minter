@@ -14,15 +14,18 @@ import { getLibrary } from 'services/web3/wallet/utils';
 
 //notifications
 import { ToastContainer } from 'react-toastify';
+import ConnectLayout from 'features/connect/layout/ConnectLayout';
 
 const Providers: React.FC<{}> = ({ children }) => {
 	return (
 		<Provider store={store}>
 			<Web3ReactProvider getLibrary={getLibrary}>
-				<FilterContext>
-					<ToastContainer limit={3} />
-					<PaginationContext>{children} </PaginationContext>
-				</FilterContext>
+				<ConnectLayout>
+					<FilterContext>
+						<ToastContainer limit={3} />
+						<PaginationContext>{children} </PaginationContext>
+					</FilterContext>
+				</ConnectLayout>
 			</Web3ReactProvider>
 		</Provider>
 	);

@@ -24,9 +24,6 @@ import useFetch from 'features/connect/hooks/useFetch';
 const Header = () => {
 	const [open, setOpen] = useState<boolean>(false);
 
-	useAutoWalletConnect();
-	useFetch();
-
 	return (
 		<header className='navigationStyle'>
 			<div className='headerTop'>

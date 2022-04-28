@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 //hooks
 import useAutoWalletConnect from 'features/connect/hooks/useAutoConnect';
@@ -7,11 +7,10 @@ import { useDispatch } from 'react-redux';
 import { useWeb3React } from '@web3-react/core';
 
 const useFetch = () => {
+	const [triedFetching, setTriedFetching] = useState<boolean>(false);
+
 	const dispatch = useDispatch();
-
 	const { library } = useWeb3React();
-
-	useAutoWalletConnect();
 
 	useEffect(() => {
 		dispatch(getNfts());
@@ -26,6 +25,8 @@ const useFetch = () => {
 			dispatch(getNfts());
 		});
 	}, [dispatch, library]);
+
+	return { triedFetching };
 };
 
 export default useFetch;

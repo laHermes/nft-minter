@@ -1,7 +1,6 @@
-import { Button } from 'components/Elements/Button/Button';
 import React from 'react';
+import { Button } from 'components/Elements/Button/Button';
 import { AiOutlineCaretLeft, AiOutlineCaretRight } from 'react-icons/ai';
-import { IChildren } from 'types';
 
 const PageNav = ({
 	previousPage,
