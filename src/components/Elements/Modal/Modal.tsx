@@ -4,21 +4,21 @@ import { useRef, Fragment } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 
 interface IModal {
-	open: boolean;
-	setOpen: any;
+	show: boolean;
+	onClose: () => void;
 	children: React.ReactNode;
 }
 
-const Modal = ({ open, setOpen, children }: IModal) => {
+const Modal = ({ show, onClose, children }: IModal) => {
 	const cancelButtonRef = useRef(null);
 
 	return (
-		<Transition.Root show={open} as={Fragment}>
+		<Transition.Root show={show} as={Fragment}>
 			<Dialog
 				as='div'
 				className='fixed z-10 inset-0 overflow-y-hidden'
 				initialFocus={cancelButtonRef}
-				onClose={setOpen}>
+				onClose={onClose}>
 				<div className='flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0'>
 					<Transition.Child
 						as={Fragment}

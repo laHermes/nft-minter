@@ -32,6 +32,10 @@ const Info = {
 const Collection = () => {
 	const pagCtx = useContext(PaginationCtx);
 	const { pagination, filtered } = pagCtx;
+
+	if (pagCtx === undefined) {
+		throw new Error('Collection must be used within a Pagination Context');
+	}
 	const { account } = useWalletConnect();
 
 	return (

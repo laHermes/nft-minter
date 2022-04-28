@@ -7,20 +7,22 @@ import AccountInfo from './AccountInfo';
 import ViewExplorer from './ViewExplorer';
 import Modal from 'components/Elements/Modal/Modal';
 import { Button } from 'components/Elements/Button/Button';
+import useWalletConnect from 'features/connect/hooks/useWalletConnect';
+import { useModalContext } from 'store/ModalContext';
 
-interface IAccountModal {
-	open: boolean;
-	setOpen: any;
-	handleDisconnect: () => void;
-}
+const Index = () => {
+	const { hideModal } = useModalContext();
+	const { handleDisconnect } = useWalletConnect();
 
-const Index = ({ open, setOpen, handleDisconnect }: IAccountModal) => {
+	const handleModalToggle = () => {
+		hideModal();
+	};
 	const disconnectWalletAndClose = () => {
 		handleDisconnect();
-		setOpen(false);
 	};
+
 	return (
-		<Modal open={open} setOpen={setOpen}>
+		<Modal show={true} onClose={handleModalToggle}>
 			<Dialog.Title
 				as='h3'
 				className='text-2xl leading-6 font-medium text-white/90'>

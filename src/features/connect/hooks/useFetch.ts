@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 
 //hooks
-import useAutoWalletConnect from 'features/connect/hooks/useAutoConnect';
 import { getNfts } from 'redux/nfts/nfts';
 import { useDispatch } from 'react-redux';
 import { useWeb3React } from '@web3-react/core';

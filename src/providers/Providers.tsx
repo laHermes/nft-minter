@@ -3,7 +3,7 @@ import React from 'react';
 // context
 import FilterContext from 'features/Filter/context/FilterContext';
 import PaginationContext from 'features/Paginate/context/PaginationContext';
-
+import ModalProvider from 'store/ModalContext';
 // redux
 import { store } from 'redux/store';
 import { Provider } from 'react-redux';
@@ -22,8 +22,10 @@ const Providers: React.FC<{}> = ({ children }) => {
 			<Web3ReactProvider getLibrary={getLibrary}>
 				<ConnectLayout>
 					<FilterContext>
-						<ToastContainer limit={3} />
-						<PaginationContext>{children} </PaginationContext>
+						<ModalProvider>
+							<ToastContainer limit={3} />
+							<PaginationContext>{children} </PaginationContext>
+						</ModalProvider>
 					</FilterContext>
 				</ConnectLayout>
 			</Web3ReactProvider>
