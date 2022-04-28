@@ -18,6 +18,7 @@ const Index = () => {
 		hideModal();
 	};
 	const disconnectWalletAndClose = () => {
+		handleModalToggle();
 		handleDisconnect();
 	};
 

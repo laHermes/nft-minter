@@ -8,10 +8,12 @@ const AccountInfo = () => {
 
 	return (
 		<>
-			<Jazzicon diameter={20} seed={jsNumberForAddress(account!)} />
-			<span className='text-white text-xl leading-none'>
-				{shortenString(account!)}
-			</span>
+			{account && <Jazzicon diameter={20} seed={jsNumberForAddress(account)} />}
+			{account && (
+				<span className='text-white text-xl leading-none'>
+					{shortenString(account)}
+				</span>
+			)}
 		</>
 	);
 };
