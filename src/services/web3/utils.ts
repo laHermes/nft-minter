@@ -12,7 +12,6 @@ export const mintToken = async (amount: number) => {
 		// define the contract
 		const contract = new Contract(nftAddress, nftAbi, writeWeb3.signer);
 		const userAddress = await writeWeb3.signer?.getAddress();
-
 		await contract.mintToken(userAddress, amount, {
 			value,
 		});
@@ -32,6 +31,7 @@ export const hasEnoughEth = async (price: string, amount: number) => {
 
 // fetch minted NFTS from blockchain
 export const fetchAllNfts = async (): Promise<INft[]> => {
+	console.time();
 	//define nft contract
 	const contract = new ethers.Contract(nftAddress, nftAbi, getProvider());
 
@@ -43,9 +43,11 @@ export const fetchAllNfts = async (): Promise<INft[]> => {
 		return await axios.get(nft.uri).then((res) => res.data);
 	});
 
+	console.log(data);
+
 	// resolve image links
 	const resolvedMetadata = await Promise.all(meta);
-
+	console.timeEnd();
 	//create array of nfts to be returned to the view
 	return data.map((nft: INft, index: number) => {
 		return {

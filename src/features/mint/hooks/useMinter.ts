@@ -37,8 +37,9 @@ const useMinter = () => {
 			return;
 		}
 
+		const minting = mintToken(count);
 		//mint tokens function
-		await toast.promise(mintToken(count), {
+		await toast.promise(minting, {
 			pending: 'NFT minting is pending',
 			success: 'NFT minted 👌',
 			error: 'Minting failed 🤯',

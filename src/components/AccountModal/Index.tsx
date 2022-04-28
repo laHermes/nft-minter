@@ -1,5 +1,3 @@
-import { useRef, Fragment } from 'react';
-
 // Components
 import { Dialog } from '@headlessui/react';
 import CopyButton from './CopyButton';
@@ -12,7 +10,7 @@ import { useModalContext } from 'store/ModalContext';
 
 const Index = () => {
 	const { hideModal } = useModalContext();
-	const { handleDisconnect } = useWalletConnect();
+	const { handleDisconnect, account } = useWalletConnect();
 
 	const handleModalToggle = () => {
 		hideModal();
@@ -41,8 +39,12 @@ const Index = () => {
 					<AccountInfo />
 				</div>
 				<div className='flex flex-row gap-3'>
-					<CopyButton />
-					<ViewExplorer />
+					{account && (
+						<>
+							<CopyButton />
+							<ViewExplorer />
+						</>
+					)}
 				</div>
 			</div>
 		</Modal>
