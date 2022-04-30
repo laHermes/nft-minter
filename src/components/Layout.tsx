@@ -1,13 +1,17 @@
 import React from 'react';
 
+import Header from 'components/Header/Header';
+import Footer from 'components/Footer/Footer';
 interface ILayout {
 	children: JSX.Element | JSX.Element[] | React.ReactNode;
 }
 
-const Layout = ({ children }: ILayout) => {
+const Layout: React.FC<ILayout> = ({ children }) => {
 	return (
-		<div className='flex flex-col gap-4 mx-auto max-w-screen-lg p-5'>
+		<div>
+			<Header />
 			{children}
+			<Footer />
 		</div>
 	);
 };

@@ -4,6 +4,7 @@ import React from 'react';
 import FilterContext from 'features/Filter/context/FilterContext';
 import PaginationContext from 'features/Paginate/context/PaginationContext';
 import ModalProvider from 'store/ModalContext';
+
 // redux
 import { store } from 'redux/store';
 import { Provider } from 'react-redux';
@@ -23,8 +24,10 @@ const Providers: React.FC<{}> = ({ children }) => {
 				<ConnectLayout>
 					<FilterContext>
 						<ModalProvider>
-							<ToastContainer limit={3} />
-							<PaginationContext>{children} </PaginationContext>
+							<PaginationContext>
+								<ToastContainer limit={3} />
+								{children}
+							</PaginationContext>
 						</ModalProvider>
 					</FilterContext>
 				</ConnectLayout>

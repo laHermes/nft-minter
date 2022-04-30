@@ -11,12 +11,10 @@ const useFetch = () => {
 	const dispatch = useDispatch();
 	const { library } = useWeb3React();
 	const { account, chainId } = useWalletConnect();
-	console.log(library);
 	// useEffect(() => {
 	// 	if (!account || !chainId) return;
 	// 	if (!(chainId in EthNetworks)) return;
 	// 	dispatch(getNfts());
-	// 	console.log('asdasdasdasdasdasd');
 	// }, [dispatch, account, chainId]);
 
 	//dispatch event to fetch nfts from blockchain
@@ -28,7 +26,6 @@ const useFetch = () => {
 
 		library.on('block', async () => {
 			dispatch(getNfts());
-			console.log('tvatva');
 		});
 	}, [dispatch, library, account, chainId]);
 };
