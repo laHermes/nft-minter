@@ -33,7 +33,7 @@ const Main = () => {
 						<span>{NftDetails.NETWORK}</span>
 					</div>
 					<h2 className='text-white text-4xl font-bold'>Mint NFT</h2>
-					<div className='grid grid-cols-2 gap-8 mt-12'>
+					<div className='grid grid-cols-1 md:grid-cols-2 gap-8 mt-12'>
 						<div className='flex flex-col justify-between gap-6'>
 							<div className='h-72'>
 								<ImageLoader src={NFTImage} />

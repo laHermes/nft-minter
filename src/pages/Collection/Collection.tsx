@@ -26,7 +26,12 @@ import { INft } from 'redux/types';
 const Info = {
 	title: 'Mint NFT',
 	description: 'Only minted nfts will be displayed in collection!',
-	action: <Link to='/'>Go To Minter </Link>,
+	actionComponent: (
+		<Link to='/' className='w-full h-fit'>
+			<span className='hidden lg:inline-block'>Go To</span>
+			<span className='w-full'>&nbsp;Minter</span>
+		</Link>
+	),
 };
 
 const Collection = () => {
@@ -43,13 +48,15 @@ const Collection = () => {
 			<InfoCard
 				title={Info.title}
 				description={Info.description}
-				action={Info.action}
+				actionComponent={Info.actionComponent}
 			/>
 			<Table>
-				<div className='flex flex-row w-full py-6'>
+				<div className='flex flex-col text-center lg:text-left lg:flex-row w-full py-6'>
 					<div className='grow'>
-						<h2 className='text-white text-4xl font-bold'>Collection</h2>
-						<p className='text-white/40 font-semibold'>
+						<h2 className='text-white text-4xl lg:text-4xl font-bold'>
+							Collection
+						</h2>
+						<p className='text-white/40 text-md lg:text-xl font-semibold'>
 							Only minted nfts will be displayed in collection!
 						</p>
 					</div>

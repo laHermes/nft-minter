@@ -41,7 +41,7 @@ const MobileLinks = () => {
 					leave='transition ease-in duration-75'
 					leaveFrom='transform opacity-100 scale-100'
 					leaveTo='transform opacity-0 scale-95'>
-					<Menu.Items className='focus:outline-none absolute right-0 mt-3 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5'>
+					<Menu.Items className='focus:outline-none absolute right-0 mt-3 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white/80 shadow-lg ring-1 ring-black ring-opacity-5'>
 						<div className='px-1 py-1 '>
 							{navObjects.map((object) => {
 								return (
@@ -49,7 +49,7 @@ const MobileLinks = () => {
 										<Link
 											className={`${
 												location.pathname === object.location
-													? 'bg-hover-primary/80 text-white'
+													? 'bg-hover-primary/90 text-white'
 													: 'text-gray-900'
 											} group flex w-full items-center rounded-md px-2 py-2 text-sm hover:bg-hover-primary hover:text-white my-1`}
 											to={object.location}>

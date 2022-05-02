@@ -14,7 +14,6 @@ import { Web3ReactProvider } from '@web3-react/core';
 import { getLibrary } from 'services/web3/wallet/utils';
 
 //notifications
-import { ToastContainer } from 'react-toastify';
 import ConnectLayout from 'features/connect/layout/ConnectLayout';
 
 const Providers: React.FC<{}> = ({ children }) => {
@@ -24,10 +23,7 @@ const Providers: React.FC<{}> = ({ children }) => {
 				<ConnectLayout>
 					<FilterContext>
 						<ModalProvider>
-							<PaginationContext>
-								<ToastContainer limit={3} />
-								{children}
-							</PaginationContext>
+							<PaginationContext>{children}</PaginationContext>
 						</ModalProvider>
 					</FilterContext>
 				</ConnectLayout>

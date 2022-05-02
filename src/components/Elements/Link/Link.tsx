@@ -10,6 +10,7 @@ const variants = {
 };
 
 const sizes = {
+	sm: 'text-sm font-bold',
 	md: 'text-md font-bold',
 };
 

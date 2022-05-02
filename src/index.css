@@ -10,12 +10,56 @@ body {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	/* overflow-y: scroll; */
-	@apply background;
+	@apply backgroundT;
 }
 
 .background {
 	@apply bg-blue-background;
 }
+.backgroundT {
+	background-color: #07050f;
+	position: relative;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	-webkit-box-pack: justify;
+	justify-content: space-between;
+	--first-gradient-coords: -2% 37%;
+	--second-gradient-coords: 99% 59%;
+	background-image: radial-gradient(
+			circle closest-corner at var(--first-gradient-coords),
+			rgba(5, 172, 198, 0.3),
+			transparent
+		),
+		radial-gradient(
+			circle closest-corner at var(--second-gradient-coords),
+			rgba(205, 20, 85, 0.4),
+			transparent
+		);
+}
+
+/* backup style */
+/* .backgroundT {
+	background-color: #07050f;
+	position: relative;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	-webkit-box-pack: justify;
+	justify-content: space-between;
+	--first-gradient-coords: -6% 37%;
+	--second-gradient-coords: 107% 59%;
+	background-image: radial-gradient(
+			circle closest-corner at var(--first-gradient-coords),
+			rgba(40, 72, 122, 0.85),
+			transparent
+		),
+		radial-gradient(
+			circle closest-corner at var(--second-gradient-coords),
+			rgba(138, 41, 129, 0.7),
+			transparent
+		);
+} */
 
 .navigationStyle {
 	@apply max-w-screen-lg w-full mx-auto transition-all duration-150 ease-in;
