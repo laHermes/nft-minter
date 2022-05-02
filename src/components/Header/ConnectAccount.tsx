@@ -20,7 +20,10 @@ const ConnectAccount = () => {
 	};
 
 	return !account ? (
-		<WalletButton title='Connect Wallet' />
+		<WalletButton>
+			<span>Connect</span>
+			<span className='hidden md:inline-block'> &nbsp;Wallet</span>
+		</WalletButton>
 	) : (
 		<Button onClick={showAccountModal} variant='primary'>
 			{shortenString(account!)}

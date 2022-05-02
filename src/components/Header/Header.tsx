@@ -7,6 +7,7 @@ import meshLogo from 'assets/mesh-second-logo.png';
 import Links from './Links';
 import NetworkStatus from './NetworkStatus';
 import ConnectAccount from './ConnectAccount';
+import MobileLinks from './MobileLinks';
 
 const Header = () => {
 	return (
@@ -19,6 +20,7 @@ const Header = () => {
 				<div className='flex flex-row gap-2'>
 					<NetworkStatus />
 					<ConnectAccount />
+					<MobileLinks />
 				</div>
 			</div>
 		</header>

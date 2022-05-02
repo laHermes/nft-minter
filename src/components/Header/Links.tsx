@@ -18,7 +18,7 @@ const Links = () => {
 	];
 
 	return (
-		<ul className='inline-flex gap-1 font-semibold text-lg pt-3'>
+		<ul className='hidden lg:inline-flex gap-1 font-semibold text-lg pt-3'>
 			{navObjects.map((object) => {
 				return (
 					<li key={object.location}>

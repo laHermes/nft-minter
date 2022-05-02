@@ -18,7 +18,7 @@ body {
 }
 
 .navigationStyle {
-	@apply max-w-screen-lg mx-auto transition-all duration-150 ease-in;
+	@apply max-w-screen-lg w-full mx-auto transition-all duration-150 ease-in;
 }
 
 .headerTop {
