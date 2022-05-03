@@ -1,11 +1,14 @@
 import React, { useContext, createContext, useState } from 'react';
 import AccountModal from 'components/AccountModal/Index';
+import MintModal from 'components/MintModal/MintModal';
 
 export enum MODAL_TYPES {
 	ACCOUNT = 'ACCOUNT',
+	MINT = 'MINT',
 }
 const MODAL_COMPONENTS: any = {
 	[MODAL_TYPES.ACCOUNT]: AccountModal,
+	[MODAL_TYPES.MINT]: MintModal,
 };
 
 type ModalContextType = {

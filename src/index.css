@@ -27,12 +27,12 @@ body {
 	--first-gradient-coords: -2% 37%;
 	--second-gradient-coords: 99% 59%;
 	background-image: radial-gradient(
-			circle closest-corner at var(--first-gradient-coords),
+			circle closest-corner at var(--second-gradient-coords),
 			rgba(5, 172, 198, 0.3),
 			transparent
 		),
 		radial-gradient(
-			circle closest-corner at var(--second-gradient-coords),
+			circle closest-corner at var(--first-gradient-coords),
 			rgba(205, 20, 85, 0.4),
 			transparent
 		);

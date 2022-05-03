@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from 'components/Elements/Button/Button';
-import { AiOutlineCaretLeft, AiOutlineCaretRight } from 'react-icons/ai';
+import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/outline';
 
 const PageNav = ({
 	previousPage,
@@ -12,7 +12,7 @@ const PageNav = ({
 	return (
 		<div className='inline-flex items-center gap-5 p-2  text-lg border-white w-fit rounded-md text-white'>
 			<Button onClick={previousPage} variant='none'>
-				<AiOutlineCaretLeft className='navigationArrow' />
+				<ChevronLeftIcon className='w-6' />
 			</Button>
 
 			{paginationGroup?.map((page: number, id: number) => (
@@ -27,7 +27,7 @@ const PageNav = ({
 			))}
 
 			<Button onClick={nextPage} variant='none'>
-				<AiOutlineCaretRight className='navigationArrow' />
+				<ChevronRightIcon className='w-6' />
 			</Button>
 		</div>
 	);
