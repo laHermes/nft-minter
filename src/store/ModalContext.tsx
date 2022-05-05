@@ -1,14 +1,19 @@
 import React, { useContext, createContext, useState } from 'react';
+
+// modals
 import AccountModal from 'components/AccountModal/Index';
-import MintModal from 'components/MintModal/MintModal';
+import MintModal from 'features/mint/components/MintModal';
+import TransactionModal from 'features/mint/components/TransactionModal';
 
 export enum MODAL_TYPES {
 	ACCOUNT = 'ACCOUNT',
 	MINT = 'MINT',
+	TRANSACTION = 'MINT',
 }
 const MODAL_COMPONENTS: any = {
 	[MODAL_TYPES.ACCOUNT]: AccountModal,
 	[MODAL_TYPES.MINT]: MintModal,
+	[MODAL_TYPES.TRANSACTION]: TransactionModal,
 };
 
 type ModalContextType = {
@@ -36,7 +41,7 @@ const ModalProvider: React.FC<{}> = ({ children }) => {
 		return <ModalComponent {...modalProps} />;
 	};
 
-	const showModal = (modalType: MODAL_TYPES, props: any) => {
+	const showModal = (modalType: MODAL_TYPES, modalProps: any) => {
 		setStore({ ...store, modalType, modalProps });
 	};
 	const hideModal = () => {

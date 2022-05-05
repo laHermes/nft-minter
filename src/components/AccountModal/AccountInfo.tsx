@@ -3,18 +3,24 @@ import useWalletConnect from 'features/connect/hooks/useWalletConnect';
 import Jazzicon, { jsNumberForAddress } from 'react-jazzicon';
 import { shortenString } from 'utils/pureFunctions';
 
-const AccountInfo = () => {
-	const { account } = useWalletConnect();
+interface IAccountInfo {
+	address?: string;
+}
 
+const AccountInfo = ({ address }: IAccountInfo) => {
+	const { account } = useWalletConnect();
+	const addressCalc = address ? address : account;
 	return (
-		<>
-			{account && <Jazzicon diameter={20} seed={jsNumberForAddress(account)} />}
-			{account && (
-				<span className='text-white text-xl leading-none'>
-					{shortenString(account)}
+		<div className='inline-flex gap-2'>
+			{addressCalc && (
+				<Jazzicon diameter={20} seed={jsNumberForAddress(addressCalc)} />
+			)}
+			{addressCalc && (
+				<span className='text-white text-sm md:text-xl leading-none'>
+					{shortenString(addressCalc)}
 				</span>
 			)}
-		</>
+		</div>
 	);
 };
 

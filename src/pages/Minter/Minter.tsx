@@ -21,15 +21,15 @@ const Minter = () => {
 	const { count, increment, decrement, mint } = useMinter();
 	const { showModal } = useModalContext();
 
-	const showMintModal = () => showModal(MODAL_TYPES.MINT, { count: count });
+	const showMintModal = () => showModal(MODAL_TYPES.MINT, { count, mint });
 	return (
-		<div className='flex flex-col items-center gap-4 max-w-3xl mx-auto p-5 pt-5 sm:pt-12'>
+		<div className='flex flex-col items-center gap-4 max-w-lg w-full mx-auto p-5 sm:pt-12 '>
 			<MinterWarning />
-			<div className='w-full p-5 bg-white/5 rounded-[12px]'>
+			<div className='p-5 bg-white/5 rounded-[12px]'>
 				<h2 className='text-white text-4xl font-bold text-center'>AI NFT</h2>
 				<div className='sm:gap-8 mt-3 sm:mt-12'>
 					<div className='flex flex-col justify-between content-center gap-6'>
-						<div className='h-72'>
+						<div className='h-96'>
 							<ImageLoader src={MintImage} />
 						</div>
 						<div className='inline-flex items-center justify-between bg-default-primary/60 text-white font-bold rounded-[12px] overflow-hidden'>
