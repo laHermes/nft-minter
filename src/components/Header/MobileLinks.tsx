@@ -31,8 +31,8 @@ const MobileLinks = () => {
 					leave='transition ease-in duration-75'
 					leaveFrom='transform opacity-100 scale-100'
 					leaveTo='transform opacity-0 scale-95'>
-					<Menu.Items className='focus:outline-none absolute right-0 mt-3 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white/80 shadow-lg ring-1 ring-black ring-opacity-5'>
-						<div className='px-1 py-1 '>
+					<Menu.Items className='focus:outline-none absolute right-0 mt-3 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white/90 shadow-lg ring-1 ring-black ring-opacity-5'>
+						<div className='px-1 py-1 font-bold'>
 							{navigationLinks.map((link) => {
 								return (
 									<Menu.Item key={link.location}>

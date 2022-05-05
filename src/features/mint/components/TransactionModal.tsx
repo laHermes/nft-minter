@@ -7,23 +7,19 @@ import { useModalContext } from 'store/ModalContext';
 import { XIcon } from '@heroicons/react/outline';
 import AccountInfo from 'components/AccountModal/AccountInfo';
 import { nftInfo } from 'config/nft';
+import { useMintContext } from '../context/MintContext';
+import { shortenString } from 'utils/pureFunctions';
 
-interface ITransactionModal {
-	count: number;
-	mint: Function;
-}
-
-const TransactionModal = ({ count, mint }: ITransactionModal) => {
+const TransactionModal = () => {
 	const { hideModal } = useModalContext();
+	const { status, transaction } = useMintContext();
+	console.log(status, transaction);
 
 	const handleModalToggle = () => {
 		hideModal();
 	};
 
-	const MintAndClose = () => {
-		mint();
-		// handleModalToggle();
-	};
+	const minthandler = () => {};
 
 	const itemStyle = 'text-white/90 font-semibold text-sm sm:text-lg';
 	const itemAttribute = 'text-sm font-bold text-white';
@@ -66,44 +62,37 @@ const TransactionModal = ({ count, mint }: ITransactionModal) => {
 
 							<div className='flex flex-col grow gap-2 rounded-[12px] py-4'>
 								<div className='flex flex-row justify-between'>
-									<p className={itemStyle}>NFTS#</p>
-									<span className={itemAttribute}>{count}</span>
+									<p className={itemStyle}>Status</p>
+									<span className={itemAttribute}>{status?.status}</span>
 								</div>
 
-								<div className='flex flex-row justify-between'>
-									<p className={itemStyle}>Price per NFT</p>
-									<span className={itemAttribute}>
-										{nftInfo.price + ' ' + nftInfo.tokenName}
-									</span>
-								</div>
-
-								<div className='flex flex-row justify-between'>
-									<p className={itemStyle}>Network </p>
-									<span className={itemAttribute}>{nftInfo.network}</span>
-								</div>
-
-								<div className='flex flex-row justify-between'>
-									<div>
-										<p className={itemStyle}>Total</p>
-										<p className='text-sm text-white/70'>AMOUNT * PRICE</p>
+								<div className='flex flex-col grow gap-2 rounded-[12px] py-4'>
+									<div className='flex flex-row justify-between'>
+										<p className={itemStyle}>Transaction HASH</p>
+										<span className={itemAttribute}>
+											{transaction?.transactionHash &&
+												shortenString(transaction?.transactionHash)}
+										</span>
 									</div>
-									<span className={itemAttribute}>
-										~{(+nftInfo.price * count).toPrecision(2)} Matic
-									</span>
+									<div className='flex flex-row justify-between'>
+										<p className={itemStyle}>Confirmations</p>
+										<span className={itemAttribute}>
+											{transaction?.confirmations}
+										</span>
+									</div>
 								</div>
-
-								<div className='inline-flex gap-2 my-2 py-2 px-3 bg-blue-900/40 text-blue-600 rounded-[12px] '>
+								{/* <div className='inline-flex gap-2 my-2 py-2 px-3 bg-blue-900/40 text-blue-600 rounded-[12px] '>
 									<ExclamationCircleIcon className='h-6 mt-2' />
 									<span>
 										Upon clicking on the confirm button, Metamask wallet will
 										pop up
 									</span>
-								</div>
-								<div className='flex flex-row justify-end'>
+								</div> */}
+								{/* <div className='flex flex-row justify-end'>
 									<Button variant='gradientBg' onClick={MintAndClose}>
 										Confirm
 									</Button>
-								</div>
+								</div> */}
 							</div>
 						</div>
 					</div>

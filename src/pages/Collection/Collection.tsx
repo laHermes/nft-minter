@@ -28,7 +28,6 @@ const Info = {
 	description: 'Only minted nfts will be displayed in collection!',
 	actionComponent: (
 		<Link to='/' className='w-full h-fit'>
-			<span className='hidden lg:inline-block'>Go To</span>
 			<span className='w-full'>&nbsp;Minter</span>
 		</Link>
 	),

@@ -15,18 +15,21 @@ import { getLibrary } from 'services/web3/wallet/utils';
 
 //notifications
 import ConnectLayout from 'features/connect/layout/ConnectLayout';
+import MintProvider from 'features/mint/context/MintContext';
 
 const Providers: React.FC<{}> = ({ children }) => {
 	return (
 		<Provider store={store}>
 			<Web3ReactProvider getLibrary={getLibrary}>
-				<ConnectLayout>
-					<FilterContext>
-						<ModalProvider>
-							<PaginationContext>{children}</PaginationContext>
-						</ModalProvider>
-					</FilterContext>
-				</ConnectLayout>
+				<MintProvider>
+					<ConnectLayout>
+						<FilterContext>
+							<ModalProvider>
+								<PaginationContext>{children}</PaginationContext>
+							</ModalProvider>
+						</FilterContext>
+					</ConnectLayout>
+				</MintProvider>
 			</Web3ReactProvider>
 		</Provider>
 	);

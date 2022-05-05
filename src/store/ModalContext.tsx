@@ -8,7 +8,7 @@ import TransactionModal from 'features/mint/components/TransactionModal';
 export enum MODAL_TYPES {
 	ACCOUNT = 'ACCOUNT',
 	MINT = 'MINT',
-	TRANSACTION = 'MINT',
+	TRANSACTION = 'TRANSACTION',
 }
 const MODAL_COMPONENTS: any = {
 	[MODAL_TYPES.ACCOUNT]: AccountModal,

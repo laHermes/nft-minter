@@ -3,24 +3,29 @@ import { Dialog } from '@headlessui/react';
 import { ExclamationCircleIcon } from '@heroicons/react/outline';
 import Modal from 'components/Elements/Modal/Modal';
 import { Button } from 'components/Elements/Button/Button';
-import { useModalContext } from 'store/ModalContext';
+import { MODAL_TYPES, useModalContext } from 'store/ModalContext';
 import { XIcon } from '@heroicons/react/outline';
 import AccountInfo from 'components/AccountModal/AccountInfo';
 import { nftInfo } from 'config/nft';
+import { useMintContext } from '../context/MintContext';
 
-interface IMintModal {
-	count: number;
-	mint: Function;
-}
+const MintModal = () => {
+	const { hideModal, showModal } = useModalContext();
+	const { count, mint } = useMintContext();
 
-const MintModal = ({ count, mint }: IMintModal) => {
-	const { hideModal } = useModalContext();
+	if (!mint || !count) {
+		throw new Error(
+			'This modal can only bre used within minter context provider'
+		);
+	}
 
 	const handleModalToggle = () => {
 		hideModal();
 	};
 
-	const MintAndClose = () => {
+	const mintAndTransact = () => {
+		hideModal();
+		showModal(MODAL_TYPES.TRANSACTION);
 		mint();
 		// handleModalToggle();
 	};
@@ -100,7 +105,7 @@ const MintModal = ({ count, mint }: IMintModal) => {
 									</span>
 								</div>
 								<div className='flex flex-row justify-end'>
-									<Button variant='gradientBg' onClick={MintAndClose}>
+									<Button variant='gradientBg' onClick={mintAndTransact}>
 										Confirm
 									</Button>
 								</div>

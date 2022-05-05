@@ -41,11 +41,13 @@ const Minter = () => {
 								<PlusSmIcon className='w-5' />
 							</Button>
 						</div>
-						<div className='inline-flex self-center'>
+						{/* <div className='inline-flex self-center'>
 							<span className='text-3xl text-white'>40</span>
 							<span className='text-3xl text-white'>/</span>
 							<span className='text-5xl text-white leading-none'>∞</span>
-						</div>
+						</div> */}
+
+						<p className='text-center text-white font-semibold'>0.3 Matic</p>
 						<div>
 							<Button onClick={showMintModal} variant='gradientBg'>
 								Mint
