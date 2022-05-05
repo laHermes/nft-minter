@@ -10,12 +10,12 @@ const benefits = [
 	{
 		title: 'Testnet',
 		description:
-			'Minting on Polygon Mumbai testnet so you do not have to waste any of you hard earned money! ',
+			'Minting on Polygon Mumbai testnet so you do not have to spend any of you hard earned money! ',
 		symbol: '🧪',
 	},
 	{
 		title: 'All Yours',
-		description: 'When you mint it, its all yours!',
+		description: 'When you mint it, its all yours! + it is hosted on IPFS',
 		symbol: '🎉',
 	},
 ];

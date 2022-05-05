@@ -43,24 +43,9 @@ const Main = () => {
 						<div className='h-72'>
 							<ImageLoader src={MintImage} />
 						</div>
-						<div className='inline-flex items-center justify-between bg-default-primary/60 text-white font-bold rounded-[12px] overflow-hidden'>
-							<Button className='px-3 py-3'>
-								<MinusSmIcon className='w-5' />
-							</Button>
-							<p>1</p>
-							<Button className='px-3 py-3'>
-								<PlusSmIcon className='w-5' />
-							</Button>
-						</div>
-						<span className='text-2xl text-white text-center'>40/100</span>
-						<div>
-							<Button onClick={showMintModal} variant='gradientBg'>
-								Mint
-							</Button>
-							<p className='text-white/80 text-sm text-center'>
-								max 10 nfts per transaction
-							</p>
-						</div>
+						<Button onClick={showMintModal} variant='gradientBg'>
+							Go To Minter
+						</Button>
 					</div>
 					<div className='flex flex-col gap-6'>
 						<Benefits />

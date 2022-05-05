@@ -6,6 +6,7 @@ import Layout from 'components/Layout';
 // PAGES
 import Collection from 'pages/Collection/Index';
 import Main from 'pages/Main/Main';
+import Minter from 'pages/Minter/Minter';
 
 const Index = () => {
 	return (
@@ -13,6 +14,7 @@ const Index = () => {
 			<Layout>
 				<Routes>
 					<Route path='/' element={<Main />} />
+					<Route path='/mint' element={<Minter />} />
 					<Route path='/collection' element={<Collection />} />
 				</Routes>
 			</Layout>

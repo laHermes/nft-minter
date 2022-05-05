@@ -44,7 +44,7 @@ const Collection = () => {
 	const { account } = useWalletConnect();
 
 	return (
-		<div className='max-w-screen-lg mx-auto p-5 pt-8'>
+		<div className='max-w-screen-xl mx-auto p-5 pt-8'>
 			<InfoCard
 				title={Info.title}
 				description={Info.description}

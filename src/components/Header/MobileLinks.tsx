@@ -3,6 +3,7 @@ import { Fragment } from 'react';
 // router
 import { Link, useLocation } from 'react-router-dom';
 
+import { navigationLinks } from 'config/navigationLinks';
 // components
 import { Menu, Transition } from '@headlessui/react';
 import { MenuIcon } from '@heroicons/react/solid';
@@ -10,17 +11,6 @@ import { Button } from 'components/Elements/Button/Button';
 
 const MobileLinks = () => {
 	const location = useLocation();
-
-	const navObjects = [
-		{
-			label: 'Mint',
-			location: '/',
-		},
-		{
-			label: 'Collection',
-			location: '/collection',
-		},
-	];
 
 	return (
 		<div className='text-right lg:hidden'>
@@ -43,17 +33,17 @@ const MobileLinks = () => {
 					leaveTo='transform opacity-0 scale-95'>
 					<Menu.Items className='focus:outline-none absolute right-0 mt-3 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white/80 shadow-lg ring-1 ring-black ring-opacity-5'>
 						<div className='px-1 py-1 '>
-							{navObjects.map((object) => {
+							{navigationLinks.map((link) => {
 								return (
-									<Menu.Item key={object.location}>
+									<Menu.Item key={link.location}>
 										<Link
 											className={`${
-												location.pathname === object.location
+												location.pathname === link.location
 													? 'bg-hover-primary/90 text-white'
 													: 'text-gray-900'
 											} group flex w-full items-center rounded-md px-2 py-2 text-sm hover:bg-hover-primary hover:text-white my-1`}
-											to={object.location}>
-											{object.label}
+											to={link.location}>
+											{link.label}
 										</Link>
 									</Menu.Item>
 								);

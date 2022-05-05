@@ -20,10 +20,10 @@ const useFetch = () => {
 	//dispatch event to fetch nfts from blockchain
 	// on every block minted fetch nfts
 	useEffect(() => {
-		if (!account || !chainId || !library) return;
-		if (!(chainId in EthNetworks)) return;
 		dispatch(getNfts());
 
+		if (!account || !chainId || !library) return;
+		if (!(chainId in EthNetworks)) return;
 		library.on('block', async () => {
 			dispatch(getNfts());
 		});
