@@ -1,6 +1,6 @@
 export const nftInfo = {
 	title: 'nftz',
-	price: '0.3',
+	price: '0.03',
 	description: '',
 	network: 'Polygon Mumbai',
 	networkId: 80001,
@@ -10,7 +10,7 @@ export const nftInfo = {
 
 export enum NftDetails {
 	TITLE = 'Mesh NFT',
-	PRICE = '0.3',
+	PRICE = '0.03',
 	DESCRIPTION = '',
 	NETWORK = 'Polygon Mumbai Testnet',
 }
@@ -18,7 +18,7 @@ export enum NftDetails {
 export const tokenData = {
 	'0x5d6f0cBe65C202c1706502036d10c91A64803913': {
 		title: 'nftz',
-		price: '0.3',
+		price: '0.03',
 		description: '',
 		network: 'Polygon Mumbai',
 		networkId: 80001,

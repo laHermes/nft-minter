@@ -13,9 +13,6 @@ import {
 } from '../../../services/web3/wallet/utils';
 import { utils } from 'ethers';
 
-//notifications
-import { toast } from 'react-toastify';
-
 export interface IUseWalletConnect {
 	handleConnect: (wallet: any) => void;
 	handleDisconnect: () => void;
@@ -53,7 +50,6 @@ const useWalletConnect = (): IUseWalletConnect => {
 					//check chain id to throw error
 					const chainId = await signer.getChainId();
 					if (chainId !== 80001) {
-						toast.error('Please select Mumbai network');
 					}
 
 					setSigner(signer);
@@ -64,7 +60,6 @@ const useWalletConnect = (): IUseWalletConnect => {
 					console.log('Failed connecting to the Wallet!');
 					setIsError(true);
 					setIsPending(false);
-					toast.error('Error connecting to the wallet!');
 				}
 			}
 		},
@@ -98,19 +93,19 @@ const useWalletConnect = (): IUseWalletConnect => {
 		}
 	}, []);
 
-	useAsyncEffect(async () => {
-		if (!account || !library) return;
-		setBalance(
-			roundBalance(utils.formatEther(await writeWeb3.signer.getBalance()))
-		);
-		library.on('block', async () => {
-			setBalance(
-				roundBalance(utils.formatEther(await writeWeb3.signer.getBalance()))
-			);
-		});
+	// useAsyncEffect(async () => {
+	// 	if (!account || !library) return;
+	// 	setBalance(
+	// 		roundBalance(utils.formatEther(await writeWeb3.signer.getBalance()))
+	// 	);
+	// 	library.on('block', async () => {
+	// 		setBalance(
+	// 			roundBalance(utils.formatEther(await writeWeb3.signer.getBalance()))
+	// 		);
+	// 	});
 
-		return () => library.removeListeners('block');
-	}, [account, writeWeb3]);
+	// 	return () => library.removeListeners('block');
+	// }, [account, writeWeb3]);
 
 	return {
 		...web3React,

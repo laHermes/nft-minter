@@ -11,6 +11,7 @@ const useFetch = () => {
 	const dispatch = useDispatch();
 	const { library } = useWeb3React();
 	const { account, chainId } = useWalletConnect();
+
 	// useEffect(() => {
 	// 	if (!account || !chainId) return;
 	// 	if (!(chainId in EthNetworks)) return;
@@ -20,6 +21,8 @@ const useFetch = () => {
 	//dispatch event to fetch nfts from blockchain
 	// on every block minted fetch nfts
 	useEffect(() => {
+		const abortController = new AbortController(); // creating an AbortController
+
 		dispatch(getNfts());
 
 		if (!account || !chainId || !library) return;
@@ -27,6 +30,9 @@ const useFetch = () => {
 		library.on('block', async () => {
 			dispatch(getNfts());
 		});
+		return () => {
+			abortController.abort(); // stop the query by aborting on the AbortController on unmount
+		};
 	}, [dispatch, library, account, chainId]);
 };
 

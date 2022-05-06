@@ -10,15 +10,14 @@ import {
 // utility functions
 import useWalletConnect from 'features/connect/hooks/useWalletConnect';
 import { hasEnoughEth } from 'services/web3/utils';
+import { nftInfo } from 'config/nft';
 
 const UPPER_BOUND = 10;
 const LOWER_BOUND = 1;
-const NFT_PRICE = '0.03';
 
 enum STATES {
 	IDLE = 'IDLE',
 	SUBMITTED = 'SUBMITTED',
-	LOADING = 'LOADING',
 	ERROR = 'ERROR',
 	SUCCESS = 'SUCCESS',
 }
@@ -43,14 +42,6 @@ const useMinter = () => {
 	const decrement = () =>
 		setCount((count: number) => Math.max(count - 1, LOWER_BOUND));
 
-	useEffect(() => {
-		isAccountConnected();
-	}, [account]);
-
-	useEffect(() => {
-		hasEnoughTokensForTransaction();
-	}, [count]);
-
 	const resetState = () => {
 		setStatus(initialStatus);
 		setTransaction(null);
@@ -70,7 +61,7 @@ const useMinter = () => {
 	};
 
 	const hasEnoughTokensForTransaction = async () => {
-		const hasEnough = await hasEnoughEth(NFT_PRICE, count);
+		const hasEnough = await hasEnoughEth(nftInfo.price, count);
 		if (!hasEnough) {
 			setStatus({ status: STATES.ERROR, msg: 'Not enough funds' });
 			return false;
@@ -79,30 +70,33 @@ const useMinter = () => {
 		return true;
 	};
 
+	// MINT FUNCTION
 	const mint = async () => {
 		resetState();
 
-		if (!isAccountConnected() || !hasEnoughTokensForTransaction()) {
-			return;
-		}
+		if (!isAccountConnected()) return;
+		if (!hasEnoughTokensForTransaction()) return;
 
+		// get total cost
 		const value = utils.parseEther(nftPrice).mul(count);
 
 		try {
 			// define the contract
 			const contract = new Contract(nftAddress, nftAbi, writeWeb3.signer);
-			// const userAddress = await writeWeb3.signer?.getAddress();
 
+			// transaction
 			const tx = await contract.mintToken(account, count, {
 				value,
 			});
 
+			// set status
 			setStatus({
 				status: STATES.SUBMITTED,
 				msg: 'Transaction has been submitted',
 			});
 			setTransaction(tx);
 
+			// waiting for confirmation
 			await tx.wait().then(
 				(res: any) => {
 					setTransaction(res);
@@ -119,7 +113,16 @@ const useMinter = () => {
 		}
 	};
 
-	return { count, increment, decrement, setCount, mint, status, transaction };
+	return {
+		count,
+		increment,
+		decrement,
+		setCount,
+		mint,
+		status,
+		transaction,
+		resetState,
+	};
 };
 
 export default useMinter;

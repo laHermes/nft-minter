@@ -16,9 +16,10 @@ import Error from 'components/Elements/Error/Error';
 import { Button } from 'components/Elements/Button/Button';
 import { MODAL_TYPES, useModalContext } from 'store/ModalContext';
 import { errorMessages } from 'config/errorMessages';
+import { useMintContext } from 'features/mint/context/MintContext';
 
 const Minter = () => {
-	const { count, increment, decrement, mint } = useMinter();
+	const { count, increment, decrement, mint } = useMintContext();
 	const { showModal } = useModalContext();
 
 	const showMintModal = () => showModal(MODAL_TYPES.MINT, { count, mint });
@@ -47,7 +48,7 @@ const Minter = () => {
 							<span className='text-5xl text-white leading-none'>∞</span>
 						</div> */}
 
-						<p className='text-center text-white font-semibold'>0.3 Matic</p>
+						<p className='text-center text-white font-semibold'>0.03 Matic</p>
 						<div>
 							<Button onClick={showMintModal} variant='gradientBg'>
 								Mint

@@ -11,9 +11,10 @@ import { useMintContext } from '../context/MintContext';
 
 const MintModal = () => {
 	const { hideModal, showModal } = useModalContext();
-	const { count, mint, renderStatusComponent } = useMintContext();
+	const { count, mint, transaction, renderStatusComponent, resetState } =
+		useMintContext();
 
-	if (!mint || !count) {
+	if (!mint || !count || !resetState) {
 		throw new Error(
 			'This modal can only bre used within minter context provider'
 		);
@@ -21,17 +22,18 @@ const MintModal = () => {
 
 	const handleModalToggle = () => {
 		hideModal();
+		resetState();
 	};
 
 	const mintAndTransact = () => {
-		hideModal();
-		showModal(MODAL_TYPES.TRANSACTION);
+		// hideModal();
+		// showModal(MODAL_TYPES.TRANSACTION);
 		mint();
 		// handleModalToggle();
 	};
 
 	const itemStyle = 'text-white/90 font-semibold text-sm sm:text-lg';
-	const itemAttribute = 'text-sm font-bold text-white';
+	const itemAttribute = 'text-sm font-semibold text-white/90';
 
 	return (
 		<Modal show={true} onClose={handleModalToggle}>
@@ -57,7 +59,7 @@ const MintModal = () => {
 										<span className='text-white/40 text-sm'>User</span>
 									</div>
 									{/* <AccountInfo /> */}
-									<AccountInfo address={nftInfo.nftAddress} />
+									<AccountInfo />
 								</div>
 
 								<div className='text-center'>
@@ -89,21 +91,37 @@ const MintModal = () => {
 
 								<div className='flex flex-row justify-between'>
 									<div>
-										<p className={itemStyle}>Total</p>
-										<p className='text-sm text-white/70'>AMOUNT * PRICE</p>
+										<p className='text-white/90 font-semibold text-sm sm:text-xl'>
+											Total
+										</p>
+										<p className='text-xs font-light text-white/70'>
+											AMOUNT * PRICE
+										</p>
 									</div>
-									<span className={itemAttribute}>
+									<span className='animate-pulse text-2xl font-bold text-white'>
 										~{(+nftInfo.price * count).toPrecision(2)} Matic
 									</span>
 								</div>
 
-								<div className='inline-flex gap-2 my-2 py-2 px-3 bg-blue-900/40 text-blue-600 rounded-[12px] '>
-									<ExclamationCircleIcon className='h-6 mt-2' />
-									<span>
-										Upon clicking on the confirm button, Metamask wallet will
-										pop up
-									</span>
+								{!renderStatusComponent() && (
+									<div className='inline-flex gap-2 my-2 py-2 px-3 bg-blue-900/40 text-blue-600 rounded-[12px] '>
+										<ExclamationCircleIcon className='h-6 mt-2' />
+										<span>
+											By clicking on the confirm button, Metamask wallet will
+											pop up
+										</span>
+									</div>
+								)}
+
+								<div className=' flex flex-col gap-3 mt-4 pt-4 border-t border-white/80'>
+									<p className={itemStyle}>
+										Your transaction has been submitted and is being processed.
+									</p>
+									<p className={itemStyle}>
+										Your can view the status of the transaction in the explorer
+									</p>
 								</div>
+
 								{renderStatusComponent()}
 								<div className='flex flex-row justify-end'>
 									<Button variant='gradientBg' onClick={mintAndTransact}>

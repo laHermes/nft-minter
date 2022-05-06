@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import useWalletConnect from 'features/connect/hooks/useWalletConnect';
 import Jazzicon, { jsNumberForAddress } from 'react-jazzicon';
 import { shortenString } from 'utils/pureFunctions';
+import { ethers } from 'ethers';
 
 interface IAccountInfo {
 	address?: string;
@@ -9,15 +10,22 @@ interface IAccountInfo {
 
 const AccountInfo = ({ address }: IAccountInfo) => {
 	const { account } = useWalletConnect();
-	const addressCalc = address ? address : account;
+	const [currentAddress, setCurrentAddress] = useState<any>('');
+
+	useEffect(() => {
+		setCurrentAddress(
+			address ? address : account || ethers.constants.AddressZero
+		);
+	}, [address, account]);
+
 	return (
 		<div className='inline-flex gap-2'>
-			{addressCalc && (
-				<Jazzicon diameter={20} seed={jsNumberForAddress(addressCalc)} />
+			{currentAddress && (
+				<Jazzicon diameter={20} seed={jsNumberForAddress(currentAddress)} />
 			)}
-			{addressCalc && (
+			{currentAddress && (
 				<span className='text-white text-sm md:text-xl leading-none'>
-					{shortenString(addressCalc)}
+					{shortenString(currentAddress)}
 				</span>
 			)}
 		</div>

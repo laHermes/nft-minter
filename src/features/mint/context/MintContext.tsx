@@ -2,7 +2,6 @@ import React, { useContext, createContext } from 'react';
 import useMinter from '../hooks/useMinter';
 import {
 	StatusError,
-	StatusLoading,
 	StatusSubmitted,
 	StatusSuccess,
 } from '../components/Statuses';
@@ -23,7 +22,6 @@ interface IStatus {
 const STATUS_COMPONENT = {
 	[STATES.IDLE]: null,
 	[STATES.SUBMITTED]: StatusSubmitted,
-	[STATES.LOADING]: StatusLoading,
 	[STATES.SUCCESS]: StatusSuccess,
 	[STATES.ERROR]: StatusError,
 };
@@ -36,6 +34,7 @@ type MintContextType = {
 	increment: () => void;
 	decrement: () => void;
 	mint: () => void;
+	resetState: () => void;
 	renderStatusComponent?: any;
 };
 
@@ -43,7 +42,7 @@ export const MintContext = createContext<Partial<MintContextType>>({});
 export const useMintContext = () => useContext(MintContext);
 
 const MintProvider: React.FC<{}> = ({ children }) => {
-	const { count, increment, decrement, mint, status, transaction } =
+	const { count, increment, decrement, mint, status, transaction, resetState } =
 		useMinter();
 
 	const renderStatusComponent = () => {
@@ -63,6 +62,7 @@ const MintProvider: React.FC<{}> = ({ children }) => {
 				status,
 				transaction,
 				renderStatusComponent,
+				resetState,
 			}}>
 			{children}
 		</MintContext.Provider>
