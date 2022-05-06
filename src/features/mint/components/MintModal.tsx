@@ -11,7 +11,7 @@ import { useMintContext } from '../context/MintContext';
 
 const MintModal = () => {
 	const { hideModal, showModal } = useModalContext();
-	const { count, mint } = useMintContext();
+	const { count, mint, renderStatusComponent } = useMintContext();
 
 	if (!mint || !count) {
 		throw new Error(
@@ -104,6 +104,7 @@ const MintModal = () => {
 										pop up
 									</span>
 								</div>
+								{renderStatusComponent()}
 								<div className='flex flex-row justify-end'>
 									<Button variant='gradientBg' onClick={mintAndTransact}>
 										Confirm

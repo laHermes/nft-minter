@@ -9,19 +9,15 @@ const variants = {
 };
 
 interface IStatus {
-	icon?: React.ReactElement;
+	icon?: React.ReactElement | any;
 	variant?: keyof typeof variants;
 	msg?: any;
 }
 
 const Status = ({ msg, icon, variant = 'blue' }: IStatus) => {
 	return (
-		<div
-			className={clsx(
-				'inline-flex gap-2 my-2 py-2 px-3 rounded-[12px]',
-				variants[variant]
-			)}>
-			{icon} <span>{msg}</span>
+		<div className={clsx('py-2 px-3 rounded-[12px]', variants[variant])}>
+			<p className='col-span-4 '>{msg}</p>
 		</div>
 	);
 };

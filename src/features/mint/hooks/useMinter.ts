@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ethers, utils, Contract } from 'ethers';
 import { writeWeb3, getProvider, web3 } from 'services/web3/index';
 import {
@@ -8,7 +8,6 @@ import {
 } from 'services/web3/contracts/ContractExports';
 
 // utility functions
-import { mintToken } from 'services/web3/utils';
 import useWalletConnect from 'features/connect/hooks/useWalletConnect';
 import { hasEnoughEth } from 'services/web3/utils';
 
@@ -44,6 +43,14 @@ const useMinter = () => {
 	const decrement = () =>
 		setCount((count: number) => Math.max(count - 1, LOWER_BOUND));
 
+	useEffect(() => {
+		isAccountConnected();
+	}, [account]);
+
+	useEffect(() => {
+		hasEnoughTokensForTransaction();
+	}, [count]);
+
 	const resetState = () => {
 		setStatus(initialStatus);
 		setTransaction(null);
@@ -57,23 +64,25 @@ const useMinter = () => {
 			});
 			return false;
 		}
+		resetState();
+
 		return true;
 	};
 
-	const hasEnoughTokenForTransaction = async () => {
+	const hasEnoughTokensForTransaction = async () => {
 		const hasEnough = await hasEnoughEth(NFT_PRICE, count);
 		if (!hasEnough) {
 			setStatus({ status: STATES.ERROR, msg: 'Not enough funds' });
 			return false;
 		}
-
+		resetState();
 		return true;
 	};
 
 	const mint = async () => {
 		resetState();
 
-		if (!isAccountConnected() || !hasEnoughTokenForTransaction()) {
+		if (!isAccountConnected() || !hasEnoughTokensForTransaction()) {
 			return;
 		}
 
@@ -99,10 +108,14 @@ const useMinter = () => {
 					setTransaction(res);
 					setStatus({ status: STATES.SUCCESS, msg: 'Success' });
 				},
-				(err: any) => setStatus({ status: STATES.ERROR, msg: err.message })
+				(err: any) =>
+					setStatus({
+						status: STATES.ERROR,
+						msg: err.data.message || err.message,
+					})
 			);
 		} catch (err: any) {
-			setStatus({ status: STATES.ERROR, msg: err.message });
+			setStatus({ status: STATES.ERROR, msg: err.data.message || err.message });
 		}
 	};
 
