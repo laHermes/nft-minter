@@ -2,7 +2,7 @@
 import { Dialog } from '@headlessui/react';
 import { ExclamationCircleIcon } from '@heroicons/react/outline';
 import Modal from 'components/Elements/Modal/Modal';
-import { Button } from 'components/Elements/Button/Button';
+
 import { useModalContext } from 'store/ModalContext';
 import { XIcon } from '@heroicons/react/outline';
 import AccountInfo from 'components/AccountModal/AccountInfo';
@@ -12,14 +12,11 @@ import { shortenString } from 'utils/pureFunctions';
 
 const TransactionModal = () => {
 	const { hideModal } = useModalContext();
-	const { status, transaction } = useMintContext();
-	console.log(status, transaction);
+	const { status, transaction, renderStatusComponent } = useMintContext();
 
 	const handleModalToggle = () => {
 		hideModal();
 	};
-
-	const minthandler = () => {};
 
 	const itemStyle = 'text-white/90 font-semibold text-sm sm:text-lg';
 	const itemAttribute = 'text-sm font-bold text-white';
@@ -34,7 +31,7 @@ const TransactionModal = () => {
 								<Dialog.Title
 									as='h3'
 									className='text-2xl leading-6 font-semi text-white/90'>
-									Transaction
+									Transaction submitted
 								</Dialog.Title>
 								<button onClick={handleModalToggle}>
 									<XIcon className='w-6 hover:text-white' />
@@ -60,40 +57,36 @@ const TransactionModal = () => {
 								</div>
 							</div>
 
-							<div className='flex flex-col grow gap-2 rounded-[12px] py-4'>
-								<div className='flex flex-row justify-between'>
+							<div className='flex flex-col gap-2 py-4'>
+								<div>
+									<p className={itemStyle}>
+										Your transaction has been submitted and is being processed.
+									</p>
+									<p className={itemStyle}>
+										Your can view the status of the transaction in the explorer
+									</p>
+								</div>
+								{/* <div className='flex flex-row justify-between'>
 									<p className={itemStyle}>Status</p>
 									<span className={itemAttribute}>{status?.status}</span>
-								</div>
+								</div> */}
 
-								<div className='flex flex-col grow gap-2 rounded-[12px] py-4'>
-									<div className='flex flex-row justify-between'>
-										<p className={itemStyle}>Transaction HASH</p>
-										<span className={itemAttribute}>
-											{transaction?.transactionHash &&
-												shortenString(transaction?.transactionHash)}
-										</span>
-									</div>
-									<div className='flex flex-row justify-between'>
-										<p className={itemStyle}>Confirmations</p>
-										<span className={itemAttribute}>
-											{transaction?.confirmations}
-										</span>
-									</div>
+								{/* <div className='flex flex-row justify-between'>
+									<p className={itemStyle}>Transaction HASH</p>
+									<span className={itemAttribute}>
+										{transaction?.transactionHash &&
+											shortenString(transaction?.transactionHash)}
+									</span>
 								</div>
-								{/* <div className='inline-flex gap-2 my-2 py-2 px-3 bg-blue-900/40 text-blue-600 rounded-[12px] '>
-									<ExclamationCircleIcon className='h-6 mt-2' />
-									<span>
-										Upon clicking on the confirm button, Metamask wallet will
-										pop up
+								<div className='flex flex-row justify-between'>
+									<p className={itemStyle}>Confirmations</p>
+									<span className={itemAttribute}>
+										{transaction?.confirmations}
 									</span>
 								</div> */}
-								{/* <div className='flex flex-row justify-end'>
-									<Button variant='gradientBg' onClick={MintAndClose}>
-										Confirm
-									</Button>
-								</div> */}
 							</div>
+
+							{renderStatusComponent()}
 						</div>
 					</div>
 				</div>

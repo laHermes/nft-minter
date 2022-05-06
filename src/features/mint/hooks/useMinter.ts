@@ -6,32 +6,30 @@ import {
 	nftAbi,
 	nftPrice,
 } from 'services/web3/contracts/ContractExports';
-import { INft } from 'redux/types';
-import axios from 'axios';
+
 // utility functions
 import { mintToken } from 'services/web3/utils';
 import useWalletConnect from 'features/connect/hooks/useWalletConnect';
 import { hasEnoughEth } from 'services/web3/utils';
 
-// toast notifications
-import { toast } from 'react-toastify';
-
 const UPPER_BOUND = 10;
 const LOWER_BOUND = 1;
 const NFT_PRICE = '0.03';
 
-enum states {
+enum STATES {
 	IDLE = 'IDLE',
+	SUBMITTED = 'SUBMITTED',
 	LOADING = 'LOADING',
 	ERROR = 'ERROR',
 	SUCCESS = 'SUCCESS',
 }
 
 interface IStatus {
-	status: states;
+	status: STATES;
 	msg?: any;
 }
-const initialStatus: IStatus = { status: states.IDLE, msg: '' };
+
+const initialStatus: IStatus = { status: STATES.IDLE, msg: '' };
 
 const useMinter = () => {
 	const [count, setCount] = useState<number>(1);
@@ -46,50 +44,65 @@ const useMinter = () => {
 	const decrement = () =>
 		setCount((count: number) => Math.max(count - 1, LOWER_BOUND));
 
-	const mint = async () => {
-		// make sure the wallet is connected
-		setStatus({ status: states.LOADING });
+	const resetState = () => {
+		setStatus(initialStatus);
+		setTransaction(null);
+	};
 
+	const isAccountConnected = () => {
 		if (!account) {
 			setStatus({
-				status: states.ERROR,
+				status: STATES.ERROR,
 				msg: 'No account connected, check wallet connection',
 			});
-
-			return;
+			return false;
 		}
+		return true;
+	};
 
-		// make sure the user has enough matic tokens to mint nfts
+	const hasEnoughTokenForTransaction = async () => {
 		const hasEnough = await hasEnoughEth(NFT_PRICE, count);
 		if (!hasEnough) {
-			setStatus({ status: states.ERROR, msg: 'Not enough funds' });
+			setStatus({ status: STATES.ERROR, msg: 'Not enough funds' });
+			return false;
+		}
+
+		return true;
+	};
+
+	const mint = async () => {
+		resetState();
+
+		if (!isAccountConnected() || !hasEnoughTokenForTransaction()) {
 			return;
 		}
 
 		const value = utils.parseEther(nftPrice).mul(count);
 
 		try {
-			setStatus({ status: states.LOADING, msg: '' });
-
 			// define the contract
 			const contract = new Contract(nftAddress, nftAbi, writeWeb3.signer);
-			const userAddress = await writeWeb3.signer?.getAddress();
-			const tx = await contract.mintToken(userAddress, count, {
+			// const userAddress = await writeWeb3.signer?.getAddress();
+
+			const tx = await contract.mintToken(account, count, {
 				value,
+			});
+
+			setStatus({
+				status: STATES.SUBMITTED,
+				msg: 'Transaction has been submitted',
 			});
 			setTransaction(tx);
 
 			await tx.wait().then(
 				(res: any) => {
 					setTransaction(res);
-					setStatus({ status: states.SUCCESS, msg: 'Success' });
+					setStatus({ status: STATES.SUCCESS, msg: 'Success' });
 				},
-				(err: any) => console.log(err)
+				(err: any) => setStatus({ status: STATES.ERROR, msg: err.message })
 			);
-		} catch (err) {
-			setStatus({ status: states.ERROR, msg: 'Error in minting' });
-			console.warn(err);
-			throw new Error();
+		} catch (err: any) {
+			setStatus({ status: STATES.ERROR, msg: err.message });
 		}
 	};
 
