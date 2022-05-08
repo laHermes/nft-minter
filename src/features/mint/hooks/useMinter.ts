@@ -105,11 +105,14 @@ const useMinter = () => {
 				(err: any) =>
 					setStatus({
 						status: STATES.ERROR,
-						msg: err.data.message || err.message,
+						msg: err.data.message || err.message || 'Error Minting',
 					})
 			);
 		} catch (err: any) {
-			setStatus({ status: STATES.ERROR, msg: err.data.message || err.message });
+			setStatus({
+				status: STATES.ERROR,
+				msg: err.data.message || err.message || 'Error Minting',
+			});
 		}
 	};
 

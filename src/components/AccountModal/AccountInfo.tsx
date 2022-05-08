@@ -8,14 +8,15 @@ interface IAccountInfo {
 	address?: string;
 }
 
+const ZERO_ADDRESS = ethers.constants.AddressZero;
+
 const AccountInfo = ({ address }: IAccountInfo) => {
 	const { account } = useWalletConnect();
 	const [currentAddress, setCurrentAddress] = useState<any>('');
 
+	// if account is not properly connected show ZERO ADDRESS
 	useEffect(() => {
-		setCurrentAddress(
-			address ? address : account || ethers.constants.AddressZero
-		);
+		setCurrentAddress(address ? address : account || ZERO_ADDRESS);
 	}, [address, account]);
 
 	return (

@@ -9,10 +9,15 @@ import AccountInfo from 'components/AccountModal/AccountInfo';
 import { nftInfo } from 'config/nft';
 import { useMintContext } from '../context/MintContext';
 
+interface IDetails {
+	attribute: string;
+	attributeSub?: string;
+	value: string | number;
+}
+
 const MintModal = () => {
-	const { hideModal, showModal } = useModalContext();
-	const { count, mint, transaction, renderStatusComponent, resetState } =
-		useMintContext();
+	const { hideModal } = useModalContext();
+	const { count, mint, status, resetState } = useMintContext();
 
 	if (!mint || !count || !resetState) {
 		throw new Error(
@@ -26,111 +31,76 @@ const MintModal = () => {
 	};
 
 	const mintAndTransact = () => {
-		// hideModal();
-		// showModal(MODAL_TYPES.TRANSACTION);
 		mint();
-		// handleModalToggle();
 	};
 
 	const itemStyle = 'text-white/90 font-semibold text-sm sm:text-lg';
 	const itemAttribute = 'text-sm font-semibold text-white/90';
 
+	const details: IDetails[] = [
+		{
+			attribute: 'NFTS#',
+			attributeSub: '',
+			value: count,
+		},
+		{
+			attribute: 'Price per NFT',
+			attributeSub: '',
+			value: nftInfo.price + ' ' + nftInfo.tokenName,
+		},
+		{
+			attribute: 'Network',
+			attributeSub: '',
+			value: nftInfo.network,
+		},
+		{
+			attribute: 'Total',
+			attributeSub: 'AMOUNT * PRICE',
+			value: `~${(+nftInfo.price * count).toPrecision(2)} Matic`,
+		},
+	];
+
 	return (
 		<Modal show={true} onClose={handleModalToggle}>
-			<div className='relative inline-block align-bottom bg-modal-base/80 rounded-[12px] text-center overflow-hidden shadow-xl transform transition-all mx-2 sm:my-8 sm:align-middle sm:px-0 max-w-xl w-full'>
-				<div className='p-4 sm:p-6 sm:pb-4 '>
-					<div className='sm:flex sm:items-start '>
-						<div className='flex flex-col w-full text-left'>
-							<div className='flex flex-row justify-between w-full text-white/90'>
-								<Dialog.Title
-									as='h3'
-									className='text-2xl leading-6 font-semi text-white/90'>
-									Transaction details
-								</Dialog.Title>
-								<button onClick={handleModalToggle}>
-									<XIcon className='w-6 hover:text-white' />
-								</button>
-							</div>
+			<div className='flex flex-row justify-between w-full text-white/90'>
+				<Dialog.Title
+					as='h3'
+					className='text-2xl leading-6 font-semi text-white/90'>
+					Transaction details
+				</Dialog.Title>
+				<button onClick={handleModalToggle}>
+					<XIcon className='w-6 hover:text-white' />
+				</button>
+			</div>
 
-							<div className='flex flex-row justify-between mt-6 text-white px-2 sm:px-12'>
-								<div className='text-center'>
-									<div className='mb-2'>
-										<span>FROM: </span>
-										<span className='text-white/40 text-sm'>User</span>
-									</div>
-									{/* <AccountInfo /> */}
-									<AccountInfo />
-								</div>
+			{/* Direction FROM account TO account */}
+			<FromToTransactionDirection />
 
-								<div className='text-center'>
-									<div className='mb-2'>
-										<span>TO: </span>
-										<span className='text-white/40 text-sm'>Contract</span>
-									</div>
-									<AccountInfo address={nftInfo.nftAddress} />
-								</div>
-							</div>
+			<div className='flex flex-col grow gap-2 rounded-[12px] py-4'>
+				{/* transaction attribute to value */}
+				{/* Total -> "Price" */}
+				{details.map((detail) => {
+					return (
+						<TransactionAttributeToValue key={detail.attribute} {...detail} />
+					);
+				})}
 
-							<div className='flex flex-col grow gap-2 rounded-[12px] py-4'>
-								<div className='flex flex-row justify-between'>
-									<p className={itemStyle}>NFTS#</p>
-									<span className={itemAttribute}>{count}</span>
-								</div>
-
-								<div className='flex flex-row justify-between'>
-									<p className={itemStyle}>Price per NFT</p>
-									<span className={itemAttribute}>
-										{nftInfo.price + ' ' + nftInfo.tokenName}
-									</span>
-								</div>
-
-								<div className='flex flex-row justify-between'>
-									<p className={itemStyle}>Network </p>
-									<span className={itemAttribute}>{nftInfo.network}</span>
-								</div>
-
-								<div className='flex flex-row justify-between'>
-									<div>
-										<p className='text-white/90 font-semibold text-sm sm:text-xl'>
-											Total
-										</p>
-										<p className='text-xs font-light text-white/70'>
-											AMOUNT * PRICE
-										</p>
-									</div>
-									<span className='animate-pulse text-2xl font-bold text-white'>
-										~{(+nftInfo.price * count).toPrecision(2)} Matic
-									</span>
-								</div>
-
-								{!renderStatusComponent() && (
-									<div className='inline-flex gap-2 my-2 py-2 px-3 bg-blue-900/40 text-blue-600 rounded-[12px] '>
-										<ExclamationCircleIcon className='h-6 mt-2' />
-										<span>
-											By clicking on the confirm button, Metamask wallet will
-											pop up
-										</span>
-									</div>
-								)}
-
-								<div className=' flex flex-col gap-3 mt-4 pt-4 border-t border-white/80'>
-									<p className={itemStyle}>
-										Your transaction has been submitted and is being processed.
-									</p>
-									<p className={itemStyle}>
-										Your can view the status of the transaction in the explorer
-									</p>
-								</div>
-
-								{renderStatusComponent()}
-								<div className='flex flex-row justify-end'>
-									<Button variant='gradientBg' onClick={mintAndTransact}>
-										Confirm
-									</Button>
-								</div>
-							</div>
-						</div>
+				{status?.status === 'SUBMITTED' && (
+					<div className=' flex flex-col gap-3 mt-4 pt-4 border-t border-white/80'>
+						<p className={itemStyle}>
+							Your transaction has been submitted and is being processed.
+						</p>
+						<p className={itemStyle}>
+							Your can view the status of the transaction in the explorer
+						</p>
 					</div>
+				)}
+
+				<StatusComponent />
+				<div className='flex flex-row justify-end'>
+					<Button variant='gradientBg' onClick={mintAndTransact}>
+						{status?.status === 'ERROR' ? 'Try Again' : 'Confirm'}
+					</Button>
 				</div>
 			</div>
 		</Modal>
@@ -138,3 +108,63 @@ const MintModal = () => {
 };
 
 export default MintModal;
+
+const FromToTransactionDirection = () => {
+	return (
+		<div className='flex flex-row justify-between mt-6 text-white px-2 sm:px-12'>
+			{/* FROM */}
+			{/* BY DEFAULT if account/wallet is not connected it shows ZERO ADDRESS */}
+			<div className='text-center'>
+				<div className='mb-2'>
+					<span>FROM: </span>
+					<span className='text-white/40 text-sm'>User</span>
+				</div>
+				<AccountInfo />
+			</div>
+
+			{/* TO */}
+			{/* Contract address */}
+			<div className='text-center'>
+				<div className='mb-2'>
+					<span>TO: </span>
+					<span className='text-white/40 text-sm'>Contract</span>
+				</div>
+				<AccountInfo address={nftInfo.nftAddress} />
+			</div>
+		</div>
+	);
+};
+
+const TransactionAttributeToValue = ({
+	attribute,
+	attributeSub,
+	value,
+}: IDetails) => {
+	return (
+		<div key={attribute} className='flex flex-row justify-between'>
+			<div>
+				<p className='text-white/90 font-semibold text-sm sm:text-xl'>
+					{attribute}
+				</p>
+				<p className='text-xs font-light text-white/70'>{attributeSub}</p>
+			</div>
+			<span className='text-2xl font-bold text-white'>{value}</span>
+		</div>
+	);
+};
+
+// Shows current transaction status or
+const StatusComponent = () => {
+	const { renderStatusComponent } = useMintContext();
+	if (!renderStatusComponent()) {
+		return (
+			<div className='inline-flex gap-2 my-2 py-2 px-3 bg-blue-900/40 text-blue-600 rounded-[12px] '>
+				<ExclamationCircleIcon className='h-6 mt-2' />
+				<span>
+					By clicking on the confirm button, Metamask wallet will pop up
+				</span>
+			</div>
+		);
+	}
+	return renderStatusComponent();
+};
