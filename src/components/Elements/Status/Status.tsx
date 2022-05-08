@@ -24,7 +24,7 @@ const Status = ({
 	return (
 		<div
 			className={clsx(
-				' inline-flex gap-2 py-2 px-3 rounded-[12px]',
+				'inline-flex gap-2 py-2 px-3 rounded-[12px] ',
 				variants[variant]
 			)}>
 			{isLoading && (
@@ -45,7 +45,7 @@ const Status = ({
 				</svg>
 			)}
 			{icon}
-			<p className='text-lg font-bold'>{msg}</p>
+			<p className='text-sm lg:text-lg font-semibold shrink'>{msg}</p>
 		</div>
 	);
 };

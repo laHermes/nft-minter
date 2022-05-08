@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { compose } from '@reduxjs/toolkit';
 
 // hooks & selectors
@@ -27,7 +27,7 @@ const Info = {
 	title: 'Mint NFT',
 	description: 'Only minted nfts will be displayed in collection!',
 	actionComponent: (
-		<Link to='/' className='w-full h-fit'>
+		<Link to='/mint' className='w-full h-fit'>
 			<span className='w-full'>&nbsp;Minter</span>
 		</Link>
 	),
@@ -40,10 +40,17 @@ const Collection = () => {
 	if (pagCtx === undefined) {
 		throw new Error('Collection must be used within a Pagination Context');
 	}
-	const { account } = useWalletConnect();
+
+	useEffect(() => {
+		window.scrollTo({
+			top: 0,
+			left: 0,
+			behavior: 'smooth',
+		});
+	}, []);
 
 	return (
-		<div className='max-w-screen-xl mx-auto p-5 pt-8'>
+		<div className='max-w-screen-lg w-full mx-auto p-5 pt-8 '>
 			<InfoCard
 				title={Info.title}
 				description={Info.description}
@@ -51,7 +58,7 @@ const Collection = () => {
 			/>
 			<Table>
 				<div className='flex flex-col text-center lg:text-left lg:flex-row w-full py-6'>
-					<div className='grow'>
+					<div className='grow w-full'>
 						<h2 className='text-white text-4xl lg:text-4xl font-bold'>
 							Collection
 						</h2>
@@ -59,22 +66,14 @@ const Collection = () => {
 							Only minted nfts will be displayed in collection!
 						</p>
 					</div>
-					<div className='self-center flex flex-row gap-2'>
+					<div className='self-center flex flex-row gap-2 mt-8 lg:mt-0'>
 						<FilterName>Owned</FilterName>
 						{filtered && <FilterOwned {...filtered} />}
 					</div>
 				</div>
 				<GridWrapper>
-					<Grid>
-						<Content data={pagination?.paginatedData} showIcon />
-					</Grid>
-
-					<PageNavigation
-						account={account}
-						showIcon={false}
-						data={pagination?.paginatedData}
-						{...pagination}
-					/>
+					<Content data={pagination?.paginatedData} />
+					<PageNav {...pagination} />
 				</GridWrapper>
 			</Table>
 		</div>
@@ -84,7 +83,6 @@ const Collection = () => {
 export default Collection;
 
 // HOC
-
 const withData = (Component: React.FC<any>) => (props: any) => {
 	const { data, showIcon } = props;
 
@@ -98,11 +96,15 @@ const withData = (Component: React.FC<any>) => (props: any) => {
 	return <Component {...props} />;
 };
 
-const BaseContent: React.ComponentType<any> = ({ data }) =>
-	data.map((data: INft) => {
-		return <NftCard key={data.id} {...data} />;
-	});
-
+const BaseContent: React.ComponentType<any> = ({ data }) => {
+	return (
+		<Grid>
+			{data.map((data: INft) => {
+				return <NftCard key={data.id} {...data} />;
+			})}
+		</Grid>
+	);
+};
 const Content = compose(withData)(BaseContent) as React.ComponentType<any>;
 
 const PageNavigation = compose(withData)(PageNav) as React.ComponentType<any>;

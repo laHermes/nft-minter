@@ -1,4 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
+import debounce from 'lodash.debounce';
+
 import { INft } from 'redux/types';
 import useWalletConnect from 'features/connect/hooks/useWalletConnect';
 
@@ -83,13 +85,16 @@ const useFilter = (data: INft[]): IFiltered => {
 	};
 
 	// toggle individual filter
-	const toggleFilter = (name: string | number, group: Group, fnc: Function) => {
-		if (filterExists(name, group)) {
-			removeFilter(name, group);
-			return;
-		}
-		addFilter(name, group, fnc);
-	};
+	const toggleFilter = debounce(
+		(name: string | number, group: Group, fnc: Function) => {
+			if (filterExists(name, group)) {
+				removeFilter(name, group);
+				return;
+			}
+			addFilter(name, group, fnc);
+		},
+		500
+	);
 
 	// toggle filter of Group (used by selectors and radio buttons)
 	const toggleGroupFilter = (

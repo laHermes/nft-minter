@@ -49,7 +49,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 					ref={ref}
 					type={type}
 					className={clsx(
-						'transition-all flex justify-center items-center rounded-[12px] leading-none px-[12px] py-[10px] text-white font-bold',
+						'transition-all flex justify-center items-center rounded-[12px] leading-none px-[12px] py-[10px] text-white font-bold h-full w-full',
 						variants[variant],
 						className
 					)}

@@ -1,4 +1,5 @@
 import React from 'react';
+import clsx from 'clsx';
 
 type DivProps = React.FC<React.HTMLAttributes<HTMLDivElement>>;
 
@@ -21,9 +22,14 @@ const GridWrapper: DivProps = ({ children }) => {
 	);
 };
 
-const Grid: DivProps = ({ children, ...props }) => {
+const Grid: DivProps = ({ children, className, ...props }) => {
 	return (
-		<div className='grid md:grid-cols-3 gap-5 w-full' {...props}>
+		<div
+			className={clsx(
+				'grid sm:grid-cols-2 lg:grid-cols-3 gap-5 w-full',
+				className
+			)}
+			{...props}>
 			{children}
 		</div>
 	);
