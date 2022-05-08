@@ -9,7 +9,7 @@ import useWalletConnect from 'features/connect/hooks/useWalletConnect';
 import { useModalContext } from 'store/ModalContext';
 import { XIcon } from '@heroicons/react/outline';
 
-const Index = () => {
+const AccountModal = () => {
 	const { hideModal } = useModalContext();
 	const { handleDisconnect, account } = useWalletConnect();
 
@@ -23,7 +23,7 @@ const Index = () => {
 
 	return (
 		<Modal show={true} onClose={handleModalToggle}>
-			<div className='flex flex-row justify-between w-full text-white/90'>
+			<div className='flex flex-row justify-between py-3 w-full text-white/90'>
 				<Dialog.Title
 					as='h3'
 					className='text-2xl leading-6 font-medium text-white/90'>
@@ -35,8 +35,11 @@ const Index = () => {
 			</div>
 
 			<div className='flex flex-col grow gap-5 border border-white/30 rounded-[12px] p-4'>
-				<div className='flex flex-row justify-between'>
-					<p className='text-white/50'>Connected with Metamask</p>
+				<p className='text-white/50 sm:hidden'>Connected with Metamask</p>
+				<div className='flex flex-col sm:flex-row justify-between order-last sm:order-first'>
+					<p className='text-white/50 hidden sm:inline-block'>
+						Connected with Metamask
+					</p>
 					<Button onClick={disconnectWalletAndClose} variant='disconnect'>
 						Disconnect
 					</Button>
@@ -57,4 +60,4 @@ const Index = () => {
 	);
 };
 
-export default Index;
+export default AccountModal;

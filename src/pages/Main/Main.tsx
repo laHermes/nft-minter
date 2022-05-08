@@ -22,12 +22,12 @@ const Main = () => {
 
 			<div className='grid grid-cols-1 md:grid-cols-2 gap-12 sm:gap-8 mt-3 sm:mt-12'>
 				<div className='flex flex-col justify-between gap-6'>
-					<div className='h-72'>
+					<div>
 						<ImageLoader src={MintImage} />
 					</div>
 					<Link to='/mint'>Go To Minter</Link>
 				</div>
-				<div className='flex flex-col gap-6'>
+				<div className='flex flex-col gap-6 justify-between h-full'>
 					<Benefits />
 					<Link variant='secondary' to='/collection'>
 						View Collection

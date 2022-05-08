@@ -30,7 +30,7 @@ const Minter = () => {
 				<h2 className='text-white text-4xl font-bold text-center'>AI NFT</h2>
 				<div className='sm:gap-8 mt-3 sm:mt-12'>
 					<div className='flex flex-col justify-between content-center gap-6'>
-						<div className='h-96'>
+						<div>
 							<ImageLoader src={MintImage} />
 						</div>
 						<div className='inline-flex items-center justify-between bg-default-primary/60 text-white font-bold rounded-[12px] overflow-hidden'>
@@ -42,11 +42,6 @@ const Minter = () => {
 								<PlusSmIcon className='w-5' />
 							</Button>
 						</div>
-						{/* <div className='inline-flex self-center'>
-							<span className='text-3xl text-white'>40</span>
-							<span className='text-3xl text-white'>/</span>
-							<span className='text-5xl text-white leading-none'>∞</span>
-						</div> */}
 
 						<p className='text-center text-white font-semibold'>0.03 Matic</p>
 						<div>
