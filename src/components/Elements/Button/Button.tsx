@@ -1,6 +1,5 @@
 import React from 'react';
 import clsx from 'clsx';
-
 const variants = {
 	primary: 'bg-default-primary hover:bg-hover-primary text-md h-full',
 	gradientBg:

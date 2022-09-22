@@ -1,8 +1,6 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
-
 import { navigationLinks } from 'config/navigationLinks';
-
 import Link from 'components/Elements/Link/Link';
 
 const Links = () => {

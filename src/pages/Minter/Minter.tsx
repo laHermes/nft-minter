@@ -1,9 +1,7 @@
 import React from 'react';
-import Link from 'components/Elements/Link/Link';
 
 // hooks
 import useWalletConnect from 'features/connect/hooks/useWalletConnect';
-import useMinter from 'features/mint/hooks/useMinter';
 
 // components
 import ImageLoader from 'components/ImageLoader/ImageLoader';
@@ -19,6 +17,7 @@ import { errorMessages } from 'config/errorMessages';
 import { useMintContext } from 'features/mint/context/MintContext';
 
 const Minter = () => {
+	// TODO: PUT ALL TEXT IN JSON
 	const { count, increment, decrement, mint } = useMintContext();
 	const { showModal } = useModalContext();
 
