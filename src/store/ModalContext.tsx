@@ -10,6 +10,7 @@ export enum MODAL_TYPES {
 	MINT = 'MINT',
 	TRANSACTION = 'TRANSACTION',
 }
+
 const MODAL_COMPONENTS: any = {
 	[MODAL_TYPES.ACCOUNT]: AccountModal,
 	[MODAL_TYPES.MINT]: MintModal,
@@ -22,12 +23,12 @@ type ModalContextType = {
 	store: any;
 };
 
-const inintalProps: ModalContextType = {
+const initialProps: ModalContextType = {
 	showModal: () => {},
 	hideModal: () => {},
 	store: {},
 };
-export const ModalContext = createContext<ModalContextType>(inintalProps);
+export const ModalContext = createContext<ModalContextType>(initialProps);
 export const useModalContext = () => useContext(ModalContext);
 
 const ModalProvider: React.FC<{}> = ({ children }) => {
@@ -44,6 +45,7 @@ const ModalProvider: React.FC<{}> = ({ children }) => {
 	const showModal = (modalType: MODAL_TYPES, modalProps: any) => {
 		setStore({ ...store, modalType, modalProps });
 	};
+
 	const hideModal = () => {
 		setStore({
 			...store,

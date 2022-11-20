@@ -36,12 +36,12 @@ export const fetchAllNfts = async (): Promise<INft[]> => {
 
 	// fetch data from the contract
 	const data = await contract.getAllNfts();
-
 	// get image links
 	const meta = data.map(async (nft: INft) => {
 		return await axios.get(nft.uri).then((res) => res.data);
 	});
 
+	console.log('data', data);
 	// resolve image links
 	const resolvedMetadata = await Promise.all(meta);
 	//create array of nfts to be returned to the view

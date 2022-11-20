@@ -8,7 +8,7 @@ import {
 
 const Footer = () => {
 	const { nfts: data } = useSelector(selectNfts);
-
+	console.log('Data', data);
 	return (
 		<div className='max-w-5xl  w-full mt-auto mx-auto px-5 pb-2 flex flex-row justify-between gap-6 text-white/60'>
 			<div className='flex flex-row gap-5'>
